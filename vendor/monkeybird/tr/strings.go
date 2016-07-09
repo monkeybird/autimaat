@@ -133,13 +133,13 @@ const (
 	FirstOnDesc        = "Geef aan wanneer een bepaalde gebruiker voor het eerst in het kanaal gezien werd."
 	FirstOnUserName    = "gebruiker"
 	FirstOnUserDesc    = "Naam of hostmask van de gebruiker in kwestie."
-	FirstOnDisplayText = "%s, ik heb %s voor het eerst gezien op %s, op %s (±%s geleden)."
+	FirstOnDisplayText = "%s, ik heb %s voor het eerst gezien op %s, om %s (±%s geleden)."
 
 	LastOnName        = "laston"
 	LastOnDesc        = "Geef aan wanneer een bepaalde gebruiker voor het laatst in het kanaal gezien werd."
 	LastOnUserName    = "gebruiker"
 	LastOnUserDesc    = "Naam of hostmask van de gebruiker in kwestie."
-	LastOnDisplayText = "%s, ik heb %s voor het laatst gezien op %s, op %s (±%s geleden)."
+	LastOnDisplayText = "%s, ik heb %s voor het laatst gezien op %s, om %s (±%s geleden)."
 
 	WeatherName         = "weer"
 	WeatherDesc         = "Toon het huidige weer voor een specifieke lokatie."

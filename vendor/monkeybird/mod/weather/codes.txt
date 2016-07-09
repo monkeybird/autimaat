@@ -1,81 +1,121 @@
 200 	thunderstorm with light rain
+    	onweer met lichte regen
 201 	thunderstorm with rain
+    	onweer met regen
 202 	thunderstorm with heavy rain
+    	onweer met hevige regen
 210 	light thunderstorm
+    	licht onweer
 211 	thunderstorm
+    	onweer
 212 	heavy thunderstorm
+    	zwaar onweer
 221 	ragged thunderstorm
 230 	thunderstorm with light drizzle
+    	onweer met lichte motregen
 231 	thunderstorm with drizzle
+    	onweer met motregen
 232 	thunderstorm with heavy drizzle
-
+    	onweer met zware motregen
 300 	light intensity drizzle
+    	lichte motregen
 301 	drizzle
+    	motregen
 302 	heavy intensity drizzle
+    	zware motregen
 310 	light intensity drizzle rain
 311 	drizzle rain
 312 	heavy intensity drizzle rain
 313 	shower rain and drizzle
 314 	heavy shower rain and drizzle
 321 	shower drizzle 
-
 500 	light rain 
+    	lichte regen
 501 	moderate rain
+    	matige regen
 502 	heavy intensity rain
+    	hevige regen
 503 	very heavy rain
+    	zeer hevige regen
 504 	extreme rain
+    	extreme regen
 511 	freezing rain
+    	vriezende regen
 520 	light intensity shower rain
 521 	shower rain
 522 	heavy intensity shower rain
 531 	ragged shower rain
-
 600 	light snow
+    	lichte sneeuw
 601 	snow
+    	sneeuw
 602 	heavy snow
+    	hevige sneeuw
 611 	sleet
 612 	shower sleet
 615 	light rain and snow
+    	lichte regen en sneeuw
 616 	rain and snow
+    	regen en sneeuw
 620 	light shower snow
 621 	shower snow
 622 	heavy shower snow
-
 701 	mist
+    	mistig
 711 	smoke
+    	rook
 721 	haze
 731 	sand, dust whirls
 741 	fog
+    	mistig
 751 	sand
+    	zandwolken
 761 	dust
+    	stofwolken
 762 	volcanic ash
+    	vulkaan as
 771 	squalls
 781 	tornado
-
+    	tornado
 800 	clear sky
-
+    	heldere lucht
 801 	few clouds
+    	lichte bewolking
 802 	scattered clouds
 803 	broken clouds
 804 	overcast clouds
-
 900 	tornado
+    	tornado
 901 	tropical storm
+    	tropische storm
 902 	hurricane
+    	orkaan
 903 	cold
+    	koud
 904 	hot
+    	heet
 905 	windy
+    	winderig
 906 	hail
-
+    	hagel
 951 	calm
+    	kalm
 952 	light breeze
+    	lichte bries
 953 	gentle breeze
+    	lichte bries
 954 	moderate breeze
+    	matige bries
 955 	fresh breeze
+    	fris briesje
 956 	strong breeze
+    	stevige bries
 957 	high wind, near gale
 958 	gale
 959 	severe gale
 960 	storm
+    	storm
 961 	violent storm
+    	hevige storm
 962 	hurricane
+    	orkaan

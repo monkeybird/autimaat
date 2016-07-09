@@ -197,7 +197,7 @@ func (m *module) cmdDeauthorize(w irc.ResponseWriter, r *cmd.Request) {
 
 // cmdVersion prints version information.
 func (m *module) cmdVersion(w irc.ResponseWriter, r *cmd.Request) {
-	stamp := time.Unix(m.version.Revision, 0).UTC()
+	stamp := time.Unix(m.version.Revision, 0)
 
 	proto.PrivMsg(
 		w, r.Target,

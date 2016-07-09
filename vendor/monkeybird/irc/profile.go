@@ -92,6 +92,12 @@ type Profile interface {
 	// ForkArgs returns a list of command line arguments which should be
 	// passed to a forked child process.
 	ForkArgs() []string
+
+	// Logging returns true if incoming data logging is enabled.
+	Logging() bool
+
+	// Logging determines if logging of incoming data should be enabled or not.
+	SetLogging(bool)
 }
 
 // profile defines bot configuration data.
@@ -120,6 +126,7 @@ type profileData struct {
 	OperPassword       string
 	ConnectionPassword string
 	CommandPrefix      string
+	Logging            bool
 }
 
 // NewProfile creates a new profile for the given root directory.
@@ -127,6 +134,7 @@ func NewProfile(root string) Profile {
 	return &profile{
 		root: root,
 		data: profileData{
+			Logging:  false,
 			Address:  "server.net:6667",
 			Nickname: "bot_name",
 			Channels: []Channel{
@@ -276,6 +284,19 @@ func (p *profile) IsNick(name string) bool {
 	p.m.RLock()
 	defer p.m.RUnlock()
 	return strings.EqualFold(p.data.Nickname, name)
+}
+
+func (p *profile) Logging() bool {
+	p.m.RLock()
+	defer p.m.RUnlock()
+	return p.data.Logging
+}
+
+func (p *profile) SetLogging(v bool) {
+	p.m.Lock()
+	p.data.Logging = v
+	p.m.Unlock()
+	p.Save()
 }
 
 func (p *profile) Save() error {

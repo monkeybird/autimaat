@@ -16,7 +16,6 @@ import (
 	"monkeybird/tr"
 	"strconv"
 	"strings"
-	"sync/atomic"
 	"time"
 )
 
@@ -38,7 +37,8 @@ type module struct {
 	authFunc     func(string)
 	deauthFunc   func(string)
 	authListFunc func() []string
-	logging      uint32
+	getLogFunc   func() bool
+	setLogFunc   func(bool)
 }
 
 // New returns a new admin module. The given application name and version
@@ -49,11 +49,7 @@ func New(name string, major, minor int, rev string) mod.Module {
 	v.Major = major
 	v.Minor = minor
 	v.Revision, _ = strconv.ParseInt(rev, 10, 64)
-
-	return &module{
-		version: v,
-		logging: 0,
-	}
+	return &module{version: v}
 }
 
 // Load loads module resources and binds commands.
@@ -61,6 +57,8 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.authFunc = prof.WhitelistAdd
 	m.deauthFunc = prof.WhitelistRemove
 	m.authListFunc = prof.Whitelist
+	m.getLogFunc = prof.Logging
+	m.setLogFunc = prof.SetLogging
 
 	pb.Bind("*", m.onAny)
 	pb.Bind("PRIVMSG", m.onPrivMsg)
@@ -104,6 +102,8 @@ func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.authFunc = nil
 	m.deauthFunc = nil
 	m.authListFunc = nil
+	m.getLogFunc = nil
+	m.setLogFunc = nil
 }
 
 func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {
@@ -119,7 +119,7 @@ func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 // the incoming data. Whether to log or not can be toggled through a
 // bot command.
 func (m *module) onAny(w irc.ResponseWriter, r *irc.Request) {
-	if atomic.LoadUint32(&m.logging) == 1 {
+	if m.getLogFunc() {
 		log.Printf(
 			"> Type: %s, SenderName: %s, SenderMask: %s, Target: %s, Data: %q",
 			r.Type,
@@ -134,14 +134,10 @@ func (m *module) onAny(w irc.ResponseWriter, r *irc.Request) {
 // cmdLog changes and/or reports the current logging state.
 func (m *module) cmdLog(w irc.ResponseWriter, r *cmd.Request) {
 	if r.Len() > 0 {
-		if r.Bool(0) {
-			atomic.StoreUint32(&m.logging, 1)
-		} else {
-			atomic.StoreUint32(&m.logging, 0)
-		}
+		m.setLogFunc(r.Bool(0))
 	}
 
-	if atomic.LoadUint32(&m.logging) == 1 {
+	if m.getLogFunc() {
 		proto.PrivMsg(w, r.SenderName, tr.LogEnabled)
 	} else {
 		proto.PrivMsg(w, r.SenderName, tr.LogDisabled)

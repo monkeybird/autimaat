@@ -26,9 +26,10 @@ func ParseBool(v string) bool {
 // List of all known string literals.
 const (
 	// ref: https://godoc.org/time#Time.Format
-	DateFormat     = "02-01-2006"
-	TimeFormat     = "15:04:05 MST"
-	DateTimeFormat = DateFormat + " " + TimeFormat
+	DateFormat      = "02 January, 2006"
+	TimeFormat      = "15:04 MST"
+	TimeFormatShort = "15:04"
+	DateTimeFormat  = DateFormat + " " + TimeFormat
 
 	CommandsRestricted       = "[beschermd]"
 	CommandsOptional         = "[optioneel]"
@@ -113,6 +114,17 @@ const (
 	Eightball18           = "%s, mijn bronnen zeggen nee."
 	Eightball19           = "%s, vooruitzicht is niet zo goed."
 	Eightball20           = "%s, zeer twijfelachtig."
+
+	SnoozeTimeFormat     = "15:04"
+	SnoozeName           = "snooze"
+	SnoozeDesc           = "Plan een alarm voor de opgegeven tijd."
+	SnoozeTimeName       = "tijd"
+	SnoozeTimeDesc       = "De tijd waarop het alarm af dient te gaan. Dit is een absoluute tijd zoals \"16:32\", of een aantal minuten vanaf nu. Bijv.: \"30\""
+	SnoozeMessageName    = "bericht"
+	SnoozeMessageDesc    = "Het bericht dat weergegeven dient te worden als het alarm af gaat."
+	SnoozeInvalidTime    = "%s, %q is geen geldige tijd waarde."
+	SnoozeDefaultMessage = "%s, toooot! Snooze tijd!"
+	SnoozeAlarmSet       = "%s, het alarm is ingesteld voor %s, om %s."
 
 	StatsNotInChannel = "Dit commando werkt alleen indien aangeroepen vanuit een kanaal."
 	StatsNoSuchUser   = "%s, ik vond geen informatie over gebruiker %s."

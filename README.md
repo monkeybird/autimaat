@@ -38,6 +38,24 @@ The old process then shuts itself down. This mechanism allows the bot to be bina
 patched, without downtime.
 
 
+## Openweathermap
+
+The Openweathermap module provides bondings for some APIs at
+http://openweathermap.org/api
+
+This service requires the registration of a free account in order to get a
+valid API key. The API key you receive should be placed in a file named
+`openweathermap.cfg` in the profile directory for your bot. Its contents
+are expected to be as follows:
+
+	{
+	  "ApiKey": "XXXXXXXX"
+	}
+
+Where `XXXXXXXX` is the API key you received from the openweathermap site.
+
+
+
 ## license
 
 Unless otherwise noted, the contents of this project are subject to a 1-clause BSD

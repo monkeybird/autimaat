@@ -46,7 +46,7 @@ func Wait(argv []string, clients ...*os.File) {
 		syscall.SIGUSR1,
 	)
 
-	log.Println("Waiting for signals...")
+	log.Println("[proc] Waiting for signals...")
 	for sig := range signals {
 		log.Println("[proc] received signal:", sig)
 		if sig != syscall.SIGUSR1 {

@@ -55,9 +55,9 @@ const (
 	PartChannelDesc = "Naam van het te verlaten kanaal."
 
 	HelpName        = "help"
-	HelpDesc        = "Toon algemene informatie voor alle onderstunde commandos, of gedetaileerde hulp voor een specifiek commando."
+	HelpDesc        = "Toon algemene informatie voor alle ondersteunde commandos, of gedetaileerde informatie voor een specifiek commando."
 	HelpCommandName = "commando"
-	HelpCommandDesc = "Naam van het specifieke commando."
+	HelpCommandDesc = "Naam van het commando in kwestie."
 
 	LogName      = "log"
 	LogDesc      = "Schakel het loggen van inkomende data in of uit, of geef de huidige logstatus weer."

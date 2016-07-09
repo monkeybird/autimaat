@@ -5,7 +5,7 @@ This program is an IRC bot, specifically written for a private IRC channel.
 
 ## Install
 
-    go get github.com/monkeybird/autimaat
+    $ go get github.com/monkeybird/autimaat
 
 
 ## Usage
@@ -40,7 +40,7 @@ patched, without downtime.
 
 ## Openweathermap
 
-The Openweathermap module provides bondings for some APIs at
+The Openweathermap module provides bindings for some APIs at
 http://openweathermap.org/api
 
 This service requires the registration of a free account in order to get a
@@ -53,7 +53,6 @@ are expected to be as follows:
 	}
 
 Where `XXXXXXXX` is the API key you received from the openweathermap site.
-
 
 
 ## license

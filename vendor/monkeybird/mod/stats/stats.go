@@ -53,7 +53,7 @@ func (s *Stats) FirstOn(w irc.ResponseWriter, r *cmd.Request) {
 		text.Bold(user),
 		us.FirstSeen.Format(tr.DateFormat),
 		us.FirstSeen.Format(tr.TimeFormat),
-		time.Since(us.LastSeen),
+		time.Since(us.FirstSeen),
 	)
 }
 

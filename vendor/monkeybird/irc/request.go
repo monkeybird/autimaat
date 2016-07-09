@@ -3,7 +3,10 @@
 
 package irc
 
-import "bytes"
+import (
+	"bytes"
+	"strings"
+)
 
 var (
 	bNameSplitter = []byte{'!'}
@@ -88,4 +91,14 @@ func (r *Request) FromChannel() bool {
 
 	c := r.Target[0]
 	return c == '#' || c == '&' || c == '!' || c == '+'
+}
+
+// Remainder returns the message payloud, but skips the first n words.
+func (r *Request) Remainder(n int) string {
+	words := strings.Fields(r.Data)
+	if n < 0 || n >= len(words) {
+		return ""
+	}
+
+	return strings.TrimSpace(strings.Join(words[n:], " "))
 }

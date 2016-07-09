@@ -14,7 +14,7 @@ import (
 	"monkeybird/irc/proto"
 	"monkeybird/mod"
 	"monkeybird/mod/admin"
-	"monkeybird/mod/eightball"
+	"monkeybird/mod/misc"
 	"monkeybird/mod/stats"
 	"monkeybird/mod/url"
 	"monkeybird/mod/weather"
@@ -69,7 +69,7 @@ func New(profile irc.Profile) *Bot {
 		),
 		weather.New(),
 		url.New(),
-		eightball.New(),
+		misc.New(),
 		stats.New(),
 	}
 

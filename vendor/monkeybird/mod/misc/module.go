@@ -1,8 +1,9 @@
 // This file is subject to a 1-clause BSD license.
 // Its contents can be found in the enclosed LICENSE file.
 
-// Package eightball implements the magic 8ball.
-package eightball
+// Package misc defines a bunch of random, silly things
+// in command form.
+package misc
 
 import (
 	"math/rand"
@@ -14,8 +15,8 @@ import (
 	"time"
 )
 
-// answers defines the list of possible 8ball answers.
-var answers = []string{
+// eightBallAnswers defines the list of possible 8ball answers.
+var eightBallAnswers = []string{
 	tr.Eightball1,
 	tr.Eightball2,
 	tr.Eightball3,
@@ -52,7 +53,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	pb.Bind("PRIVMSG", m.onPrivMsg)
 
 	m.commands = cmd.New(prof.CommandPrefix(), nil)
-	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmdAsk).
+	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmd8Ball).
 		Add(tr.EightballQuestionName, tr.EightballQuestionDesc, true, cmd.RegAny)
 }
 
@@ -70,9 +71,9 @@ func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 	m.commands.Dispatch(w, r)
 }
 
-// cmdAsk asks the 8ball a question and presents the answer.
-func (m *module) cmdAsk(w irc.ResponseWriter, r *cmd.Request) {
+// cmd8Ball asks the 8ball a question and presents the answer.
+func (m *module) cmd8Ball(w irc.ResponseWriter, r *cmd.Request) {
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
-	idx := rnd.Intn(len(answers))
-	proto.PrivMsg(w, r.Target, answers[idx], r.SenderName)
+	idx := rnd.Intn(len(eightBallAnswers))
+	proto.PrivMsg(w, r.Target, eightBallAnswers[idx], r.SenderName)
 }

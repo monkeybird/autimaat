@@ -42,6 +42,8 @@ type MockWriter struct {
 	buf bytes.Buffer
 }
 
+// Reset empties the underlying buffer.
+func (w *MockWriter) Reset()                      { w.buf.Reset() }
 func (w *MockWriter) Close() error                { return nil }
 func (w *MockWriter) Write(p []byte) (int, error) { return w.buf.Write(p) }
 

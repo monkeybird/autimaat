@@ -35,16 +35,17 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmd8Ball).
 		Add(tr.EightballQuestionName, tr.EightballQuestionDesc, true, cmd.RegAny)
 
-	m.commands.Bind(tr.BeerName, tr.BeerDesc, false, m.actionCommand(tr.BeerAnswers)).
-		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
+	m.bindAction(tr.BeerName, tr.BeerDesc, tr.BeerAnswers)
+	m.bindAction(tr.WineName, tr.WineDesc, tr.WineAnswers)
+	m.bindAction(tr.CoffeeName, tr.CoffeeDesc, tr.CoffeeAnswers)
+	m.bindAction(tr.TeaName, tr.TeaDesc, tr.TeaAnswers)
+	m.bindAction(tr.LemonadeName, tr.LemonadeDesc, tr.LemonadeAnswers)
+}
 
-	m.commands.Bind(tr.WineName, tr.WineDesc, false, m.actionCommand(tr.WineAnswers)).
-		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
-
-	m.commands.Bind(tr.CoffeeName, tr.CoffeeDesc, false, m.actionCommand(tr.CoffeeAnswers)).
-		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
-
-	m.commands.Bind(tr.TeaName, tr.TeaDesc, false, m.actionCommand(tr.TeaAnswers)).
+// bindAction provides a wrapper for the binding of action commands.
+// We bind quite a few of these, so the shortcut makes this less of a hassle.
+func (m *module) bindAction(name, desc string, set []string) {
+	m.commands.Bind(name, desc, false, m.actionCommand(set)).
 		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
 }
 
@@ -72,8 +73,14 @@ func (m *module) cmd8Ball(w irc.ResponseWriter, r *cmd.Request) {
 // a random string from the given list.
 func (m *module) actionCommand(set []string) func(w irc.ResponseWriter, r *cmd.Request) {
 	return func(w irc.ResponseWriter, r *cmd.Request) {
+		targ := r.SenderName
+
+		if r.Len() > 0 {
+			targ = r.String(0)
+		}
+
 		idx := m.rng.Intn(len(set))
-		msg := text.Action(set[idx], r.SenderName)
+		msg := text.Action(set[idx], targ)
 		proto.PrivMsg(w, r.Target, msg)
 	}
 }

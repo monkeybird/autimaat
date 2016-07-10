@@ -291,6 +291,9 @@ const (
 
 	TeaName = "thee"
 	TeaDesc = "Geef jezelf of iemand anders een kopje thee."
+
+	LemonadeName = "fris"
+	LemonadeDesc = "Geef jezelf of iemand anders een glaasje fris."
 )
 
 // The strings below should be written as if part of an action.
@@ -316,4 +319,14 @@ var CoffeeAnswers = []string{
 var TeaAnswers = []string{
 	"schenkt %s een vers kopje thee.",
 	"biedt %s een glas hete thee aan.",
+}
+
+var LemonadeAnswers = []string{
+	"schenkt %s een groot glas koude limonade.",
+	"geeft %s de fles cola aan.",
+	"geeft %s een scheut ijskoud aardbeiensap.",
+	"geeft %s een scheut ijskoud bosvruchtensap.",
+	"geeft %s een scheut ijskoud citroensap.",
+	"geeft %s een scheut ijskoud appelsap.",
+	"geeft %s een scheut ijskoud sinaasappelsap.",
 }

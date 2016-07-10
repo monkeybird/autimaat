@@ -10,41 +10,21 @@ import (
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
 	"monkeybird/mod"
+	"monkeybird/text"
 	"monkeybird/tr"
 	"time"
 )
 
-// eightBallAnswers defines the list of possible 8ball answers.
-var eightBallAnswers = []string{
-	tr.Eightball1,
-	tr.Eightball2,
-	tr.Eightball3,
-	tr.Eightball4,
-	tr.Eightball5,
-	tr.Eightball6,
-	tr.Eightball7,
-	tr.Eightball8,
-	tr.Eightball9,
-	tr.Eightball10,
-	tr.Eightball11,
-	tr.Eightball12,
-	tr.Eightball13,
-	tr.Eightball14,
-	tr.Eightball15,
-	tr.Eightball16,
-	tr.Eightball17,
-	tr.Eightball18,
-	tr.Eightball19,
-	tr.Eightball20,
-}
-
 type module struct {
+	rng      *rand.Rand
 	commands *cmd.Set
 }
 
 // New returns a new module.
 func New() mod.Module {
-	return &module{}
+	return &module{
+		rng: rand.New(rand.NewSource(time.Now().UnixNano())),
+	}
 }
 
 // Load loads module resources and binds commands.
@@ -54,6 +34,9 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands = cmd.New(prof.CommandPrefix(), nil)
 	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmd8Ball).
 		Add(tr.EightballQuestionName, tr.EightballQuestionDesc, true, cmd.RegAny)
+
+	m.commands.Bind(tr.BeerName, tr.BeerDesc, false, m.cmdBeer).
+		Add(tr.BeerUserName, tr.BeerUserDesc, false, cmd.RegAny)
 }
 
 // Unload cleans up library resources and unbinds commands.
@@ -72,7 +55,12 @@ func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 
 // cmd8Ball asks the 8ball a question and presents the answer.
 func (m *module) cmd8Ball(w irc.ResponseWriter, r *cmd.Request) {
-	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
-	idx := rnd.Intn(len(eightBallAnswers))
-	proto.PrivMsg(w, r.Target, eightBallAnswers[idx], r.SenderName)
+	idx := m.rng.Intn(len(tr.EightBallAnswers))
+	proto.PrivMsg(w, r.Target, tr.EightBallAnswers[idx], r.SenderName)
+}
+
+// cmdBeer gives someone a beer.
+func (m *module) cmdBeer(w irc.ResponseWriter, r *cmd.Request) {
+	idx := m.rng.Intn(len(tr.BeerAnswers))
+	proto.PrivMsg(w, r.Target, text.Action(tr.BeerAnswers[idx], r.SenderName))
 }

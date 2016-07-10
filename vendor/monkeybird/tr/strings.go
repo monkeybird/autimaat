@@ -23,7 +23,6 @@ func ParseBool(v string) bool {
 	}
 }
 
-// List of all known string literals.
 const (
 	// ref: https://godoc.org/time#Time.Format
 	DateFormat     = "02 January, 2006"
@@ -39,7 +38,9 @@ const (
 	CommandsAccessDenied     = "Helaas, pindakaas. Het commando %q mag uitsluitend door beheerders uitgevoerd worden."
 
 	UrlDisplayText = "De link van %s toont: %s"
+)
 
+const (
 	JoinName         = "join"
 	JoinDesc         = "Instrueer de bot om het opgegeven kanaal te betreden."
 	JoinChannelName  = "kanaal"
@@ -53,22 +54,30 @@ const (
 	PartDesc        = "Instrueer de bot het opgegeven kanaal te verlaten."
 	PartChannelName = "kanaal"
 	PartChannelDesc = "Naam van het te verlaten kanaal."
+)
 
+const (
 	HelpName        = "help"
 	HelpDesc        = "Toon algemene informatie voor alle ondersteunde commandos, of gedetaileerde informatie voor een specifiek commando."
 	HelpCommandName = "commando"
 	HelpCommandDesc = "Naam van het commando in kwestie."
+)
 
+const (
 	LogName      = "log"
 	LogDesc      = "Schakel het loggen van inkomende data in of uit, of geef de huidige logstatus weer."
 	LogValueName = "status"
 	LogValueDesc = "Een waarde die aangeeft of logging aan- of uit-geschakeld moet worden: ja/nee, j/n, aan/uit, a/u, 1/0"
 	LogEnabled   = "Logging is ingeschakeld."
 	LogDisabled  = "Logging is uitgeschakeld."
+)
 
+const (
 	ReloadName = "herstart"
 	ReloadDesc = "Instrueer de bot zichzelf te herstarten."
+)
 
+const (
 	AuthListName        = "bazen"
 	AuthListDesc        = "Geef een lijst weer met alle bekende bot beheerders."
 	AuthListDisplayText = "De beheerders zijn: %s"
@@ -84,36 +93,14 @@ const (
 	DeauthorizeMaskName    = "hostmask"
 	DeauthorizeMaskDesc    = "Hostmask van de gebruiker in kwestie."
 	DeauthorizeDisplayText = "Gebruiker %q is verwijderd van de beheerderslijst."
+)
 
+const (
 	VersionName        = "versie"
 	VersionDesc        = "Geef versie informatie van de bot weer."
 	VersionDisplayText = "%s, ik ben %s, versie %s. Mijn laatste revisie was op %s, om %s."
-
-	EightballName         = "8ball"
-	EightballDesc         = "Vraag De Magische 8ball een vraag en bereid je voor op ongezouten waarheid."
-	EightballQuestionName = "vraag"
-	EightballQuestionDesc = "De vraag die je De Magische 8ball wenst te stellen."
-	Eightball1            = "%s, het is zeker."
-	Eightball2            = "%s, het is absoluut zeker."
-	Eightball3            = "%s, zonder twijfel."
-	Eightball4            = "%s, ja, absoluut."
-	Eightball5            = "%s, daar kun je van op aan."
-	Eightball6            = "%s, zoals ik het zie, ja."
-	Eightball7            = "%s, zeer waarschijnlijk."
-	Eightball8            = "%s, vooruitzicht is goed."
-	Eightball9            = "%s, ja."
-	Eightball10           = "%s, tekenen wijzen op ja."
-	Eightball11           = "%s, antwoord onduidelijk. Probeer later nog eens."
-	Eightball12           = "%s, vraag later nog eens."
-	Eightball13           = "%s, dat zeg ik je nu liever niet."
-	Eightball14           = "%s, dat kan ik nu niet voorspellen."
-	Eightball15           = "%s, concentreer je en vraag het nog eens."
-	Eightball16           = "%s, reken er maar niet op."
-	Eightball17           = "%s, mijn antwoord is nee."
-	Eightball18           = "%s, mijn bronnen zeggen nee."
-	Eightball19           = "%s, vooruitzicht is niet zo goed."
-	Eightball20           = "%s, zeer twijfelachtig."
-
+)
+const (
 	StatsNotInChannel = "Dit commando werkt alleen indien aangeroepen vanuit een kanaal."
 	StatsNoSuchUser   = "%s, ik vond geen informatie over gebruiker %s."
 
@@ -128,7 +115,9 @@ const (
 	LastOnUserName    = "gebruiker"
 	LastOnUserDesc    = "Naam of hostmask van de gebruiker in kwestie."
 	LastOnDisplayText = "%s, ik heb %s voor het laatst gezien op %s, om %s (±%s geleden)."
+)
 
+const (
 	SnoozeTimeFormat     = "15:04"
 	SnoozeName           = "snooze"
 	SnoozeDesc           = "Plan een alarm voor de opgegeven tijd."
@@ -146,7 +135,9 @@ const (
 	UnsnoozeDesc   = "Verwijder een bestaand snooze alarm. Je kunt alleen alarmen verwijderen die je zelf hebt gemaakt."
 	UnsnoozeIDName = "id"
 	UnsnoozeIDDesc = "De code voor het alarm dat verwijderd dient te worden."
+)
 
+const (
 	WeatherName         = "weer"
 	WeatherDesc         = "Toon het huidige weer voor een specifieke lokatie."
 	WeatherLocationName = "lokatie"
@@ -253,3 +244,50 @@ const (
 	OpenWeather961                  = "hevige storm"
 	OpenWeather962                  = "orkaan"
 )
+
+const (
+	EightballName         = "8ball"
+	EightballDesc         = "Vraag De Magische 8ball een vraag en bereid je voor op ongezouten waarheid."
+	EightballQuestionName = "vraag"
+	EightballQuestionDesc = "De vraag die je De Magische 8ball wenst te stellen."
+)
+
+// EightBallAnswers defines the list of possible 8ball answers.
+var EightBallAnswers = []string{
+	"%s, het is zeker.",
+	"%s, het is absoluut zeker.",
+	"%s, zonder twijfel.",
+	"%s, ja, absoluut.",
+	"%s, daar kun je van op aan.",
+	"%s, zoals ik het zie, ja.",
+	"%s, zeer waarschijnlijk.",
+	"%s, vooruitzicht is goed.",
+	"%s, ja.",
+	"%s, tekenen wijzen op ja.",
+	"%s, antwoord onduidelijk. Probeer later nog eens.",
+	"%s, vraag later nog eens.",
+	"%s, dat zeg ik je nu liever niet.",
+	"%s, dat kan ik nu niet voorspellen.",
+	"%s, concentreer je en vraag het nog eens.",
+	"%s, reken er maar niet op.",
+	"%s, mijn antwoord is nee.",
+	"%s, mijn bronnen zeggen nee.",
+	"%s, vooruitzicht is niet zo goed.",
+	"%s, zeer twijfelachtig.",
+}
+
+const (
+	BeerName     = "bier"
+	BeerDesc     = "Geef jezelf of iemand anders een biertje."
+	BeerUserName = "wie"
+	BeerUserDesc = "Naam van diegene die het biertje ontvangt."
+)
+
+// BeerAnswers defines a set of lines which will be returned by the
+// beer command. The command picks one of these at random.
+// They should be written as if part of an action. E.g.: "/me <something something...>"
+var BeerAnswers = []string{
+	"geeft %s een lekker koud biertje.",
+	"geeft %s een lekkere blonde stoot.",
+	"opent een fust en schuift het naar %s. Proost!",
+}

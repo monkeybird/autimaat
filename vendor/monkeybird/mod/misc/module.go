@@ -35,8 +35,17 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmd8Ball).
 		Add(tr.EightballQuestionName, tr.EightballQuestionDesc, true, cmd.RegAny)
 
-	m.commands.Bind(tr.BeerName, tr.BeerDesc, false, m.cmdBeer).
-		Add(tr.BeerUserName, tr.BeerUserDesc, false, cmd.RegAny)
+	m.commands.Bind(tr.BeerName, tr.BeerDesc, false, m.actionCommand(tr.BeerAnswers)).
+		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
+
+	m.commands.Bind(tr.WineName, tr.WineDesc, false, m.actionCommand(tr.WineAnswers)).
+		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
+
+	m.commands.Bind(tr.CoffeeName, tr.CoffeeDesc, false, m.actionCommand(tr.CoffeeAnswers)).
+		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
+
+	m.commands.Bind(tr.TeaName, tr.TeaDesc, false, m.actionCommand(tr.TeaAnswers)).
+		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
 }
 
 // Unload cleans up library resources and unbinds commands.
@@ -59,8 +68,12 @@ func (m *module) cmd8Ball(w irc.ResponseWriter, r *cmd.Request) {
 	proto.PrivMsg(w, r.Target, tr.EightBallAnswers[idx], r.SenderName)
 }
 
-// cmdBeer gives someone a beer.
-func (m *module) cmdBeer(w irc.ResponseWriter, r *cmd.Request) {
-	idx := m.rng.Intn(len(tr.BeerAnswers))
-	proto.PrivMsg(w, r.Target, text.Action(tr.BeerAnswers[idx], r.SenderName))
+// actionCommand returns a command handler which presents a channel with
+// a random string from the given list.
+func (m *module) actionCommand(set []string) func(w irc.ResponseWriter, r *cmd.Request) {
+	return func(w irc.ResponseWriter, r *cmd.Request) {
+		idx := m.rng.Intn(len(set))
+		msg := text.Action(set[idx], r.SenderName)
+		proto.PrivMsg(w, r.Target, msg)
+	}
 }

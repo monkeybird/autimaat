@@ -277,17 +277,43 @@ var EightBallAnswers = []string{
 }
 
 const (
-	BeerName     = "bier"
-	BeerDesc     = "Geef jezelf of iemand anders een biertje."
-	BeerUserName = "wie"
-	BeerUserDesc = "Naam van diegene die het biertje ontvangt."
+	GiveUserName = "wie"
+	GiveUserDesc = "Naam van de ontvanger."
+
+	BeerName = "bier"
+	BeerDesc = "Geef jezelf of iemand anders een biertje."
+
+	WineName = "wijn"
+	WineDesc = "Geef jezelf of iemand anders een wijntje."
+
+	CoffeeName = "koffie"
+	CoffeeDesc = "Geef jezelf of iemand anders een kopje koffie."
+
+	TeaName = "thee"
+	TeaDesc = "Geef jezelf of iemand anders een kopje thee."
 )
 
-// BeerAnswers defines a set of lines which will be returned by the
-// beer command. The command picks one of these at random.
-// They should be written as if part of an action. E.g.: "/me <something something...>"
+// The strings below should be written as if part of an action.
+// E.g.: "/me <something something...>"
+
 var BeerAnswers = []string{
 	"geeft %s een lekker koud biertje.",
 	"geeft %s een lekkere blonde stoot.",
 	"opent een fust en schuift het naar %s. Proost!",
+}
+
+var WineAnswers = []string{
+	"geeft %s een glaasje rode wijn.",
+	"geeft %s een glaasje witte wijn.",
+	"geeft %s een glaasje Port.",
+}
+
+var CoffeeAnswers = []string{
+	"schenkt %s een kopje verse koffie.",
+	"geeft %s een stevige bak leut.",
+}
+
+var TeaAnswers = []string{
+	"schenkt %s een vers kopje thee.",
+	"biedt %s een glas hete thee aan.",
 }

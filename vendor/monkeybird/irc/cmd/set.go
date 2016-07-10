@@ -12,7 +12,6 @@ import (
 	"sort"
 	"strings"
 	"sync"
-	"time"
 )
 
 // CommandBinder defines a type which can bind/unbind commands.
@@ -138,7 +137,7 @@ func (s *Set) HelpHandler(w irc.ResponseWriter, r *Request) {
 				cmd.Description,
 			)
 
-			<-time.After(750 * time.Millisecond)
+			//<-time.After(750 * time.Millisecond)
 		}
 
 		return
@@ -179,7 +178,7 @@ func (s *Set) HelpHandler(w irc.ResponseWriter, r *Request) {
 			p.Description,
 		)
 
-		<-time.After(750 * time.Millisecond)
+		//<-time.After(750 * time.Millisecond)
 	}
 }
 

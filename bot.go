@@ -15,6 +15,7 @@ import (
 	"monkeybird/mod"
 	"monkeybird/mod/admin"
 	"monkeybird/mod/misc"
+	"monkeybird/mod/snooze"
 	"monkeybird/mod/stats"
 	"monkeybird/mod/url"
 	"monkeybird/mod/weather"
@@ -69,8 +70,9 @@ func New(profile irc.Profile) *Bot {
 		),
 		weather.New(),
 		url.New(),
-		misc.New(),
 		stats.New(),
+		misc.New(),
+		snooze.New(&b),
 	}
 
 	log.Printf("[bot] Running %s version %d.%d.%s",
@@ -89,7 +91,7 @@ func New(profile irc.Profile) *Bot {
 // Close closes the connection and cleans up resources.
 func (b *Bot) Close() error {
 	b.quit.Do(func() {
-		log.Println("[bot] Loading modules...")
+		log.Println("[bot] Unloading modules...")
 		for _, m := range b.modules {
 			log.Printf("[bot]  %T", m)
 			m.Unload(&b.bindings, b.profile)

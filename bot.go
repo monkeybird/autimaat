@@ -75,25 +75,14 @@ func New(profile irc.Profile) *Bot {
 		snooze.New(&b),
 	}
 
-	log.Printf("[bot] Running %s version %d.%d.%s",
-		AppName, AppVersionMajor, AppVersionMinor, AppVersionRevision)
-
-	// Load all modules.
-	log.Println("[bot] Loading modules...")
-	for _, m := range b.modules {
-		log.Printf("[bot]  %T", m)
-		m.Load(&b.bindings, b.profile)
-	}
-
 	return &b
 }
 
 // Close closes the connection and cleans up resources.
 func (b *Bot) Close() error {
 	b.quit.Do(func() {
-		log.Println("[bot] Unloading modules...")
 		for _, m := range b.modules {
-			log.Printf("[bot]  %T", m)
+			log.Printf("[bot] Unloading %T", m)
 			m.Unload(&b.bindings, b.profile)
 		}
 
@@ -131,9 +120,20 @@ func (b *Bot) Clear() {
 // The connection is either a new one, or inherited from a previous session.
 // This function will not return for as long as the bot is running.
 func (b *Bot) Run() error {
+	log.Printf("[bot] Running %s version %d.%d.%s",
+		AppName, AppVersionMajor, AppVersionMinor, AppVersionRevision)
+	defer log.Println("[bot] Shutting down")
+
+	// Open connection.
 	err := b.open()
 	if err != nil {
 		return err
+	}
+
+	// Load all modules.
+	for _, m := range b.modules {
+		log.Printf("[bot] Loading %T", m)
+		m.Load(&b.bindings, b.profile)
 	}
 
 	// Spin up the client's data loop in a separate goroutine.
@@ -153,9 +153,7 @@ func (b *Bot) Run() error {
 
 	fd, _ := b.client.File()
 
-	log.Println("[bot] Waiting for signals...")
 	proc.Wait(b.profile.ForkArgs(), fd)
-	log.Println("[bot] Shutting down")
 	return b.Close()
 }
 

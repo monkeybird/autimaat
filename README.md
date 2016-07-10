@@ -57,5 +57,5 @@ Where `XXXXXXXX` is the API key you received from the openweathermap site.
 
 ## license
 
-Unless otherwise noted, the contents of this project are subject to a 1-clause BSD
-license. Its contents can be found in the enclosed LICENSE file.
+Unless otherwise noted, the contents of this project are subject to a
+1-clause BSD license. Its contents can be found in the enclosed LICENSE file.

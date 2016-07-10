@@ -1,9 +1,10 @@
 # This file is subject to a 1-clause BSD license.
 # Its contents can be found in the enclosed LICENSE file.
 
-TARG_OS="freebsd"
-TARG_ARCH="amd64"
-PATH_FINAL=""
+REMOTE_OS=freebsd
+REMOTE_ARCH=amd64
+LDFLAGS_DEBUG="-X main.AppVersionRevision=`date -u +%s`"
+LDFLAGS_RELEASE="-w -s -X main.AppVersionRevision=`date -u +%s`"
 
 all: debug
 
@@ -12,16 +13,16 @@ all: debug
 # number is incremented. Tell the running bot process it is time to fork
 # itself.
 debug:
-	go install -ldflags "-X main.AppVersionRevision=`date -u +%s`"
+	go install -ldflags $(LDFLAGS_DEBUG)
 	kill -USR1 `pidof autimaat`
 
 
 # Rebuild the binary for the target platform and make sure its revision
 # number is incremented. Additionally, strip it of debug symbols.
 #
-# Then upload the binary to remote machine, through ssh.
+# Then upload the binary to a remote machine, through ssh.
+# Instruct the remote bot process to fork itself.
 # Finally, clean up the build files.
 release:
-	GOROOT_FINAL=$(PATH_FINAL) GOOS=$(TARG_OS) GOARCH=$(TARG_ARCH) \
-		go build -ldflags "-w -s -X main.AppVersionRevision=`date -u +%s`"
+	GOOS=$(REMOTE_OS) GOARCH=$(REMOTE_ARCH) go build -ldflags $(LDFLAGS_RELEASE)
 	go clean

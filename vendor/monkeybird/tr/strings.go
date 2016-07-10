@@ -26,10 +26,9 @@ func ParseBool(v string) bool {
 // List of all known string literals.
 const (
 	// ref: https://godoc.org/time#Time.Format
-	DateFormat      = "02 January, 2006"
-	TimeFormat      = "15:04 MST"
-	TimeFormatShort = "15:04"
-	DateTimeFormat  = DateFormat + " " + TimeFormat
+	DateFormat     = "02 January, 2006"
+	TimeFormat     = "15:04 MST"
+	DateTimeFormat = DateFormat + " " + TimeFormat
 
 	CommandsRestricted       = "[beschermd]"
 	CommandsOptional         = "[optioneel]"

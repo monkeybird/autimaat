@@ -115,17 +115,6 @@ const (
 	Eightball19           = "%s, vooruitzicht is niet zo goed."
 	Eightball20           = "%s, zeer twijfelachtig."
 
-	SnoozeTimeFormat     = "15:04"
-	SnoozeName           = "snooze"
-	SnoozeDesc           = "Plan een alarm voor de opgegeven tijd."
-	SnoozeTimeName       = "tijd"
-	SnoozeTimeDesc       = "De tijd waarop het alarm af dient te gaan. Dit is een absoluute tijd zoals \"16:32\", of een aantal minuten vanaf nu. Bijv.: \"30\""
-	SnoozeMessageName    = "bericht"
-	SnoozeMessageDesc    = "Het bericht dat weergegeven dient te worden als het alarm af gaat."
-	SnoozeInvalidTime    = "%s, %q is geen geldige tijd waarde."
-	SnoozeDefaultMessage = "%s, toooot! Snooze tijd!"
-	SnoozeAlarmSet       = "%s, het alarm is ingesteld voor %s, om %s."
-
 	StatsNotInChannel = "Dit commando werkt alleen indien aangeroepen vanuit een kanaal."
 	StatsNoSuchUser   = "%s, ik vond geen informatie over gebruiker %s."
 
@@ -140,6 +129,24 @@ const (
 	LastOnUserName    = "gebruiker"
 	LastOnUserDesc    = "Naam of hostmask van de gebruiker in kwestie."
 	LastOnDisplayText = "%s, ik heb %s voor het laatst gezien op %s, om %s (±%s geleden)."
+
+	SnoozeTimeFormat     = "15:04"
+	SnoozeName           = "snooze"
+	SnoozeDesc           = "Plan een alarm voor de opgegeven tijd."
+	SnoozeTimeName       = "tijd"
+	SnoozeTimeDesc       = "De tijd waarop het alarm af dient te gaan. Dit is een absoluute tijd zoals \"16:32\", of een aantal minuten vanaf nu. Bijv.: \"30\""
+	SnoozeMessageName    = "bericht"
+	SnoozeMessageDesc    = "Het bericht dat weergegeven dient te worden als het alarm af gaat."
+	SnoozeInvalidTime    = "%s, %q is geen geldige tijd waarde."
+	SnoozeDefaultMessage = "%s, toooot! Snooze tijd!"
+	SnoozeMessagePrefix  = "%s, het is %s: "
+	SnoozeAlarmSet       = "%s, het alarm is ingesteld. Je kunt het verwijderen met: !unsnooze %s"
+	SnoozeAlarmUnset     = "%s, het alarm is verwijderd."
+
+	UnsnoozeName   = "unsnooze"
+	UnsnoozeDesc   = "Verwijder een bestaand snooze alarm. Je kunt alleen alarmen verwijderen die je zelf hebt gemaakt."
+	UnsnoozeIDName = "id"
+	UnsnoozeIDDesc = "De code voor het alarm dat verwijderd dient te worden."
 
 	WeatherName         = "weer"
 	WeatherDesc         = "Toon het huidige weer voor een specifieke lokatie."

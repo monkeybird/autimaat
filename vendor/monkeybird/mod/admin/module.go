@@ -72,8 +72,8 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 
 	m.commands.Bind(tr.JoinName, tr.JoinDesc, true, m.cmdJoin).
 		Add(tr.JoinChannelName, tr.JoinChannelDesc, true, cmd.RegChannel).
-		Add(tr.JoinKeyName, tr.JoinKeyDesc, false, cmd.RegAny).
-		Add(tr.JoinPasswordName, tr.JoinPasswordDesc, false, cmd.RegAny)
+		Add(tr.JoinPasswordName, tr.JoinPasswordDesc, false, cmd.RegAny).
+		Add(tr.JoinKeyName, tr.JoinKeyDesc, false, cmd.RegAny)
 
 	m.commands.Bind(tr.PartName, tr.PartDesc, true, m.cmdPart).
 		Add(tr.PartChannelName, tr.PartChannelDesc, true, cmd.RegChannel)
@@ -150,11 +150,11 @@ func (m *module) cmdJoin(w irc.ResponseWriter, r *cmd.Request) {
 	channel.Name = r.String(0)
 
 	if r.Len() > 1 {
-		channel.Key = r.String(1)
+		channel.Password = r.String(1)
 	}
 
 	if r.Len() > 2 {
-		channel.Password = r.String(2)
+		channel.Key = r.String(2)
 	}
 
 	proto.Join(w, channel)

@@ -247,7 +247,7 @@ const (
 
 const (
 	EightballName         = "8ball"
-	EightballDesc         = "Vraag De Magische 8ball een vraag en bereid je voor op ongezouten waarheid."
+	EightballDesc         = "Stel de Magische 8ball een vraag en bereid je voor op ongezouten waarheid."
 	EightballQuestionName = "vraag"
 	EightballQuestionDesc = "De vraag die je De Magische 8ball wenst te stellen."
 )

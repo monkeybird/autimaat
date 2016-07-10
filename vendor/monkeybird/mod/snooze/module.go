@@ -7,7 +7,6 @@ package snooze
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -27,6 +26,7 @@ import (
 // alarm defines a single scheduled alarm.
 type alarm struct {
 	SenderMask string
+	SenderName string
 	Target     string
 	Message    string
 	When       time.Time
@@ -57,12 +57,12 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 
 	m.root = prof.Root()
 	m.commands = cmd.New(prof.CommandPrefix(), nil)
-	//m.commands.Bind(tr.SnoozeName, tr.SnoozeDesc, false, m.cmdSnooze).
-	//	Add(tr.SnoozeTimeName, tr.SnoozeTimeDesc, true, cmd.RegAny).
-	//	Add(tr.SnoozeMessageName, tr.SnoozeMessageDesc, false, cmd.RegAny)
+	m.commands.Bind(tr.SnoozeName, tr.SnoozeDesc, false, m.cmdSnooze).
+		Add(tr.SnoozeTimeName, tr.SnoozeTimeDesc, true, cmd.RegAny).
+		Add(tr.SnoozeMessageName, tr.SnoozeMessageDesc, false, cmd.RegAny)
 
-	//m.commands.Bind(tr.UnsnoozeName, tr.UnsnoozeDesc, false, m.cmdUnsnooze).
-	//	Add(tr.UnsnoozeIDName, tr.UnsnoozeIDDesc, true, cmd.RegAny)
+	m.commands.Bind(tr.UnsnoozeName, tr.UnsnoozeDesc, false, m.cmdUnsnooze).
+		Add(tr.UnsnoozeIDName, tr.UnsnoozeIDDesc, true, cmd.RegAny)
 
 	m.load()
 	go m.poll()
@@ -144,7 +144,8 @@ func (m *module) addSnooze(w irc.ResponseWriter, r *cmd.Request, id string) bool
 	m.table[id] = alarm{
 		Target:     r.Target,
 		SenderMask: r.SenderMask,
-		Message:    fmt.Sprintf(msg, r.SenderName),
+		SenderName: r.SenderName,
+		Message:    msg,
 		When:       time.Now().Add(when),
 	}
 
@@ -223,7 +224,8 @@ func (m *module) checkExpiredAlarms() {
 			continue
 		}
 
-		proto.PrivMsg(m.writer, alarm.Target, alarm.Message)
+		proto.PrivMsg(m.writer, alarm.Target, alarm.Message,
+			alarm.SenderName, time.Now().Format(tr.SnoozeTimeFormat))
 
 		// Yes, this is safe.
 		// ref: http://stackoverflow.com/a/23231539/357705

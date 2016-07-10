@@ -26,7 +26,7 @@ type module struct {
 	quit     chan struct{}
 }
 
-// New returns a new eightball module.
+// New returns a new module.
 func New() mod.Module { return &module{} }
 
 // Load loads module resources and binds commands.

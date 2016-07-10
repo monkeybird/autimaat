@@ -48,6 +48,7 @@ type module struct {
 	forecastCache       map[string]*ForecastResponse
 }
 
+// New returns a new module.
 func New() mod.Module {
 	return &module{
 		currentWeatherCache: make(map[string]*CurrentWeatherResponse),

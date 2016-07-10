@@ -31,6 +31,7 @@ var (
 
 type module struct{}
 
+// New returns a new module.
 func New() mod.Module {
 	return &module{}
 }

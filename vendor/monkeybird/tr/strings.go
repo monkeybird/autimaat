@@ -279,7 +279,10 @@ var EightBallAnswers = []string{
 const (
 	GiveUserName = "wie"
 	GiveUserDesc = "Naam van de ontvanger."
-	GiveDesc     = "Geef jezelf of iemand anders "
+
+	// GiveDesc has the name of a command passed to it as a format parameter.
+	// Formulate the sentence for this to make sense.
+	GiveDesc = "Geef jezelf of iemand anders %s"
 
 	BeerName     = "bier"
 	WineName     = "wijn"

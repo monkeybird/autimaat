@@ -5,6 +5,7 @@
 package misc
 
 import (
+	"fmt"
 	"math/rand"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
@@ -43,9 +44,11 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 }
 
 // bindAction provides a wrapper for the binding of action commands.
-// We bind quite a few of these, so the shortcut makes this less of a hassle.
+// We bind quite a few of these, so the shortcut makes this process
+// less verbose.
 func (m *module) bindAction(name string, set []string) {
-	m.commands.Bind(name, tr.GiveDesc+name, false, m.actionCommand(set)).
+	desc := fmt.Sprintf(tr.GiveDesc, name)
+	m.commands.Bind(name, desc, false, m.actionCommand(set)).
 		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
 }
 

@@ -55,6 +55,22 @@ are expected to be as follows:
 Where `XXXXXXXX` is the API key you received from the openweathermap site.
 
 
+## Versioning
+
+The bot version is made up of 3 numbers:
+
+* Major version: This number only changes if the bot itself changes in a way
+  that makes it incompatible with previous versions. This does not include
+  modules implementing commands.
+* Minor version: This number changes whenever one of the module APIs change,
+  or commands are added/removed.
+* Revision: This is the build number. It is a unix timestamp, which is
+  updated whenever the bot is recompiled. This happenes whenever any kind
+  of change occurs in any of the code. Including bug fixes. This number is
+  updated through a go build flag. E.g.: `go install -ldflags "-X main.AppVersionRevision=`date -u +%s`"`
+
+
+
 ## license
 
 Unless otherwise noted, the contents of this project are subject to a

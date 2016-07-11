@@ -169,7 +169,7 @@ func (m *module) cmdPart(w irc.ResponseWriter, r *cmd.Request) {
 
 // cmdReload forces the bot to fork itself.
 func (m *module) cmdReload(w irc.ResponseWriter, r *cmd.Request) {
-	proc.RequestFork()
+	proc.Fork()
 }
 
 // cmdAuthList lists all whitelisted users.

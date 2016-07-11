@@ -54,7 +54,7 @@ func Wait(argv []string, clients ...*os.File) {
 		}
 
 		log.Println("[proc] forking process...")
-		err := Fork(argv, clients...)
+		err := doFork(argv, clients...)
 		if err != nil {
 			log.Println(err)
 		}
@@ -70,11 +70,11 @@ func Kill() { syscall.Kill(os.Getpid(), syscall.SIGINT) }
 // inherited connections. The parent may now shut down.
 func KillParent() { syscall.Kill(os.Getppid(), syscall.SIGINT) }
 
-// RequestFork sends SIGUSR1 to the current process. This kickstarts the
+// Fork sends SIGUSR1 to the current process. This kickstarts the
 // forking process.
-func RequestFork() { syscall.Kill(os.Getpid(), syscall.SIGUSR1) }
+func Fork() { syscall.Kill(os.Getpid(), syscall.SIGUSR1) }
 
-// Fork forks the current process into a child process and passes the
+// doFork forks the current process into a child process and passes the
 // given client connections along to be inherited.
 //
 // The specified argv list define custom command line parameters which should
@@ -86,7 +86,7 @@ func RequestFork() { syscall.Kill(os.Getpid(), syscall.SIGUSR1) }
 // The forked process is called with the `-fork N` command line parameter.
 // Where N is the number of file descriptors being passed along. This is
 // used by the InheritedFiles() call below to rebuild the files.
-func Fork(argv []string, clients ...*os.File) error {
+func doFork(argv []string, clients ...*os.File) error {
 	// Build the command line arguments for our child process.
 	// This includes any custom arguments defined in the profile.
 	args := append([]string{"-fork", strconv.Itoa(len(clients))}, argv...)

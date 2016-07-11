@@ -64,10 +64,10 @@ The bot version is made up of 3 numbers:
   modules implementing commands.
 * Minor version: This number changes whenever one of the module APIs change,
   or commands are added/removed.
-* Revision: This is the build number. It is a unix timestamp, which is
-  updated whenever the bot is recompiled. This happenes whenever any kind
+* Revision: This is the build number. It is a current unix timestamp, which
+  is updated whenever the bot is recompiled. This happenes whenever any kind
   of change occurs in any of the code. Including bug fixes. This number is
-  updated through a go build flag. E.g.: `go install -ldflags "-X main.AppVersionRevision=`date -u +%s`"`
+  updated through a go build flag. E.g.: `go install -ldflags "-X main.AppVersionRevision=12345"`
 
 
 

@@ -81,16 +81,18 @@ func New(profile irc.Profile) *Bot {
 // Close closes the connection and cleans up resources.
 func (b *Bot) Close() error {
 	b.quit.Do(func() {
+		b.client.Close()
+		b.client = nil
+
+		b.bindings.Clear()
+		b.commands.Clear()
+
 		for _, m := range b.modules {
 			log.Printf("[bot] Unloading %T", m)
 			m.Unload(&b.bindings, b.profile)
 		}
 
 		b.modules = nil
-		b.bindings.Clear()
-		b.commands.Clear()
-		b.client.Close()
-		b.client = nil
 	})
 	return nil
 }

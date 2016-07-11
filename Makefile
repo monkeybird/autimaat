@@ -25,4 +25,5 @@ debug:
 # Finally, clean up the build files.
 release:
 	GOOS=$(REMOTE_OS) GOARCH=$(REMOTE_ARCH) go build -ldflags $(LDFLAGS_RELEASE)
+	# Uploading yet to be implemented.
 	go clean

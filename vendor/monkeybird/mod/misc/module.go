@@ -35,17 +35,17 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmd8Ball).
 		Add(tr.EightballQuestionName, tr.EightballQuestionDesc, true, cmd.RegAny)
 
-	m.bindAction(tr.BeerName, tr.BeerDesc, tr.BeerAnswers)
-	m.bindAction(tr.WineName, tr.WineDesc, tr.WineAnswers)
-	m.bindAction(tr.CoffeeName, tr.CoffeeDesc, tr.CoffeeAnswers)
-	m.bindAction(tr.TeaName, tr.TeaDesc, tr.TeaAnswers)
-	m.bindAction(tr.LemonadeName, tr.LemonadeDesc, tr.LemonadeAnswers)
+	m.bindAction(tr.BeerName, tr.BeerAnswers)
+	m.bindAction(tr.WineName, tr.WineAnswers)
+	m.bindAction(tr.CoffeeName, tr.CoffeeAnswers)
+	m.bindAction(tr.TeaName, tr.TeaAnswers)
+	m.bindAction(tr.LemonadeName, tr.LemonadeAnswers)
 }
 
 // bindAction provides a wrapper for the binding of action commands.
 // We bind quite a few of these, so the shortcut makes this less of a hassle.
-func (m *module) bindAction(name, desc string, set []string) {
-	m.commands.Bind(name, desc, false, m.actionCommand(set)).
+func (m *module) bindAction(name string, set []string) {
+	m.commands.Bind(name, tr.GiveDesc+name, false, m.actionCommand(set)).
 		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)
 }
 

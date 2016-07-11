@@ -279,21 +279,13 @@ var EightBallAnswers = []string{
 const (
 	GiveUserName = "wie"
 	GiveUserDesc = "Naam van de ontvanger."
+	GiveDesc     = "Geef jezelf of iemand anders "
 
-	BeerName = "bier"
-	BeerDesc = "Geef jezelf of iemand anders een biertje."
-
-	WineName = "wijn"
-	WineDesc = "Geef jezelf of iemand anders een wijntje."
-
-	CoffeeName = "koffie"
-	CoffeeDesc = "Geef jezelf of iemand anders een kopje koffie."
-
-	TeaName = "thee"
-	TeaDesc = "Geef jezelf of iemand anders een kopje thee."
-
+	BeerName     = "bier"
+	WineName     = "wijn"
+	CoffeeName   = "koffie"
+	TeaName      = "thee"
 	LemonadeName = "fris"
-	LemonadeDesc = "Geef jezelf of iemand anders een glaasje fris."
 )
 
 // The strings below should be written as if part of an action.

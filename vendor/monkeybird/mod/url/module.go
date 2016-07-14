@@ -53,10 +53,6 @@ func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {}
 // the channel the title of the page being linked to. This only affects
 // resources with content type: text/html.
 func onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
-	if !r.FromChannel() {
-		return
-	}
-
 	// Find all URLs in the message body.
 	list := regUrl.FindAllString(r.Data, -1)
 	if len(list) == 0 {
@@ -81,7 +77,8 @@ func fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
 	resp.Body.Close()
 
 	ctype := strings.ToLower(resp.Header.Get("Content-Type"))
-	if strings.Index(ctype, "text/html") == -1 {
+	if strings.Index(ctype, "text/html") == -1 &&
+		strings.Index(ctype, "text/xhtml") == -1 {
 		return
 	}
 
@@ -94,15 +91,16 @@ func fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
 	// buf defines the maximum amount of data we will be reading from a page,
 	// before stopping our search for the <title> tag.
 	//
-	// 16kB is pretty large, but some larger sites pack ludicrous amounts
-	// of crud in their page headers, before getting to the title.
+	// 16kB is a chunky buffer, but some sites packa a ludicrous amount of
+	// crud in their page headers, before getting to the <title> tag.
 	var buf [1024 * 16]byte
 
 	// Read the body.
 	n, err := io.ReadFull(resp.Body, buf[:])
 	resp.Body.Close()
-	if err != nil {
-		return
+
+	if err != nil && n <= 0 {
+		return // Exit only if no data was read at all.
 	}
 
 	body := buf[:n]

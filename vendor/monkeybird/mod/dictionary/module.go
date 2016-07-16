@@ -12,6 +12,7 @@ import (
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
 	"monkeybird/mod"
+	"monkeybird/text"
 	"monkeybird/tr"
 	"os"
 	"path/filepath"
@@ -80,14 +81,14 @@ func (m *module) cmdAddDefine(w irc.ResponseWriter, r *cmd.Request) {
 
 	key := strings.ToLower(r.String(0))
 	if _, ok := m.table[key]; ok {
-		proto.PrivMsg(w, r.SenderName, tr.AddDefineAllreadyUsed, r.String(0))
+		proto.PrivMsg(w, r.SenderName, tr.AddDefineAllreadyUsed, text.Bold(r.String(0)))
 		return
 	}
 
 	m.table[key] = r.Remainder(2)
 	m.save()
 
-	proto.PrivMsg(w, r.SenderName, tr.AddDefineDisplayText, r.String(0))
+	proto.PrivMsg(w, r.SenderName, tr.AddDefineDisplayText, text.Bold(r.String(0)))
 }
 
 // cmdRemoveDefine allows a user to remove an existing definition.
@@ -97,14 +98,14 @@ func (m *module) cmdRemoveDefine(w irc.ResponseWriter, r *cmd.Request) {
 
 	key := strings.ToLower(r.String(0))
 	if _, ok := m.table[key]; !ok {
-		proto.PrivMsg(w, r.SenderName, tr.RemoveDefineNotFound, r.String(0))
+		proto.PrivMsg(w, r.SenderName, tr.RemoveDefineNotFound, text.Bold(r.String(0)))
 		return
 	}
 
 	delete(m.table, key)
 	m.save()
 
-	proto.PrivMsg(w, r.SenderName, tr.RemoveDefineDisplayText, r.String(0))
+	proto.PrivMsg(w, r.SenderName, tr.RemoveDefineDisplayText, text.Bold(r.String(0)))
 }
 
 // cmdDefine yields the definition of a given term, if found.
@@ -115,7 +116,7 @@ func (m *module) cmdDefine(w irc.ResponseWriter, r *cmd.Request) {
 	key := strings.ToLower(r.String(0))
 	v, ok := m.table[key]
 	if !ok {
-		proto.PrivMsg(w, r.Target, tr.DefineNotFound, r.SenderName, r.String(0))
+		proto.PrivMsg(w, r.Target, tr.DefineNotFound, r.SenderName, text.Bold(r.String(0)))
 		return
 	}
 

@@ -7,14 +7,21 @@ package url
 
 import (
 	"bytes"
+	"encoding/json"
+	"fmt"
+	"google/youtube"
 	"html"
 	"io"
+	"io/ioutil"
+	"log"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
 	"monkeybird/mod"
 	"monkeybird/tr"
 	"net/http"
+	"net/url"
+	"path/filepath"
 	"regexp"
 	"strings"
 )
@@ -24,12 +31,27 @@ var (
 	// PRIVMSG contents.
 	regUrl = regexp.MustCompile(`\bhttps?\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]+(\:[0-9]+)?(/\S*)?\b`)
 
+	// regYoutube attempts to look for the video ID part of a youtube url.
+	regYoutube = regexp.MustCompile(`[?&]v=([a-zA-Z0-9_-]+)`)
+
+	// youtubeHosts defines a list of known, valid youtube hosts.
+	youtubeHosts = []string{
+		"youtube.com",
+	}
+
 	// These values are used to extract title contents from HTML.
 	bOpenTitle  = []byte("<title>")
 	bCloseTitle = []byte("</title>")
 )
 
-type module struct{}
+// settings defines module settings.
+type settings struct {
+	YoutubeApiKey string
+}
+
+type module struct {
+	settings settings
+}
 
 // New returns a new module.
 func New() mod.Module {
@@ -38,21 +60,38 @@ func New() mod.Module {
 
 // Load initializes the library and binds commands.
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
-	pb.Bind("PRIVMSG", onPrivMsg)
+	pb.Bind("PRIVMSG", m.onPrivMsg)
+
+	m.loadSettings(filepath.Join(prof.Root(), "url.cfg"))
 }
 
 // Unload cleans up any library resources and unbinds commands.
 func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
-	pb.Unbind("PRIVMSG", onPrivMsg)
+	pb.Unbind("PRIVMSG", m.onPrivMsg)
 }
 
 // Help displays help on custom commands.
 func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {}
 
+// loadSettings loads configuration data from disk.
+func (m *module) loadSettings(file string) {
+	data, err := ioutil.ReadFile(file)
+	if err != nil {
+		log.Println("[url] loadSettings:", err)
+		return
+	}
+
+	err = json.Unmarshal(data, &m.settings)
+	if err != nil {
+		log.Println("[url] loadSettings:", err)
+		return
+	}
+}
+
 // onPrivMsg checks the given request for any URLs. When found, it returns to
 // the channel the title of the page being linked to. This only affects
 // resources with content type: text/html.
-func onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
+func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 	// Find all URLs in the message body.
 	list := regUrl.FindAllString(r.Data, -1)
 	if len(list) == 0 {
@@ -61,12 +100,12 @@ func onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 
 	// Fetch title data for each of them.
 	for _, url := range list {
-		go fetchTitle(w, r, url)
+		go m.fetchTitle(w, r, url)
 	}
 }
 
 // fetchTitle attempts to retrieve the title element for a given url.
-func fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
+func (m *module) fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
 	// Ensure the url targets a HTML page. We do this by issueing a HEAD
 	// request and checking its content type header.
 	resp, err := http.Head(url)
@@ -123,7 +162,46 @@ func fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
 		return
 	}
 
+	title := html.UnescapeString(string(body))
+
+	// If we are dealing with a youtube link, try to fetch the
+	// avideo duration and append it to our response.
+	if id, ok := isYoutube(url); ok {
+		info, err := youtube.GetVideoInfo(m.settings.YoutubeApiKey, id)
+		if err == nil {
+			title += fmt.Sprintf(tr.UrlYoutubeDuration, info.Duration)
+		}
+	}
+
 	// Show the title to the channel from whence the URL came.
-	proto.PrivMsg(w, r.Target, tr.UrlDisplayText,
-		r.SenderName, html.UnescapeString(string(body)))
+	proto.PrivMsg(w, r.Target, tr.UrlDisplayText, r.SenderName, title)
+}
+
+// isYoutube returns a video ID and true if v denotes a youtube video URL.
+// Returns false otherwise.
+func isYoutube(v string) (string, bool) {
+	u, err := url.Parse(v)
+	if err != nil {
+		return "", false
+	}
+
+	if !isYoutubeHost(u.Host) {
+		return "", false
+	}
+
+	id := strings.TrimSpace(u.Query().Get("v"))
+	return id, len(id) > 0
+}
+
+// isYoutubeHost returns true if the given value represents a known youtube host.
+func isYoutubeHost(v string) bool {
+	v = strings.ToLower(v)
+
+	for _, vv := range youtubeHosts {
+		if strings.HasSuffix(v, vv) {
+			return true
+		}
+	}
+
+	return false
 }

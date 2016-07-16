@@ -37,7 +37,8 @@ const (
 	CommandsInvalidParameter = "Commando %s: ongeldige waarde voor parameter %q"
 	CommandsAccessDenied     = "Helaas, pindakaas. Het commando %q mag uitsluitend door beheerders uitgevoerd worden."
 
-	UrlDisplayText = "De link van %s toont: %s"
+	UrlDisplayText     = "De link van %s toont: %s"
+	UrlYoutubeDuration = " (speelduur: %s)"
 )
 
 const (
@@ -100,6 +101,7 @@ const (
 	VersionDesc        = "Geef versie informatie van de bot weer."
 	VersionDisplayText = "%s, ik ben %s, versie %s. Mijn laatste revisie was op %s, om %s."
 )
+
 const (
 	StatsNotInChannel = "Dit commando werkt alleen indien aangeroepen vanuit een kanaal."
 	StatsNoSuchUser   = "%s, ik vond geen informatie over gebruiker %s."

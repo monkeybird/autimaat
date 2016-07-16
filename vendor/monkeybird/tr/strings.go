@@ -152,7 +152,7 @@ const (
 	OpenWeatherCurrentWeatherText   = "%s, in %s (%s) is het %d℃, %s, luchtdruk: %d hPa, luchtvochtigheid: %d%%, wind: %.1f km/u uit %s richting, bewolking: %d%%."
 	OpenWeatherForecastNotAvailable = "%s, er is momenteel geen weersvoorspelling voor %s (%s)."
 	OpenWeatherForecastText1        = "%s, voorspelling voor de komende 3 dagen in %s (%s):"
-	OpenWeatherForecastText2        = "%s, in \x02±%d uur\x02: %d℃, %s, wind: %.1f km/h uit %s richting, bewolking: %d%%."
+	OpenWeatherForecastText2        = "%s, over \x02±%d uur\x02: %d℃, %s, wind: %.1f km/h uit %s richting, bewolking: %d%%."
 	OpenWeatherN                    = "noordelijke"
 	OpenWeatherNNE                  = "noord-noord-oostelijke"
 	OpenWeatherNE                   = "noord-oostelijke"

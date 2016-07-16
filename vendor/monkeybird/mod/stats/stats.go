@@ -4,14 +4,14 @@
 package stats
 
 import (
+	"compress/gzip"
 	"encoding/json"
-	"io/ioutil"
-	"log"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
 	"monkeybird/text"
 	"monkeybird/tr"
+	"os"
 	"sync"
 	"time"
 )
@@ -105,35 +105,41 @@ func (s *Stats) findUser(w irc.ResponseWriter, r *cmd.Request) (string, UserStat
 }
 
 // loadStats loads stats data from a file.
-func (s *Stats) Load(file string) {
+func (s *Stats) Load(file string) error {
 	s.m.Lock()
 	defer s.m.Unlock()
 
-	data, err := ioutil.ReadFile(file)
+	fd, err := os.Open(file)
 	if err != nil {
-		log.Println("[stats] loadStats:", err)
-		return
+		return err
 	}
 
-	err = json.Unmarshal(data, s)
+	defer fd.Close()
+
+	gz, err := gzip.NewReader(fd)
 	if err != nil {
-		log.Println("[stats] loadStats:", err)
+		return err
 	}
+
+	defer gz.Close()
+
+	return json.NewDecoder(gz).Decode(s)
 }
 
 // Save saves stats data to a file.
-func (s *Stats) Save(file string) {
+func (s *Stats) Save(file string) error {
 	s.m.RLock()
 	defer s.m.RUnlock()
 
-	data, err := json.Marshal(s)
+	fd, err := os.Create(file)
 	if err != nil {
-		log.Println("[stats] Save:", err)
-		return
+		return err
 	}
 
-	err = ioutil.WriteFile(file, data, 0600)
-	if err != nil {
-		log.Println("[stats] Save:", err)
-	}
+	defer fd.Close()
+
+	gz := gzip.NewWriter(fd)
+	defer gz.Close()
+
+	return json.NewEncoder(gz).Encode(s)
 }

@@ -325,3 +325,28 @@ var LemonadeAnswers = []string{
 	"geeft %s een scheut ijskoud appelsap.",
 	"geeft %s een scheut ijskoud sinaasappelsap.",
 }
+
+const (
+	DefineName        = "watis"
+	DefineDesc        = "Geef de definitie van de opgegeven term."
+	DefineTermName    = "term"
+	DefineTermDesc    = "De term waarvoor de definitie gewenst is."
+	DefineNotFound    = "%s, de term %q is niet bekend."
+	DefineDisplayText = "%s: %s."
+
+	AddDefineName           = "definieer"
+	AddDefineDesc           = "Voeg een nieuwe definitie toe."
+	AddDefineTermName       = "term"
+	AddDefineTermDesc       = "De term die toegevoegd dient te worden."
+	AddDefineDefinitionName = "definitie"
+	AddDefineDefinitionDesc = "De definitie van de term."
+	AddDefineAllreadyUsed   = "De term %q is al gedefinieerd."
+	AddDefineDisplayText    = "De nieuwe term %q is toegevoegd."
+
+	RemoveDefineName        = "ondefinieer"
+	RemoveDefineDesc        = "Verwijder een bestaande definitie."
+	RemoveDefineTermName    = "term"
+	RemoveDefineTermDesc    = "De term die verwijdert dient te worden."
+	RemoveDefineDisplayText = "De term %q is verwijderd."
+	RemoveDefineNotFound    = "De term %q is niet bekend."
+)

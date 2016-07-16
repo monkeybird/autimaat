@@ -38,21 +38,24 @@ The old process then shuts itself down. This mechanism allows the bot to be bina
 patched, without downtime.
 
 
-## Openweathermap
+### Openweathermap
 
-The Openweathermap module provides bindings for some APIs at
+The `weather` module provides bindings for some APIs at
 http://openweathermap.org/api
 
 This service requires the registration of a free account in order to get a
-valid API key. The API key you receive should be placed in a file named
-`openweathermap.cfg` in the profile directory for your bot. Its contents
-are expected to be as follows:
+valid API key. The API key you receive should be assigned to the
+`WeatherApiKey` field in the bot profile.
 
-	{
-	  "ApiKey": "XXXXXXXX"
-	}
 
-Where `XXXXXXXX` is the API key you received from the openweathermap site.
+### Youtube API
+
+The `url` module uses the `YouTube Data API v3` to fetch playback durations
+for videos being linked in a channel. This API requires the registration of
+a Google Developer API key at: [https://console.developers.google.com/apis](https://console.developers.google.com/apis)
+
+The API key you receive should be assigned to the `YoutubeApiKey` field in
+the bot profile.
 
 
 ## Versioning

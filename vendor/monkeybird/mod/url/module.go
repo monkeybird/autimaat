@@ -7,13 +7,10 @@ package url
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"google/youtube"
 	"html"
 	"io"
-	"io/ioutil"
-	"log"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
@@ -21,7 +18,6 @@ import (
 	"monkeybird/tr"
 	"net/http"
 	"net/url"
-	"path/filepath"
 	"regexp"
 	"strings"
 )
@@ -40,53 +36,33 @@ var (
 	}
 
 	// These values are used to extract title contents from HTML.
-	bOpenTitle  = []byte("<title>")
+	bOpenTitle1 = []byte("<title>")
+	bOpenTitle2 = []byte("<title ")
 	bCloseTitle = []byte("</title>")
+	bCloseTag   = []byte(">")
 )
 
-// settings defines module settings.
-type settings struct {
-	YoutubeApiKey string
-}
-
 type module struct {
-	settings settings
+	youtubeApiKeyFunc func() string
 }
 
 // New returns a new module.
-func New() mod.Module {
-	return &module{}
-}
+func New() mod.Module { return &module{} }
 
 // Load initializes the library and binds commands.
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	pb.Bind("PRIVMSG", m.onPrivMsg)
-
-	m.loadSettings(filepath.Join(prof.Root(), "url.cfg"))
+	m.youtubeApiKeyFunc = prof.YoutubeApiKey
 }
 
 // Unload cleans up any library resources and unbinds commands.
 func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 	pb.Unbind("PRIVMSG", m.onPrivMsg)
+	m.youtubeApiKeyFunc = nil
 }
 
 // Help displays help on custom commands.
 func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {}
-
-// loadSettings loads configuration data from disk.
-func (m *module) loadSettings(file string) {
-	data, err := ioutil.ReadFile(file)
-	if err != nil {
-		log.Println("[url] loadSettings:", err)
-		return
-	}
-
-	err = json.Unmarshal(data, &m.settings)
-	if err != nil {
-		log.Println("[url] loadSettings:", err)
-		return
-	}
-}
 
 // onPrivMsg checks the given request for any URLs. When found, it returns to
 // the channel the title of the page being linked to. This only affects
@@ -145,12 +121,28 @@ func (m *module) fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
 	body := buf[:n]
 
 	// Extract the title.
-	s := bytes.Index(bytes.ToLower(body), bOpenTitle)
+	s := bytes.Index(bytes.ToLower(body), bOpenTitle1)
 	if s == -1 {
-		return
-	}
+		// title could be something like:
+		//
+		//    <title xml:lang="en-US">....</title>
+		//
+		s = bytes.Index(bytes.ToLower(body), bOpenTitle2)
+		if s == -1 {
+			return
+		}
 
-	body = body[s+7:]
+		body = body[s+len(bOpenTitle2):]
+
+		s = bytes.Index(body, bCloseTag)
+		if s == -1 {
+			return
+		}
+
+		body = body[s+1:]
+	} else {
+		body = body[s+len(bOpenTitle1):]
+	}
 
 	e := bytes.Index(bytes.ToLower(body), bCloseTitle)
 	if e == -1 {
@@ -167,7 +159,7 @@ func (m *module) fetchTitle(w irc.ResponseWriter, r *irc.Request, url string) {
 	// If we are dealing with a youtube link, try to fetch the
 	// avideo duration and append it to our response.
 	if id, ok := isYoutube(url); ok {
-		info, err := youtube.GetVideoInfo(m.settings.YoutubeApiKey, id)
+		info, err := youtube.GetVideoInfo(m.youtubeApiKeyFunc(), id)
 		if err == nil {
 			title += fmt.Sprintf(tr.UrlYoutubeDuration, info.Duration)
 		}

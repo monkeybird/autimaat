@@ -27,22 +27,15 @@ import (
 	"monkeybird/tr"
 	"net/http"
 	"net/url"
-	"path/filepath"
 	"sync"
 	"time"
 )
-
-// settings defines API keys for the weather service.
-// These are stored in an external configuration file.
-type Settings struct {
-	ApiKey string
-}
 
 const cacheTimeout = time.Minute * 10
 
 type module struct {
 	lock                sync.RWMutex
-	settings            Settings
+	apiKeyFunc          func() string
 	commands            *cmd.Set
 	currentWeatherCache map[string]*CurrentWeatherResponse
 	forecastCache       map[string]*ForecastResponse
@@ -75,7 +68,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.ForecastName, tr.ForecastDesc, false, m.cmdForecast).
 		Add(tr.ForecastLocationName, tr.ForecastLocationDesc, true, cmd.RegAny)
 
-	m.loadSettings(prof.Root())
+	m.apiKeyFunc = prof.WeatherApiKey
 	m.lock.Unlock()
 }
 
@@ -83,6 +76,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.lock.Lock()
 	m.commands.Clear()
+	m.apiKeyFunc = nil
 	pb.Unbind("PRIVMSG", m.onPrivMsg)
 	m.lock.Unlock()
 }
@@ -98,22 +92,6 @@ func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 	m.commands.Dispatch(w, r)
 }
 
-// loadSettings loads settings from a file.
-func (m *module) loadSettings(dir string) {
-	file := filepath.Join(dir, "openweathermap.cfg")
-
-	data, err := ioutil.ReadFile(file)
-	if err != nil {
-		log.Println("[openweather] ReadFile:", err)
-		return
-	}
-
-	err = json.Unmarshal(data, &m.settings)
-	if err != nil {
-		log.Println("[openweather] Unmarshal:", err)
-	}
-}
-
 // fetch fetches the given URL contents and unmarshals them into the
 // specified struct. This returns false if the fetch failed.
 func (m *module) fetch(serviceURL, query string, v interface{}) bool {
@@ -121,7 +99,7 @@ func (m *module) fetch(serviceURL, query string, v interface{}) bool {
 	url := fmt.Sprintf(
 		serviceURL,
 		url.QueryEscape(query),
-		m.settings.ApiKey,
+		m.apiKeyFunc(),
 	)
 
 	resp, err := http.Get(url)

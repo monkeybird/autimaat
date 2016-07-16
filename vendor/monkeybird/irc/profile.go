@@ -98,6 +98,12 @@ type Profile interface {
 
 	// Logging determines if logging of incoming data should be enabled or not.
 	SetLogging(bool)
+
+	// WeatherApiKey returns the API key for openweathermap.org.
+	WeatherApiKey() string
+
+	// YoutubeApiKey returns the API key for youtube.
+	YoutubeApiKey() string
 }
 
 // profile defines bot configuration data.
@@ -126,6 +132,8 @@ type profileData struct {
 	OperPassword       string
 	ConnectionPassword string
 	CommandPrefix      string
+	WeatherApiKey      string
+	YoutubeApiKey      string
 	Logging            bool
 }
 
@@ -146,6 +154,18 @@ func NewProfile(root string) Profile {
 			CommandPrefix: "!",
 		},
 	}
+}
+
+func (p *profile) WeatherApiKey() string {
+	p.m.RLock()
+	defer p.m.RUnlock()
+	return p.data.WeatherApiKey
+}
+
+func (p *profile) YoutubeApiKey() string {
+	p.m.RLock()
+	defer p.m.RUnlock()
+	return p.data.YoutubeApiKey
 }
 
 func (p *profile) Root() string {

@@ -22,7 +22,7 @@ func (m *module) cmdForecast(w irc.ResponseWriter, r *cmd.Request) {
 	m.lock.Lock()
 	defer m.lock.Unlock()
 
-	if len(m.settings.ApiKey) == 0 {
+	if len(m.apiKeyFunc()) == 0 {
 		proto.PrivMsg(w, r.Target, tr.OpenWeatherNotAvailable)
 		return
 	}
@@ -65,7 +65,7 @@ func sendForecast(w irc.ResponseWriter, r *cmd.Request, fr *ForecastResponse) {
 		return
 	}
 
-	proto.PrivMsg(w, r.Target,
+	proto.PrivMsg(w, r.SenderName,
 		tr.OpenWeatherForecastText1,
 		r.SenderName,
 		text.Bold(fr.City.Name),

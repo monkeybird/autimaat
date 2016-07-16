@@ -95,7 +95,7 @@ func formatForecast(w irc.ResponseWriter, r *cmd.Request, fc *Forecast) {
 		weather = weatherName(fc.Weather[0].ID)
 	}
 
-	proto.PrivMsg(w, r.Target,
+	proto.PrivMsg(w, r.SenderName,
 		tr.OpenWeatherForecastText2,
 
 		r.SenderName,

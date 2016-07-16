@@ -12,7 +12,7 @@ import (
 const (
 	AppName         = "autimaat"
 	AppVersionMajor = 0
-	AppVersionMinor = 16
+	AppVersionMinor = 17
 )
 
 // AppVersionRevision defines the application build number.

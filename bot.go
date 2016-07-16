@@ -14,6 +14,7 @@ import (
 	"monkeybird/irc/proto"
 	"monkeybird/mod"
 	"monkeybird/mod/admin"
+	"monkeybird/mod/dictionary"
 	"monkeybird/mod/misc"
 	"monkeybird/mod/snooze"
 	"monkeybird/mod/stats"
@@ -73,6 +74,7 @@ func New(profile irc.Profile) *Bot {
 		stats.New(),
 		misc.New(),
 		snooze.New(&b),
+		dictionary.New(),
 	}
 
 	return &b

@@ -6,9 +6,8 @@
 package snooze
 
 import (
+	"compress/gzip"
 	"encoding/json"
-	"io/ioutil"
-	"log"
 	"math/rand"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
@@ -16,6 +15,7 @@ import (
 	"monkeybird/mod"
 	"monkeybird/text"
 	"monkeybird/tr"
+	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -34,7 +34,7 @@ type alarm struct {
 
 type module struct {
 	m        sync.RWMutex
-	root     string
+	file     string
 	commands *cmd.Set
 	quitOnce sync.Once
 	quit     chan struct{}
@@ -55,7 +55,7 @@ func New(rw irc.ResponseWriter) mod.Module {
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	pb.Bind("PRIVMSG", m.onPrivMsg)
 
-	m.root = prof.Root()
+	m.file = filepath.Join(prof.Root(), "snooze.dat")
 	m.commands = cmd.New(prof.CommandPrefix(), nil)
 	m.commands.Bind(tr.SnoozeName, tr.SnoozeDesc, false, m.cmdSnooze).
 		Add(tr.SnoozeTimeName, tr.SnoozeTimeDesc, true, cmd.RegAny).
@@ -239,38 +239,38 @@ func (m *module) checkExpiredAlarms() {
 	}
 }
 
-// save writes scheduled alarm data to a file.
-func (m *module) save() {
-	file := filepath.Join(m.root, "snooze.dat")
-
-	data, err := json.Marshal(m.table)
+// load loads scheduled alarm data from a file.
+func (m *module) load() error {
+	fd, err := os.Open(m.file)
 	if err != nil {
-		log.Println("[snooze] json.Marshal:", err)
-		return
+		return err
 	}
 
-	err = ioutil.WriteFile(file, data, 0600)
+	defer fd.Close()
+
+	gz, err := gzip.NewReader(fd)
 	if err != nil {
-		log.Println("[snooze] ioutil.WriteFile:", err)
-		return
+		return err
 	}
+
+	defer gz.Close()
+
+	return json.NewDecoder(gz).Decode(&m.table)
 }
 
-// load loads scheduled alarm data from a file.
-func (m *module) load() {
-	file := filepath.Join(m.root, "snooze.dat")
-
-	data, err := ioutil.ReadFile(file)
+// save writes scheduled alarm data to a file.
+func (m *module) save() error {
+	fd, err := os.Create(m.file)
 	if err != nil {
-		log.Println("[snooze] ioutil.ReadFile:", err)
-		return
+		return err
 	}
 
-	err = json.Unmarshal(data, &m.table)
-	if err != nil {
-		log.Println("[snooze] json.Unmarshal:", err)
-		return
-	}
+	defer fd.Close()
+
+	gz := gzip.NewWriter(fd)
+	defer gz.Close()
+
+	return json.NewEncoder(gz).Encode(m.table)
 }
 
 // parseTime treats the given value as either an absolute time, or

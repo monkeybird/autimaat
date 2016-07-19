@@ -41,7 +41,7 @@ func initLog(root string) {
 	logDir := filepath.Join(root, "logs")
 	err := os.Mkdir(logDir, 0700)
 
-	if err != nil {
+	if err != nil && !os.IsExist(err) {
 		fmt.Fprintln(os.Stderr, "failed to create log file directory:", err)
 		os.Exit(1)
 	}

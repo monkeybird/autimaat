@@ -120,14 +120,19 @@ func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 // bot command.
 func (m *module) onAny(w irc.ResponseWriter, r *irc.Request) {
 	if m.getLogFunc() {
-		log.Printf(
-			"> Type: %s, SenderName: %s, SenderMask: %s, Target: %s, Data: %q",
-			r.Type,
+		if strings.EqualFold(r.Type, "PING") {
+			return // Skip these. It's just noise.
+		}
+
+		fields := []string{
 			r.SenderName,
 			r.SenderMask,
+			r.Type,
 			r.Target,
 			r.Data,
-		)
+		}
+
+		log.Printf("> %s", strings.Join(fields, ", "))
 	}
 }
 

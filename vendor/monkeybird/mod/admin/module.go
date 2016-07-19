@@ -14,9 +14,22 @@ import (
 	"monkeybird/proc"
 	"monkeybird/text"
 	"monkeybird/tr"
+	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
+)
+
+const (
+	// PurgeTimeout defines the timeout after which the bot should
+	// check for stale log files.
+	PurgeTimeout = time.Hour * 24
+
+	// LogExpiration defines how old a log file should be, before it
+	// is considered stale.
+	LogExpiration = time.Hour * 24 * 7 * 2
 )
 
 // version defines version info to be presented by the version command.
@@ -39,6 +52,10 @@ type module struct {
 	authListFunc func() []string
 	getLogFunc   func() bool
 	setLogFunc   func(bool)
+
+	logDir       string
+	logPurgeQuit chan struct{}
+	quitOnce     sync.Once
 }
 
 // New returns a new admin module. The given application name and version
@@ -54,6 +71,8 @@ func New(name string, major, minor int, rev string) mod.Module {
 
 // Load loads module resources and binds commands.
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
+	m.logDir = filepath.Join(prof.Root(), "logs")
+	m.logPurgeQuit = make(chan struct{})
 	m.authFunc = prof.WhitelistAdd
 	m.deauthFunc = prof.WhitelistRemove
 	m.authListFunc = prof.Whitelist
@@ -91,19 +110,25 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 
 	m.commands.Bind(tr.ReloadName, tr.ReloadDesc, true, m.cmdReload)
 	m.commands.Bind(tr.VersionName, tr.VersionDesc, false, m.cmdVersion)
+
+	go m.purgeLogs()
 }
 
 // Unload cleans up library resources and unbinds commands.
 func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
-	m.commands.Clear()
-	pb.Unbind("PRIVMSG", m.onPrivMsg)
-	pb.Unbind("*", m.onAny)
+	m.quitOnce.Do(func() {
+		close(m.logPurgeQuit)
 
-	m.authFunc = nil
-	m.deauthFunc = nil
-	m.authListFunc = nil
-	m.getLogFunc = nil
-	m.setLogFunc = nil
+		m.commands.Clear()
+		pb.Unbind("PRIVMSG", m.onPrivMsg)
+		pb.Unbind("*", m.onAny)
+
+		m.authFunc = nil
+		m.deauthFunc = nil
+		m.authListFunc = nil
+		m.getLogFunc = nil
+		m.setLogFunc = nil
+	})
 }
 
 func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {
@@ -209,4 +234,52 @@ func (m *module) cmdVersion(w irc.ResponseWriter, r *cmd.Request) {
 		stamp.Format(tr.DateFormat),
 		stamp.Format(tr.TimeFormat),
 	)
+}
+
+// purgeLogs periodically checks the log file directory for files
+// which are older than a predefined number of days. If found, the log
+// file in question is deleted. This ensures we do not keep stale logs
+// around unnecessarily.
+func (m *module) purgeLogs() {
+	for {
+		select {
+		case <-m.logPurgeQuit:
+			return
+		case <-time.After(PurgeTimeout):
+			m.doLogPurge()
+		}
+	}
+}
+
+// doLogPurge checks the log file directory for files which are older
+// than a predefined number of days. If found, the log file in question
+// is deleted. This ensures we do not keep stale logs around unnecessarily.
+func (m *module) doLogPurge() {
+	log.Println("[admin] purging stale log files...")
+
+	fd, err := os.Open(m.logDir)
+	if err != nil {
+		log.Println("[admin] purge log files:", err)
+		return
+	}
+
+	files, err := fd.Readdir(-1)
+	fd.Close()
+
+	if err != nil {
+		log.Println("[admin] purge log files:", err)
+		return
+	}
+
+	for _, file := range files {
+		if time.Since(file.ModTime()) < LogExpiration {
+			continue
+		}
+
+		path := filepath.Join(m.logDir, file.Name())
+		err = os.Remove(path)
+		if err != nil {
+			log.Printf("[admin] deleting log file %q: %v", file.Name(), err)
+		}
+	}
 }

@@ -22,7 +22,7 @@
    ingevoerd te worden tussen dubbele aanhalingstekens.
    Bijv.: <code>"Dit is 1 parameter"</code>.</p>
 
-   <p>Dit document is geschreven voor bot versie 0.18.<br />
+   <p>Dit document is geschreven voor bot versie 0.19.<br />
     Broncode voor deze bot is vrij beschikbaar via <a href="https://github.com/monkeybird/autimaat">deze link</a>.</p>
   </div>
 
@@ -274,15 +274,21 @@
      Een waarde die aangeeft of logging aan- of uit-geschakeld moet worden:
      <code>ja/nee, j/n, aan/uit, a/u, 1/0</code></li>
    </ul>
-   <p class="dsc">Schakelt het loggen van inkomende data in of uit, of geeft de
-    huidige logstatus weer. Dit betekent niet dat chat data wordt opgeslagen
-    in een logbestand. Dit betekent hooguit dat de chat tekst in een terminal
-    zichtbaar is voor een botbeheerder. Opslag in een bestand gebeurt in dit
-    geval alleen als de beheerder deze terminal output expliciet doorstuurt
-    naar een bestand.</p>
-   <p class="dsc">De reden voor dit commando is om het opsporen van
-    programmeer-fouten gemakkelijker te maken om deze zodoende sneller te kunnen
-    repareren.</p>
+   <p class="dsc">Schakelt het loggen van inkomende data aan of uit, of geeft de
+    huidige logstatus weer. Dit betekent dat chat data wordt opgeslagen in
+    logbestand. De reden voor deze functionaliteit is twee-voudig:</p>
+   <ol>
+    <li>Het maakt het gemakkelijker om programmeer-fouten in de bot op te
+	 sporen en te repareren.</li>
+    <li>Kanaal admins zijn niet 24 uur per dag online, en kunnen daarom
+	 belangrijke informatie missen. Als er zich een conflict heeft voorgedaan
+	 tussen gebruikers, is het belangrijk dat de admins een accuraat beeld
+	 heeft van wat er wel en niet is gezegd. De log bestanden die de bot
+	 bijhoudt, kunnen uitsluitend door de admins geraadpleegd worden om
+	 zodoende tot een juiste reactie op de situatie te komen.</li>
+   </ol>
+   <p class="dsc">Log bestanden worden niet langer dan 2 weken bewaard.
+    Na deze tijd, worden ze automatisch door de bot verwijderd.</p>
   </div>
   
   <div>

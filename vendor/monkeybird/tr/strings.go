@@ -336,6 +336,10 @@ const (
 	DefineNotFound    = "%s, de term %s is niet bekend."
 	DefineDisplayText = "%s: %s."
 
+	DefinitionsName    = "definities"
+	DefinitionsDesc    = "Geeft een lijst met bekende zoek termen."
+	DefinitionsDisplay = "Ik ken %s termen: %s"
+
 	AddDefineName           = "definieer"
 	AddDefineDesc           = "Voeg een nieuwe watis definitie toe."
 	AddDefineTermName       = "term"

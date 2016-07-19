@@ -16,6 +16,7 @@ import (
 	"monkeybird/tr"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"sync"
 )
@@ -48,6 +49,8 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.DefineName, tr.DefineDesc, false, m.cmdDefine).
 		Add(tr.DefineTermName, tr.DefineTermDesc, true, cmd.RegAny)
 
+	m.commands.Bind(tr.DefinitionsName, tr.DefinitionsDesc, false, m.cmdDefinitions)
+
 	m.commands.Bind(tr.AddDefineName, tr.AddDefineDesc, true, m.cmdAddDefine).
 		Add(tr.AddDefineTermName, tr.AddDefineTermDesc, true, cmd.RegAny).
 		Add(tr.AddDefineDefinitionName, tr.AddDefineDefinitionDesc, true, cmd.RegAny)
@@ -72,6 +75,23 @@ func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {
 // onPrivMsg ensures custom commands are executed.
 func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 	m.commands.Dispatch(w, r)
+}
+
+// cmdDefinitions presents the user with a list of all defined terms,
+// minus their definitions.
+func (m *module) cmdDefinitions(w irc.ResponseWriter, r *cmd.Request) {
+	m.m.RLock()
+	defer m.m.RUnlock()
+
+	set := make([]string, 0, len(m.table))
+	for key := range m.table {
+		set = append(set, key)
+	}
+
+	sort.Strings(set)
+
+	proto.PrivMsg(w, r.SenderName, tr.DefinitionsDisplay,
+		text.Bold("%d", len(set)), strings.Join(set, ", "))
 }
 
 // cmdAddDefine allows a user to add a new definition.

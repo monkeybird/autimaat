@@ -10,16 +10,17 @@ import (
 	"monkeybird/irc"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func main() {
+	// Parse command line arguments and load the bot profile.
 	profile := parseArgs()
 
-	// Set the log prefix to include our process id.
-	// This makes analyzing log data a little easier.
-	log.SetPrefix(fmt.Sprintf("[%d] ", os.Getpid()))
+	// Initialize the log.
+	initLog(profile.Root())
 
-	// Write PID file used by systemd.
+	// Write PID file. It may be needed by a process supervisor.
 	writePid()
 
 	// Create the bot and open the connection.
@@ -28,8 +29,39 @@ func main() {
 
 	if err != nil {
 		log.Println(err)
-		return
 	}
+}
+
+// initLog initializes the log file and any other propertiues
+// it might need. Log files are created anew, once a day.
+// They are named after the current (local) date and stored in
+// the $PROFILE_ROOT/logs/ directory.
+func initLog(root string) {
+	// Ensure the log file directory exists.
+	logDir := filepath.Join(root, "logs")
+	err := os.Mkdir(logDir, 0700)
+
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "failed to create log file directory:", err)
+		os.Exit(1)
+	}
+
+	// Set the log target to a file.
+	timeStamp := time.Now().Format("20060102")
+	logFile := fmt.Sprintf("%s.txt", timeStamp)
+	logFile = filepath.Join(logDir, logFile)
+
+	fd, err := os.OpenFile(logFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "failed to open log file:", err)
+		os.Exit(1)
+	}
+
+	log.SetOutput(fd)
+
+	// Set the log prefix to include our process id.
+	// This makes analyzing log data a little easier.
+	log.SetPrefix(fmt.Sprintf("[%d] ", os.Getpid()))
 }
 
 // writePid writes a file with process' pid. This is used by supervisors
@@ -69,14 +101,14 @@ func parseArgs() irc.Profile {
 	// Read and validate the profile root directory.
 	root, err := filepath.Abs(flag.Arg(0))
 	if err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
 	// Set root as current working directory.
 	err = os.Chdir(root)
 	if err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
@@ -87,7 +119,7 @@ func parseArgs() irc.Profile {
 	if *newconf {
 		err := profile.Save()
 		if err != nil {
-			fmt.Fprint(os.Stderr, err)
+			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
 
@@ -99,7 +131,7 @@ func parseArgs() irc.Profile {
 	// Load an existing profile.
 	err = profile.Load()
 	if err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 

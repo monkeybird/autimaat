@@ -91,7 +91,19 @@ func (m *module) cmdDefinitions(w irc.ResponseWriter, r *cmd.Request) {
 	sort.Strings(set)
 
 	proto.PrivMsg(w, r.SenderName, tr.DefinitionsDisplay,
-		text.Bold("%d", len(set)), strings.Join(set, ", "))
+		text.Bold("%d", len(set)))
+
+	// We want to send this list in chunks. Else it will be cut
+	// off early on and most of it is lost.
+	for {
+		if len(set) > 30 {
+			proto.PrivMsg(w, r.SenderName, strings.Join(set[:30], ", "))
+			set = set[30:]
+		} else {
+			proto.PrivMsg(w, r.SenderName, strings.Join(set, ", "))
+			break
+		}
+	}
 }
 
 // cmdAddDefine allows a user to add a new definition.

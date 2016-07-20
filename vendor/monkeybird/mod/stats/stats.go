@@ -27,8 +27,6 @@ func (s *Stats) Update(w irc.ResponseWriter, r *irc.Request) {
 	}
 
 	s.m.Lock()
-
-	// Update the appropriate channel- and user data.
 	cs := s.Channels.Get(w, r.Target)
 	us := cs.Users.Get(r.SenderMask)
 	us.AddNickname(r.SenderName)
@@ -39,8 +37,18 @@ func (s *Stats) Update(w irc.ResponseWriter, r *irc.Request) {
 // FirstOn finds out when a specific user was first seen in
 // the channel from whence this command was issued.
 func (s *Stats) FirstOn(w irc.ResponseWriter, r *cmd.Request) {
-	user, us, ok := s.findUser(w, r)
-	if !ok {
+	if !r.FromChannel() {
+		proto.PrivMsg(w, r.SenderName, tr.StatsNotInChannel)
+		return
+	}
+
+	s.m.RLock()
+	defer s.m.RUnlock()
+
+	user, us := s.findUser(w, r)
+	if us == nil {
+		proto.PrivMsg(w, r.Target, tr.StatsNoSuchUser,
+			r.SenderName, text.Bold(user))
 		return
 	}
 
@@ -58,8 +66,18 @@ func (s *Stats) FirstOn(w irc.ResponseWriter, r *cmd.Request) {
 // LastOn finds out when a specific user was last seen in
 // the channel from whence this command was issued.
 func (s *Stats) LastOn(w irc.ResponseWriter, r *cmd.Request) {
-	user, us, ok := s.findUser(w, r)
-	if !ok {
+	if !r.FromChannel() {
+		proto.PrivMsg(w, r.SenderName, tr.StatsNotInChannel)
+		return
+	}
+
+	s.m.RLock()
+	defer s.m.RUnlock()
+
+	user, us := s.findUser(w, r)
+	if us == nil {
+		proto.PrivMsg(w, r.Target, tr.StatsNoSuchUser,
+			r.SenderName, text.Bold(user))
 		return
 	}
 
@@ -76,30 +94,15 @@ func (s *Stats) LastOn(w irc.ResponseWriter, r *cmd.Request) {
 
 // findUser finds stats for te user who sent the given request.
 // Returns false if it could not be located.
-func (s *Stats) findUser(w irc.ResponseWriter, r *cmd.Request) (string, UserStats, bool) {
-	if !r.FromChannel() {
-		proto.PrivMsg(w, r.SenderName, tr.StatsNotInChannel)
-		return "", UserStats{}, false
-	}
-
+func (s *Stats) findUser(w irc.ResponseWriter, r *cmd.Request) (string, *UserStats) {
 	user := r.SenderName
 	if r.Len() > 0 {
 		user = r.String(0)
 	}
 
-	s.m.RLock()
-	defer s.m.RUnlock()
-
 	cs := s.Channels.Get(w, r.Target)
 	us := cs.Users.Find(user)
-
-	if us == nil {
-		proto.PrivMsg(w, r.Target, tr.StatsNoSuchUser,
-			r.SenderName, text.Bold(user))
-		return user, UserStats{}, false
-	}
-
-	return user, *us, true
+	return user, us
 }
 
 // loadStats loads stats data from a file.

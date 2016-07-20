@@ -22,7 +22,7 @@ func newUser(hostmask string, nicknames ...string) *UserStats {
 	sort.Strings(nicknames)
 
 	return &UserStats{
-		Hostmask:  hostmask,
+		Hostmask:  strings.ToLower(hostmask),
 		Nicknames: nicknames,
 		FirstSeen: time.Now(),
 		LastSeen:  time.Now(),
@@ -59,8 +59,6 @@ func (v UsersByHostmask) Swap(i, j int)      { v[i], v[j] = v[j], v[i] }
 // Find returns the userstats for the given name/hostmask.
 // Returns nil if no match could be found.
 func (v UsersByHostmask) Find(name string) *UserStats {
-	name = strings.ToLower(name)
-
 	idx := v.index(name)
 	if idx != -1 {
 		return v[idx]
@@ -80,8 +78,6 @@ func (v UsersByHostmask) Find(name string) *UserStats {
 // Get returns the userstats for the given hostmask. Implicitely
 // creates a new entry, if the given user could not be found.
 func (v *UsersByHostmask) Get(hostmask string) *UserStats {
-	hostmask = strings.ToLower(hostmask)
-
 	idx := v.index(hostmask)
 	if idx != -1 {
 		return (*v)[idx]
@@ -98,6 +94,8 @@ func (v *UsersByHostmask) Get(hostmask string) *UserStats {
 func (v UsersByHostmask) index(hostmask string) int {
 	var lo int
 	hi := len(v) - 1
+
+	hostmask = strings.ToLower(hostmask)
 
 	for lo < hi {
 		mid := lo + ((hi - lo) / 2)

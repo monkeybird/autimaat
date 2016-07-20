@@ -20,7 +20,7 @@ type ChannelStats struct {
 // data, as best as possible,
 func newChannel(w irc.ResponseWriter, name string) *ChannelStats {
 	cs := &ChannelStats{
-		Name: name,
+		Name: strings.ToLower(name),
 	}
 
 	if pw, ok := w.(sync.ProtocolWriter); ok {
@@ -48,8 +48,6 @@ func (v ChannelList) Swap(i, j int)      { v[i], v[j] = v[j], v[i] }
 // creates a new entry, if the channel is not found. This requires access
 // to the underlying network stream, hence the ResponseWriter parameter.
 func (v *ChannelList) Get(w irc.ResponseWriter, name string) *ChannelStats {
-	name = strings.ToLower(name)
-
 	idx := v.index(name)
 	if idx != -1 {
 		return (*v)[idx]
@@ -66,6 +64,8 @@ func (v *ChannelList) Get(w irc.ResponseWriter, name string) *ChannelStats {
 func (v ChannelList) index(name string) int {
 	var lo int
 	hi := len(v) - 1
+
+	name = strings.ToLower(name)
 
 	for lo < hi {
 		mid := lo + ((hi - lo) / 2)

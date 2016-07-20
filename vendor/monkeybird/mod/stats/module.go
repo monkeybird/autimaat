@@ -32,9 +32,7 @@ func New() mod.Module { return &module{} }
 // Load loads module resources and binds commands.
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	pb.Bind("PRIVMSG", m.onPrivMsg)
-	pb.Bind("JOIN", m.doUpdate)
-	pb.Bind("PART", m.doUpdate)
-	pb.Bind("QUIT", m.doUpdate)
+	pb.Bind("*", m.onAny)
 
 	m.quit = make(chan struct{})
 	m.file = filepath.Join(prof.Root(), "stats.dat")
@@ -53,6 +51,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 
 	m.stats.Load(m.file)
 	go m.periodicSave()
+	m.stats.Save(m.file)
 }
 
 // Unload cleans up library resources and unbinds commands.
@@ -64,9 +63,7 @@ func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 		m.commands.Clear()
 
 		pb.Unbind("PRIVMSG", m.onPrivMsg)
-		pb.Unbind("JOIN", m.doUpdate)
-		pb.Unbind("PART", m.doUpdate)
-		pb.Unbind("QUIT", m.doUpdate)
+		pb.Unbind("*", m.onAny)
 	})
 }
 
@@ -76,12 +73,9 @@ func (m *module) Help(w irc.ResponseWriter, r *cmd.Request) {
 
 func (m *module) onPrivMsg(w irc.ResponseWriter, r *irc.Request) {
 	m.commands.Dispatch(w, r)
-	m.doUpdate(w, r)
 }
 
-// doUpdate is called on every PRIVMSG, PART and JOIN message.
-// It updates the user/channel stats for the user sending the request.
-func (m *module) doUpdate(w irc.ResponseWriter, r *irc.Request) {
+func (m *module) onAny(w irc.ResponseWriter, r *irc.Request) {
 	m.stats.Update(w, r)
 }
 

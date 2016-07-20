@@ -51,7 +51,6 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 
 	m.stats.Load(m.file)
 	go m.periodicSave()
-	m.stats.Save(m.file)
 }
 
 // Unload cleans up library resources and unbinds commands.

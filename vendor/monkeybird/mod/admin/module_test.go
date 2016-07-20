@@ -100,44 +100,6 @@ func TestDeauthorize(t *testing.T) {
 		fmt.Sprintf(tr.DeauthorizeDisplayText, test.SenderMask)))
 }
 
-func TestLog(t *testing.T) {
-	{
-		var w test.MockWriter
-
-		tm.logging = 0xff
-		tm.cmdLog(&w, &cmd.Request{
-			Request: test.NewRequest(),
-			Params: []cmd.Param{
-				cmd.Param{Value: "1"},
-			},
-		})
-
-		w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s", test.SenderName, tr.LogEnabled))
-
-		if tm.logging != 1 {
-			t.Fatalf("logging value mismatch: expected 1")
-		}
-	}
-
-	{
-		var w test.MockWriter
-
-		tm.logging = 0xff
-		tm.cmdLog(&w, &cmd.Request{
-			Request: test.NewRequest(),
-			Params: []cmd.Param{
-				cmd.Param{Value: "0"},
-			},
-		})
-
-		w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s", test.SenderName, tr.LogDisabled))
-
-		if tm.logging != 0 {
-			t.Fatalf("logging value mismatch: expected 0")
-		}
-	}
-}
-
 func TestPart(t *testing.T) {
 	const ChannelName = "#test"
 
@@ -166,7 +128,8 @@ func TestJoin(t *testing.T) {
 			},
 		})
 
-		w.Verify(t, fmt.Sprintf("chanserv INVITE %s", ChannelName),
+		w.Verify(t,
+			fmt.Sprintf("chanserv INVITE %s", ChannelName),
 			fmt.Sprintf("JOIN %s", ChannelName))
 	}
 
@@ -176,6 +139,7 @@ func TestJoin(t *testing.T) {
 			Request: test.NewRequest(),
 			Params: []cmd.Param{
 				cmd.Param{Value: ChannelName},
+				cmd.Param{Value: ""},
 				cmd.Param{Value: ChannelKey},
 			},
 		})
@@ -192,8 +156,8 @@ func TestJoin(t *testing.T) {
 			Request: test.NewRequest(),
 			Params: []cmd.Param{
 				cmd.Param{Value: ChannelName},
-				cmd.Param{Value: ChannelKey},
 				cmd.Param{Value: ChanservPassword},
+				cmd.Param{Value: ChannelKey},
 			},
 		})
 

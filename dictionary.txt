@@ -1,0 +1,310 @@
++m Wanneer de chatroom op +m (moderated) gezet wordt, kunnen alleen mensen met een voice (+v) deelnemen aan de chat. De personen zonder voice kunnen wel meelezen, maar geen berichten plaatsen.
++v Wanneer het kanaal door de operators in moderated (+m) modus gezet wordt kunnen uitsluitend mensen met voice (+v) iets zeggen. De rest kan alleen meelezen.
+/me Door je tekst te beginnen met /me praat je in derdepersoon enkelvoud (=een action). Je tekst "/me geeft iedereen appeltaart.", waarbij je nick Jantje is, wordt dan bijv. weergegeven als "Jantje geeft iedereen appeltaart." In veel chatprogramma's krijgt die tekst een andere kleur.
+113 http://www.113online.nl is een website met als doel zelfmoord en zelfbeschadigend gedrag te voork�men en wil su�cidale mensen, hun naasten en nabestaanden ondersteunen. De vrijwilligers zijn bereikbaar via telefoon, e-mail, chat en forum.
+abilify Aripiprazol (merknaam Abilify) is een atypisch antipsychoticum dat onder andere gebruikt wordt bij mensen die aan een psychose lijden, vooral zoals dat voorkomt bij schizofrenie. Het wordt echter ook voorgeschreven aan autisten in een lage dosis, omdat het geen sederende bijwerking heeft. Zie ook http://nl.wikipedia.org/wiki/Abilify
+ad Antidepressivum/medicijn. Zie ook: http://nl.wikipedia.org/wiki/Antidepressivum
+add Attention Deficit Disorder. Oftewel aandachtstekortstoornis zonder hyperactiviteit. Zie ook: http://nl.wikipedia.org/wiki/ADD
+adhd Attention-Deficit Hyperactivity Disorder (ook gespeld als AD/HD), oftewel aandachtstekortstoornis met hyperactiviteit. Zie ook: http://nl.wikipedia.org/wiki/ADHD
+afaik AFAIK is internetjargon voor "As Far As I Know" of "Voor zover ik weet".
+afk AFK is internetjargon voor "Away From Keyboard" of "Weg van het toestenbord".
+afkorting Voor afkortingen gebruikt tijdens het chatten, zie deze lijst: http://nl.wikipedia.org/wiki/Lijst_van_internetjargon
+afwas Algemene Federatie van Wandelaars uit het Autisme Spectrum. Een wandelclub opgericht door leden van PAS. Zie: http://www.pasnederland.nl
+aic Het Autisme Info Centrum is een regionaal informatie- en documentatiecentrum voor en door (ouders en partners van) mensen met autisme, waar echter ook anderen van harte welkom zijn. Het is een onderdeel van de Nederlandse Vereniging voor Autisme (NVA). Zie ook: http://www.autisme.nl
+alprazolam Alprazolam (merknaam: Xanax) is een kortwerkend geneesmiddel, behorend tot de benzodiazepinen. De voornaamste toepassing is bij de behandeling van angststoornissen en soms ter ondersteuning van de behandeling van depressie. Zie ook http://nl.wikipedia.org/wiki/Xanax
+am Afkorting voor automutilatie, of zelfbeschadiging/zelfverminking. De ernst varieert van nauwelijks bemerkbaar (b.v. zich de huid openkrabben bij jeuk) tot gedrag dat bijvoorbeeld leidt tot het snijden in armen of polsen. Daarnaast is het veroorzaken van brandwonden mogelijk. Zelfdoding is nadrukkelijk geen doel bij automutilatie. Zie ook: http://nl.wikipedia.org/wiki/Automutilatie
+amitriptyline Amitriptyline (merknamen: Tryptizol en Sarotex) is een antidepressivum en wordt voornamelijk voorgeschreven bij klinische depressies. Daarnaast kan het -in lage doseringen- worden voorgeschreven bij slapeloosheid, migraine en chronische pijn. Enkele bijwerkingen kunnen zijn: dufheid, nervositeit en duizeligheid. Zie ook: http://nl.wikipedia.org/wiki/Tryptizol
+ap Antipsychoticum, Antipsychotica. zie http://nl.wikipedia.org/wiki/Antipsychoticum
+apz Algemeen Psychiatrisch Ziekenhuis. Voor meer informatie, zie: https://nl.wikipedia.org/wiki/Psychiatrisch_ziekenhuis
+asap ASAP is internetjargon voor "As Soon As Possible" of "Zo spoedig mogelijk".
+asl ASL is vraag voor persoonlijke informatie. Specifiek: Leeftijd, geslacht en woonplaats (Age, Sex,Location).
+asperger Asperger Syndroom of stoornis van Asperger is een pervasieve ontwikkelingsstoornis. Het syndroom van Asperger wordt tot het autismespectrum gerekend. Zie ook: http://nl.wikipedia.org/wiki/Asperger
+aspie Iemand met het Asperger syndroom. Zie ook: http://nl.wikipedia.org/wiki/Asperger
+ass Autismespectrumstoornis. Dit spectrum omvat zowel (kern-, klassiek-, kanner-)autisme, Syndroom van Asperger, PDD-NOS/MCDD en twee minder bekende en zeldzamere varianten: Syndroom van Rett en de 'desintegratiestoornis van de kinderleeftijd'. Zie: http://nl.wikipedia.org/wiki/Autismespectrum
+atm ATM is internetjargon voor "At The Moment" of "op dit moment".
+atomoxetine Strattera (werkzame stof: Atomoxetine) is een zeer specifieke noradrenaline heropnameremmer die gebruikt wordt om de symptomen van ADHD te verminderen.
+atomoxetine Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/atomoxetine?product=strattera
+attwood Tony Attwood is een Engels psycholoog die woont en werkt in Queensland in Australi� en bekend is als auteur van een aantal boeken over het syndroom van Asperger. Zie ook: http://nl.wikipedia.org/wiki/Tony_Attwood
+autipas De AUTIPAS is een persoonlijke pas waarop, behalve de contactgegevens van de pashouder, ook de belangrijkste kenmerken van autisme worden uitgelegd. Het is bedoeld voor contacten met hulpverlening, leerkrachten, overheidsinstanties, zorgverleners, etc. en in crisissituaties (bv. aanhouding door politie). Zie ook: http://www.autisme.nl/jij-ik/autipas.aspx
+autisme Autisme is een stoornis in de informatieverwerking van de hersenen. Informatie die via de zintuigen binnenkomt (zicht, geur, geluid, etc.) wordt bij mensen met autisme anders verwerkt. Zij hebben moeite om de details die zij waarnemen te verwerken tot een samenhangend geheel. Hierdoor hebben mensen met autisme soms problemen met communicatie, sociale interactie en verbeelding.
+autivrouw Autivrouw is een lotgenotenforum (registratie verplicht) voor vrouwen met autisme en aanverwante stoornissen. Zie: http://autivrouw.nl/forum/
+bbiab BBIAB is internetjargon voor "Be Back In A Bit" of "ben zo terug".
+bbl BBL is internetjargon voor "Be Back Later" of "ben straks weer terug".
+bbs BBS is internetjargon voor "Be Back Soon" of "ben zo terug".
+bdz Benzodiazepinen is een geneesmiddelengroep met sederende (kalmerende, slaapbevorderende) en anxiolytische (gevoelens van angst verminderende) eigenschappen. Zie ook http://nl.wikipedia.org/wiki/Benzodiazepine
+benzodiazepine Benzodiazepinen (BDZ) is een geneesmiddelengroep met sederende (kalmerende, slaapbevorderende) en anxiolytische (gevoelens van angst verminderende) eigenschappen. Zie ook http://nl.wikipedia.org/wiki/Benzodiazepine
+biw BIW is internetjargon voor "Ben ik weer".
+borderline De borderline-persoonlijkheidsstoornis is ��n van de in het DSM-IV genoemde persoonlijkheidsstoornissen. Zie: http://nl.wikipedia.org/wiki/Borderline-persoonlijkheidsstoornis
+bot Een bot is een geautimatiseerde gebruiker die bepaalde nuttige of amusante chatfaciliteiten verzorgd. Door !help te typen krijg je een lijst met beschikbare commando's van de bot. Dit overzicht verschijnt in een priv� venster.
+bpd Borderline Personality Disorder (Nederlands: BPS) is ��n van de in het DSM-IV genoemde persoonlijkheidsstoornissen. Zie: http://nl.wikipedia.org/wiki/Borderline-persoonlijkheidsstoornis
+bps Borderline-persoonlijkheidsstoornis (Engels: BPD) is ��n van de in het DSM-IV genoemde persoonlijkheidsstoornissen. Zie: http://nl.wikipedia.org/wiki/Borderline-persoonlijkheidsstoornis
+brb BRB is internetjargon voor "Be Right Back" of "ben zo terug".
+btw BTW is internetjargon voor "By The Way" of "trouwens".
+bw Een beschutte werkplaats is, in Vlaanderen, een bedrijf dat personen met een (arbeids)handicap tewerkstelt die tijdelijk of definitief niet in het normaal economisch circuit terecht kunnen. Zie ook: http://nl.wikipedia.org/wiki/Beschutte_werkplaats
+cak Het CAK is een publieke dienstverlener die in opdracht van de overheid regelingen zoals Wmo of Wlz uitvoert. Voor meer informatie, zie: http://www.hetcak.nl
+cet Creatieve Expressie Therapie. Zie ook: http://www.therapiehulp.nl/therapie/psychotherapie/creatieve-therapie
+cgt Cognitieve gedragstherapie (Engels: CBT) is een mengeling van gedragstherapie met interventies die ontwikkeld zijn vanuit de cognitieve psychologie. Zie http://nl.wikipedia.org/wiki/Cognitieve_gedragstherapie
+chat volgens Van Dale: online 'praatje' via internet, waarbij men op of via een bepaalde site met elkaar communiceert.
+chatregels http://www.autsider.net/nl/chat/chatregels.html Hier wordt aangegeven wat wel en niet mag op deze chat, en ook enkele waarschuwingen. Het zijn echter richtlijnen en de ops bepalen uiteindelijk de grenzen. Die zijn afhankelijk van het onderwerp, de sfeer en/of tijdstip van een discussie.
+chatzilla Dit is een IRC-cli�nt die werkt als add-on binnen Mozilla Firefox. Zie ook: https://addons.mozilla.org/en-US/firefox/addon/chatzilla/ en http://nl.wikipedia.org/wiki/ChatZilla
+cipramil Cipramil is een merk antidepressivum gebaseerd op de werkzame stof Citalopram. Artsen schrijven het voor bij depressie en angststoornissen, zoals dwangstoornissen, paniekstoornissen en posttraumatische stressstoornis. Zie ook: http://nl.wikipedia.org/wiki/Cipramil
+citalopram Citalopram is een antidepressivum, in Belgi� en Nederland onder meer op de markt onder de naam Cipramil. Artsen schrijven het voor bij depressie en angststoornissen, zoals dwangstoornissen, paniekstoornissen en posttraumatische stressstoornis. Zie ook http://nl.wikipedia.org/wiki/Citalopram
+ciz Het Centrum Indicatiestelling Zorg (CIZ) is een Nederlandse overheidsinstelling die sinds 1 januari 2005 beoordeelt of burgers recht hebben op zorg via de Wet langdurige zorg. Zie: http://www.ciz.nl of http://nl.wikipedia.org/wiki/CIZ
+clonazepam Clonazepam (merknaam o.a. Rivotril) is een anti-epilepticum; een medicijn dat de verschijnselen van epilepsie onderdrukt. Het wordt ook voorgeschreven bij paniekstoornissen, slapeloosheid en neurologische aandoeningen zoals tardieve dyskinesie. Zie ook: http://nl.wikipedia.org/wiki/Clonazepam
+clonidine Clonidine (hydrochloride, merknaam Dixarit) is een medicijn dat de bloedvaten verwijdt en de bloeddruk verlaagt. Het wordt o.a. voorgeschreven bij ADHD en tics. Zie ook: http://nl.wikipedia.org/wiki/Clonidine
+codeine Code�ne is (vergeleken met morfine) een zwakke pijnstiller en een krachtige kriebelhoestonderdrukker. Ook werkt code�ne sederend en sterk obstiperend. Zie ook: http://nl.wikipedia.org/wiki/Code%C3%AFne
+concerta Rilatine/Ritalin/Concerta (merknamen) zijn medicijnen met de werkzame stof methylfenidaat. Methylfenidaat is een stimulerend middel. Artsen schrijven het o.a. voor bij narcolepsie en ADHD. Zie: http://nl.wikipedia.org/wiki/Methylfenidaat
+concerta Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/methylfenidaat?product=ritalin
+coprolalie Coprolalie of coprolalia (Grieks, letterlijk poep praten) is een begrip uit de psychologie en psychiatrie. Het is het onvrijwillig uiten van schokkende woorden, zoals vloeken, obscene, seksistische of racistische taal. Het verschijnsel treedt voornamelijk op als symptoom van het syndroom van Gilles de la Tourette. Zie ook: http://nl.wikipedia.org/wiki/Coprolalie
+cstar CStar is de ChannelServices bot van het Starlink-IRC netwerk. Deze bot zorgt voor topic, welkomstboodschap en kanaalbeheer in samenwerking met de operators.
+cu CU is internetjargon voor "See You" of "tot ziens".
+cya CYA is internetjargon voor "See Ya" of "tot ziens".
+cymbalta Cymbalta is een merk antidepressivum met werkzame stof duloxetine. Artsen schrijven het voor bij depressiviteit, urine-incontinentie, zenuwpijn, angstgevoelens en gespannenheid. Zie ook: http://www.apotheek.nl/medicijnen/duloxetine?product=cymbalta
+deathstar Deathstar is onder andere een ruimtestation in het Star Wars-universum. Op het Starlink-IRC netwerk stuurt DeathStar voornamelijk bepaalde berichten van IRCops (netwerkbeheerders) door naar alle op het netwerk aanwezige gebruikers. Deze berichten hebben meestal betrekking op het netwerk zelf en zijn veelal informatief of technisch van aard. DeathStar mag je op ignore zetten bij overlast.
+dex Dextro-amfetamine is een aan amfetamine verwant geneesmiddel dat wordt gebruikt als middel bij de behandeling van ADHD en narcolepsie. Zie: http://nl.wikipedia.org/wiki/Dexamfetamine
+diazepam Diazepam (ook bekend onder de merknamen Valium, Stesolid en Diazemuls) is een medicijn. Artsen schrijven het voor bij angstgevoelens en gespannenheid, paniekstoornissen, slapeloosheid, alcoholontwenning, spierkrampen, epilepsie en onrust. Zie http://nl.wikipedia.org/wiki/Diazepam
+diazepam Valium (merknaam) is een kalmerend en slaperig makend medicijn, met de werkzame stof Diazepam. Zie http://nl.wikipedia.org/wiki/Diazepam
+dis Dissociatieve identiteitsstoornis (DIS) of meervoudige/multipele persoonlijkheidsstoornis (MPS). Zie: http://nl.wikipedia.org/wiki/Dissociatieve_identiteitsstoornis
+dixarit Dixarit is een merknaam voor een medicijn dat onder andere de bloedvaten verwijdt en de bloeddruk verlaagt. Zie ook http://nl.wikipedia.org/wiki/Dixarit
+dsm Handboek voor diagnose en statistiek van psychische aandoeningen (Huidige versie IV). Zie http://nl.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders
+dyscalculie Dyscalculie is een stoornis bij het rekenen. Zie ook http://nl.wikipedia.org/wiki/Dyscalculie
+dyslexie Dyslexie is een verzamelnaam voor een aantal aandoeningen die gepaard gaan met problemen met vooral geschreven taal. Zie ook http://nl.wikipedia.org/wiki/Dyslexie
+echolalie Echolalie of echolalia is een begrip uit de psychologie en psychiatrie. Het is het dwangmatig herhalen van woorden of zinnen van een gesprekspartner of een andere bron (bv. de radio). De aandoening doet zich het meest voor bij personen met autisme, maar ook bij mentale retardatie, schizofrenie en het syndroom van Gilles de la Tourette. Zie ook: http://nl.wikipedia.org/wiki/Echolalie
+efexor Venlafaxine (merknaam Efexor) is een medicijn in de categorie antidepressiva, met venlafaxinehydrochloride als werkzaam bestandsdeel. Het verbetert de stemming en vermindert angsten. Artsen schrijven het voor bij depressie, angstgevoelens en gespannenheid, sociale fobie en paniekstoornis. Zie ook http://nl.wikipedia.org/wiki/Efexor
+emdr Eye Movement Desensitization and Reprocessing, afgekort tot EMDR, is een kortdurende behandelmethode om akelige ervaringen te verwerken. Zie: http://www.emdr.nl
+emoticon Emoticons of Smilies zijn symbolen die emoties weergeven door middel van een plaatje of een combinatie van lees- en lettertekens. Zie ook: http://nl.wikipedia.org/wiki/Emoticon
+eq Emotionele intelligentie, gemeten met de index EQ, is een aanvulling van het traditionele IQ. Daarbij staat voorop dat niet alleen kennis maar ook empathie belangrijk is voor het succesvol functioneren in een organisatie. Logische beslissingen botsen immers vaak met emoties, spanningen en gevoeligheden. Zie: http://nl.wikipedia.org/wiki/Emotionele_intelligentie
+ers Emotie Regulatie Stoornis. ERS is de nieuwe term voor BPS of Borderline-stoornis. Mensen met een emotieregulatiestoornis zijn zeer gevoelig voor emotionele prikkels, reageren heel sterk op emotionele prikkels en keren langzaam terug naar een "emotioneel basisniveau". Zie ook: http://www.borderline-hulpgroep.com/borderline.html
+escitalopram Escitalopram (merknamen Lexapro en Sipralexa) is een antidepressivum uit de categorie van SSRI's. Het is chemisch vrijwel gelijk aan Citalopram. Artsen schrijven het voor bij depressie, angststoornissen, zoals een sociale fobie en paniekstoornissen. Zie ook http://nl.wikipedia.org/wiki/Escitalopram
+ffs FFS is internetjargon voor "For Fuck's Sake", een uitroep van irritatie.
+fiep Preoccupatie. Andere term voor een zich herhalend, stereotiep patroon van gedrag, interesse en activiteit. Zie: http://nl.wikipedia.org/wiki/Fiep
+fluanxol Flupentixol (merknaam Fluanxol) is een klassiek antipsychoticum. Het vermindert in de hersenen o.a. het effect van de natuurlijk voorkomende stof dopamine. Hierdoor nemen psychosen, hevige onrust, misselijkheid en bepaalde spiertrekkingen af. Artsen schrijven het voor bij psychose, manie, schizofrenie en depressie.
+fluoxetine Fluoxetine-hydrochloride is een antidepressivum. Het bekendste geneesmiddel met deze actieve stof is Prozac. Artsen schrijven het voor bij depressie, angststoornissen, zoals dwangstoornissen, paniekstoornis en posttraumatische stressstoornis, en boulimia nervosa. Zie ook http://nl.wikipedia.org/wiki/Fluoxetine
+flupentixol Flupentixol (merknaam Fluanxol) is een klassiek antipsychoticum. Het vermindert in de hersenen o.a. het effect van de natuurlijk voorkomende stof dopamine. Hierdoor nemen psychosen, hevige onrust, misselijkheid en bepaalde spiertrekkingen af. Artsen schrijven het voor bij psychose, manie, schizofrenie en depressie.
+forum Het forum van Stichting Autsider: http://www.autsider.net/forum/ Registratie is vereist. Hoewel de chat en het forum tot dezelfde stichting behoren, is het gewenst deze zaken apart te houden. Citaten uit het forum of discussies over personen op het forum worden in de chat niet op prijs gesteld (andersom ook niet). Het is wel toegestaan een link te plaatsen naar een discussie op het forum.
+ftw FTW is internetjargon voor "For The Win", uitroep van enthousiasme (bv koekjes FTW! = koekjes zijn geweldig!)
+fubar FUBAR is internetjargon voor "Fucked Up Beyond Any Recognition" of "verpest", "volledig kapot".
+gaf Gaf-score is een maat waarmee het psychisch, sociaal en beroepsmatig functioneren van een persoon wordt aangeduid. De term is een afkorting van Global Assessment of Functioning. Zie: http://nl.wikipedia.org/wiki/GAF
+gf GF is internetjargon voor "Girl friend" of "vriendin".
+ggnet GGNet is een GGZ-instelling (regio Gelderland) en heeft als doel om mensen met psychische, ernstige psychosociale problemen en/of psychiatrische stoornissen te behandelen, begeleiden en helpen om zoveel als mogelijk en wenselijk zelfstandig in de samenleving te kunnen functioneren. Zie ook: http://www.ggnet.nl/home
+ggz Geestelijke Gezondheidszorg. GGZ Nederland is de brancheorganisatie voor de geestelijke gezondheidszorg en verslavingszorg in Nederland. GGZ is ontstaan uit fusies van de verschillende Riagg-instellingen. Zie: http://nl.wikipedia.org/wiki/GGZ of http://www.ggznederland.nl/
+gis Geslachtsidentiteitsstoornis. Ook bekend als GID: Gender Identity Disorder. Zie ook: http://nl.wikipedia.org/wiki/Geslachtsidentiteitsstoornis
+gj GJ is internetjargon voor "Good Job" of "goed gedaan".
+gl GL is internetjargon voor "Good Luck" of "succes".
+gmta GMTA is internetjargon voor "Great Minds Think Alike" of "twee zielen, een gedachte".
+gon Het ge�ntegreerd onderwijs in Belgi� heeft als doelstelling jongeren met een handicap en/of leer- en opvoedingsmoeilijkheden tijdelijk of permanent, gedeeltelijk of volledig de lessen of activiteiten te laten volgen in een school voor gewoon onderwijs met hulp vanuit het buitengewoon onderwijs. Zie ook: http://nl.wikipedia.org/wiki/Ge%C3%AFntegreerd_onderwijs
+gratz GRATZ is internetjargon voor "Congratulations" of "gefeliciteerd".
+gz GZ is internetjargon voor "Congratulations" of "gefeliciteerd".
+haldol Haloperidol (merknaam Haldol) is een conventioneel antipsychoticum en anti-emeticum. Artsen schrijven het voor bij psychose, manie, onrust, schizofrenie, depressie, alcoholontwenning, dementie, misselijkheid en braken, hik, tics, dwangstoornissen en pijn. Zie: http://nl.wikipedia.org/wiki/Haldol
+help Door !help te typen krijg je een lijst met beschikbare commando's van de bot. Dit overzicht verschijnt in een priv� venster.
+hf HF is internetjargon voor "Have Fun" of "veel plezier".
+hfa Hoogfunctionerend autisme is een veel gebruikte term voor een autistische stoornis (klassiek autisme) zonder verstandelijke handicap (IQ > 75-85). HFA lijkt erg op het syndroom van Asperger (SvA), en veel onderzoekers beweren dan ook dat beide begrippen eigenlijk hetzelfde betekenen. Zie ook: http://nl.wikipedia.org/wiki/HFA
+hsp Volgens een door psychologe Elaine N. Aron ontwikkelde theorie is een hoogsensitief persoon (Engels: highly sensitive person ofwel 'zeer gevoelig persoon', afgekort HSP), iemand met een gevoeliger zenuwstelsel dan gemiddeld. In het Nederlands wordt highly sensitive vertaald als 'hoogsensitief' of 'hooggevoelig'. Zie ook: http://nl.wikipedia.org/wiki/Hoogsensitief_persoon
+humanitas Humanitas is een vrijwilligersorganisatie voor maatschappelijke dienstverlening. De humanistische uitgangspunten vertaalt Humanitas in diensten van-mens-tot-mens op de gebieden van welzijn, wonen en zorg. De dienstverlening is veelal kleinschalig (maatjescontacten, huisbezoek), persoonlijk (van-mens-tot-mens) en wordt lokaal georganiseerd. Zie ook: http://www.humanitas.nl/
+hydrairc HydraIRC is een gratis programma (client) om mee te chatten. Zie: http://www.hydrairc.com/
+ibw Een initiatief voor beschut wonen (Vlaanderen) begeleidt mensen met psychische problemen die geen nood hebben aan een permanent verblijf in een psychiatrisch ziekenhuis. Een IBW biedt hen een woonvorm (in een groep of individueel) waar ze begeleiding krijgen. Zie ook: http://www.vlaanderen.be/nl/gezin-welzijn-en-gezondheid/gezondheidszorg/initiatieven-voor-beschut-wonen
+icd International Statistical Classification of Diseases and Related Health Problems is een internationaal gehanteerde lijst van ziekten. Vaak wordt de naam afgekort tot ICD-10, omdat de huidige versie de tiende is. Zie: http://nl.wikipedia.org/wiki/International_Statistical_Classification_of_Diseases_and_Related_Health_Problems
+idd Internetjargon voor "Inderdaad" of "Indeed".
+idk IDK is internetjargon voor "I Don't Know" of "ik weet het niet".
+idlers Idlers zijn mensen die al een tijdje niks meer gezegd hebben. Ze zijn wel ingelogd op de chat maar het is mogelijk dat ze alleen meelezen of andere dingen aan het doen zijn.
+ignore Met /ignore kun je een persoon negeren. Dan zie je dus geen berichten meer van de genegeerde, maar deze ziet nog wel jouw berichten. Dit kan erg nuttig zijn als je je ergert aan een bepaald persoon. De manier waarop je mensen op ignore kunt zetten is afhankelijk van je IRC programma: zo tik je bv in mIRC en Mibbit "/ignore naam" en in HydraIRC "/ignore +naam".
+iig IIG is internetjargon voor "in ieder geval".
+iirc Internetjargon voor "If I Recall/Remember Correctly", oftewel "Als ik me dat goed herinner".
+imnsho IMNSHO is internetjargon voor "In My Not So Humble Opinion" of "naar mijn niet zo bescheiden mening".
+imo IMO is internetjargon voor "In My Opinion" of "naar mijn mening".
+imovane Zopiclon (merknaam Imovane) is een slaapmiddel. Zie: http://nl.wikipedia.org/wiki/Zopiclon
+inderal Propranolol (merknaam Inderal) behoort tot de b�tablokkers. Het verlaagt de bloeddruk, vertraagt de hartslag en vermindert de zuurstofbehoefte van het hart. Artsen schrijven het o.a. voor bij hoge bloeddruk, hartritmestoornissen, migraine, een te snelle schildklierwerking, angstgevoelens en gespannenheid, essenti�le tremor (trillen) en hartinfarct.
+inderal Zie ook: http://nl.wikipedia.org/wiki/Propranolol en http://www.apotheek.nl/medicijnen/propranolol?product=propranolol
+iq Het intelligentiequoti�nt of IQ is ��n van de meest gangbare maten voor de intelligentie. Zie ook: http://nl.wikipedia.org/wiki/Intelligentiemeting
+ircop Internet Relay Chat operator of netwerkbeheerder.
+irl IRL is internet-jargon voor "In Real Life" of "In het echt"/ "buiten internet om".
+irssi Irssi is een programma (client) om mee te chatten die in een terminal draait en dus geen grafische omgeving nodig heeft. Zie: http://irssi.org/about
+jargon Voor afkortingen gebruikt tijdens het chatten, zie deze lijst: http://nl.wikipedia.org/wiki/Lijst_van_internetjargon
+jk JK is internetjargon voor "Just Kidding" of "grapje!".
+jopla Jopla is een vereniging van, voor en door jongeren (12-30 jaar) met een lichamelijke handicap of chronische ziekte. Zie ook: http://www.jopla.nl
+kanaal #autsider is slechts ��n chatkanaal op dit IRC-netwerk. Je kunt zelf tijdelijk een kanaal aanmaken om rustig met een aantal mensen te chatten. Dat doe je door "/join #kanaalnaam" te typen (zonder aanhalingstekens). Bijvoorbeeld: /join #dierentuin of /join #fieps
+kannerhuis Het Dr. Leo Kannerhuis is een gespecialiseerd kinder- en jeugdpsychiatrisch ziekenhuis voor mensen met een complexe autisme-spectrumstoornis (ASS) en zijn omgeving (ouders/gezin, onderwijs/studie, wonen, werk/ dagbesteding en vrije tijd). Zie ook: http://www.leokannerhuis.nl/
+lag Lag is een storing in de communicatie tussen twee netwerken, waarbij de dataoverdracht vertraging oploopt. In chatrooms kan dit soms leiden tot het verschijnen van een hele hoop berichten in ��n keer. Zie ook: http://nl.wikipedia.org/wiki/Lag
+lexapro Escitalopram (merknamen Lexapro en Sipralexa) is een antidepressivum uit de categorie van SSRI's. Het is chemisch vrijwel gelijk aan Citalopram. Artsen schrijven het voor bij depressie, angststoornissen, zoals een sociale fobie en paniekstoornissen. Zie ook http://nl.wikipedia.org/wiki/Escitalopram
+lmao LMAO is internetjargon voor "Laughing My Ass Off" of "ik lig dubbel van het lachen".
+lmfao LMFAO is internetjargon voor ".Laughing My F*cking Ass Off".of "Ik lig dubbel van het lachen"..
+lmgtfy LMGTFY is internetjargon voor "Let Me Google That For You" of "ik google het wel voor je". Deze uitspraak is doorgaans wat sarcastisch bedoeld.
+lol LOL is internetjargon voor "Laughing Out Loud" of "(ik) lach hardop".
+lorazepam Lorazepam (merknaam Temesta) is een geneesmiddel dat voornamelijk voorgeschreven wordt vanwege de krachtige angstwerende eigenschappen. Lorazepam heeft sterke sedatieve/hypnotische eigenschappen. Zie ook: http://nl.wikipedia.org/wiki/Lorazepam
+ltns Internetjargon voor "Long Time No See".
+lurker Een lurker is een persoon die op internetforums en chatrooms alleen meeleest, maar zelf (bijna) niets bijdraagt. Zie ook: http://nl.wikipedia.org/wiki/Lurker
+massa Mensen in het AutismeSpectrum Samen Actief. Activiteitenclub, opgezet door leden van PAS, waarin volwassenen met een stoornis in het autismespectrum samen iets kunnen ondernemen, zoals een bezoek aan pretparken, dierentuinen, musea of iets dergelijks.
+mbt Mentalization-Based Treatment is een soort therapie. Zie: http://www.mbtnederland.nl
+mcdd Meervoudig complexe ontwikkelingsstoornis (Engels: multiple-complex developmental disorder) is een ontwikkelingsstoornis die wordt geclassificeerd als PDD-NOS. Het is een aparte ontwikkelingsstoornis waarbij niet alleen de contactproblemen voorop staan, maar ook problemen bij het reguleren van emoties en gedachten. Zie: http://nl.wikipedia.org/wiki/Meervoudig_complexe_ontwikkelingsstoornis
+mee MEE biedt overal in het land onafhankelijke cli�ntondersteuning aan alle mensen met een handicap, functiebeperking of chronische ziekte.
+melatonine Melatonine wordt in sommige landen verkocht als middel tegen jetlag en andere slaapstoornissen. Zie ook: http://nl.wikipedia.org/wiki/Melatonine
+metoprolol Metoprolol behoort tot de b�tablokkers. Het verlaagt de bloeddruk, vertraagt de hartslag en vermindert de zuurstofbehoefte van het hart. Artsen schrijven het voor bij hoge bloeddruk, angina pectoris (hartkramp), hartritmestoornissen, migraine, te snelle schildklierwerking, hartfalen en hartinfarct.
+mibbit Mibbit is een manier om te kunnen chatten via een internet browser (IE, Firefox, Opera, Safari, etc.). Het werkt prettiger dan de Javachat van AutSider.net. Kopieer of typ http://tinyurl.com/c57gsk in de adresbalk van jouw browser, kies een nickname, en druk op connect. Dan kom je rechtstreeks in #autsider terecht.
+mibbit Je kunt ook de volgende link gebruiken: http://tinyurl.com/3yb2q8q (heeft een andere kleurstelling/opmaak)
+migraine Migraine (van hemicrania: 'half hoofd') is een neurovasculaire aandoening gekenmerkt door aanvallen ontstaan door neurale prikkelingen die na een plotse tijdelijke vernauwing, een verwijding van de bloedvaten tot gevolg heeft. Mensen die aan migraine lijden kunnen dikwijls slecht tegen fel licht en geluid. Zie ook: http://nl.wikipedia.org/wiki/Migraine
+mirc mIRC is een programma (client) om mee te chatten. Zie: http://www.mirc.com/
+mirtazapine Mirtazapine is een antidepressivum. Het behoort tot de groep tetracyclische antidepressiemiddelen. Het regelt in de hersenen de hoeveelheid natuurlijk voorkomende stoffen die een rol spelen bij stemmingen en emoties. Artsen schrijven het voor bij depressie. Zie ook: http://nl.wikipedia.org/wiki/Antidepressivum
+mirtazapine Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/mirtazapine?product=mirtazapine
+moderated Wanneer de chatroom op +m (moderated) gezet wordt, kunnen alleen mensen met een voice (+v) deelnemen aan de chat. De personen zonder voice kunnen wel meelezen, maar geen berichten plaatsen.
+molemann MoleMann is een GGZ-instelling en behandelt kinderen, jongeren, volwassenen en ouderen met verschillende soorten psychische problemen. Daarbij kun je denken aan depressie, angst, relatie- en gezinsproblematiek, autisme/ PDD-NOS, ADHD en persoonlijkheidsproblematiek. Zie ook: http://www.molemann.nl
+mps Dissociatieve identiteitsstoornis (DIS) (in de ICD-terminologie: meervoudige persoonlijkheidsstoornis) of multipele persoonlijkheidsstoornis (MPS) is een psychische aandoening waarbij iemand afwisselend twee (of meer) van elkaar te onderscheiden persoonlijkheidstoestanden kan aannemen. Zie ook: http://nl.wikipedia.org/wiki/Dissociatieve_identiteitsstoornis
+mss MSS is internetjargon voor "misschien".
+nah Niet aangeboren hersenletsel. NAH is een verzamelnaam van het letsel dat optreedt na het krijgen of het hebben van: Kanker en tumoren, ongevallen, verkeerd medicijngebruik, tia, bestraling, hartaanvallen, vergiftiging etc. Zie ook: http://www.nah-algemeen.nl
+netsplit (Starlink-)irc bestaat uit meerdere servers. Een netsplit ontstaat als de onderlinge verbinding tussen enkele servers verbroken wordt. Zie ook: http://nl.wikipedia.org/wiki/Netsplit
+nld NLD is een non-verbale leerstoornis. Kinderen met NLD hebben problemen met het verwerken van non-verbale informatie. Ze komen verbaal vaak zeer vaardig over, maar hebben moeite met het verwerken van zintuiglijke prikkels. Zie ook: http://nl.wikipedia.org/wiki/Non-verbal_learning_disabilities of http://www.balansdigitaal.nl/stoornissen/nld
+nn NN is internetjargon voor "Nighty Night" of "welterusten".
+nossie Iemand met de diagnose PDD-NOS. Zie ook: http://nl.wikipedia.org/wiki/PDD-NOS
+np NP is internetjargon voor "No Problem" of "geen probleem"/"graag gedaan".
+nsfw Internetjargon voor "Not Safe For Work". Meestal gebruikt als waarschuwing bij (links naar) videos, plaatjes of websites die niet geschikt zijn om op je werk te bekijken vanwege hun inhoud.
+nt NT is de afkorting voor Neurotypisch of Neurotypical. De term is bedacht door mensen in het ASS als label voor niet-autistische personen. Zie http://nl.wikipedia.org/wiki/Neurotypisch
+nts Neurotypical Syndrome is a neurobiological disorder characterized by preoccupation with social concerns, delusions of superiority and obsession with conformity. Research shows that as many as 9625 out of every 10000 individuals may be neurotypical. See: http://isnt.autistics.org
+nva Nederlandse Vereniging voor Autisme (NVA). Zie ook: http://www.autisme.nl/
+nvm NVM is internetjargon voor Nevermind - laat maar, trek het je niet aan.
+ocd Obsessive Compulsive Disorder, in het Nederlands OCS, is een psychische aandoening die in het DSM-IV is gecategoriseerd als angststoornis. Zie: http://nl.wikipedia.org/wiki/Obsessieve-compulsieve_stoornis
+ocmw 'Openbaar Centrum voor Maatschappelijk Welzijn' (BE). Zie: http://nl.wikipedia.org/wiki/Openbaar_Centrum_voor_Maatschappelijk_Welzijn of http://www.ocmw.antwerpen.be/intro.htm
+ocs De obsessieve-compulsieve stoornis (OCS), in het Engels OCD, is een psychische aandoening die in het DSM-IV is gecategoriseerd als angststoornis. Zie: http://nl.wikipedia.org/wiki/Obsessieve-compulsieve_stoornis
+olanzapine Olanzapine (merknamen Zyprexa of Zalasta) is een atypisch antipsychoticum. Artsen schrijven het voor bij psychose, manie, onrust, schizofrenie en tics. Zie ook: http://nl.wikipedia.org/wiki/Olanzapine
+olanzapine Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/olanzapine
+omfg OMFG is internetjargon voor "Oh My Fucking God" of "God allemachtig".
+omg OMG is internetjargon voor "Oh My God" of "O mijn god".
+ops De operators (ops) zorgen ervoor dat het hier netjes verloopt. Het zijn gewone chatters, ook met een vorm van autisme. Zij beantwoorden vragen van nieuwelingen en helpen eventueel met technische vragen. Elke op is anders, heeft andere kwaliteiten en voor de handhaving van de goede orde gebruiken ze verschillende sociale en technische vaardigheden.
+ops Er wordt regelmatig overleg gevoerd tussen de ops onderling voor de handhaving van de goede orde. Mochten er toch problemen zijn in het kanaal kan worden gekozen tussen waarschuwingen, kicks (tijdelijke verwijdering) of ban (verwijdering voor onbepaalde tijd). De ops zijn te herkennen aan een @ of * afhankelijk van je chatprogramma.
+orap Orap (merknaam: Pimozide) behoort tot de groep klassieke of "typische" antipsychotica. Het middel wordt voorgeschreven bij psychose, manie, onrust, schizofrenie, depressie, dementie, Tourette en tics, maar omdat het een sterk middel is met verschillende bijwerkingen wordt het m.n. gegeven wanneer andere middelen niet blijken te werken. Zie ook: http://nl.wikipedia.org/wiki/Pimozide
+orap Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/pimozide?product=orap
+oxazepam Oxazepam is een kalmeringsmiddel, behorend tot de benzodiazepinen. Artsen schrijven het voor bij angstgevoelens en gespannenheid, slapeloosheid en alcoholontwenning. Zie ook: http://nl.wikipedia.org/wiki/Oxazepam
+oxazepam Meer informatie van apotheek.nl:http://www.apotheek.nl/medicijnen/oxazepam?product=oxazepam
+oxytocine Oxytocine is een hormoon en een neurotransmitter. In de hersenen lijkt oxytocine een belangrijke rol te spelen bij het verbinden van sociale contacten met gevoelens van plezier. Het speelt een centrale rol bij moederbinding, vriendschappen en romantische interacties, evenals bij seksualiteit. Zie ook: http://nl.wikipedia.org/wiki/Oxytocine
+oxytocine Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/oxytocine
+paaz Psychiatrische Afdeling van een Algemeen (PAAZ) of Academisch Ziekenhuis (PUK, Psychiatrische Universiteitskliniek). Zie ook: http://www.socialezekerheid.nl/smartsite.dws?id=21403 en http://nl.wikipedia.org/wiki/Psychiatrische_Afdeling_Algemeen_Ziekenhuis
+palilalie Palilalie of palilalia is een begrip uit de psychologie en psychiatrie. Het is het dwangmatig herhalen van eigen woorden of zinnen of delen daarvan. Meestal wordt de snelheid van spreken opgevoerd en het geluidsvolume verminderd, waardoor het verschijnsel soms lijkt op hakkelen of prevelen. Zie ook: http://nl.wikipedia.org/wiki/Palilalie
+pammetjes Ander woord voor de groep medicijnen met uitgang 'pam', zoals Oxazepam en Diazepam.
+paroxetine Seroxat is een merk antidepressivum met werkstof Paroxetine. Artsen schrijven het voor bij depressie en bij angststoornissen, zoals dwangstoornissen, paniekstoornissen en sociale fobie�n, en posttraumatische stressstoornis. Zie: http://nl.wikipedia.org/wiki/Seroxat
+paroxetine Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/paroxetine?product=seroxat
+pas Is de onafhankelijke belangenvereniging voor en door normaal- tot hoogbegaafde volwassen Personen uit het Autisme Spectrum. Zie ook: http://www.pasnederland.nl/
+pass Zelfhulpgroep voor en door (jong-)volwassenen met autisme in Vlaanderen. Zie ook: http://www.pass-partout.be
+pdd-nos Pervasieve ontwikkelingsstoornis, niet anders omschreven (Pervasive Developmental Disorder - Not Otherwise Specified) is een groepsnaam voor symptomen die niet onder andere stoornissen te plaatsen zijn. Zie ook: http://nl.wikipedia.org/wiki/PDD-NOS
+pe Afkorting voor Psycho-educatie. Dat is een methodiek in de hulpverlening aan mensen met een langdurige beperking of handicap en verwijst naar een reeks educatieve of opvoedkundige (groeps-)gesprekken om mensen te leren omgaan met hun beperkingen door kennis erover te delen en door vaardigheden in de omgang en zelfvertrouwen in de verwerking te geven. Zie ook: http://nl.wikipedia.org/wiki/Psycho-educatie
+pebkac PEBKAC is internetjargon voor "Problem Exist Between Keyboard And Chair" als verklaring van computerprobleem.
+pgb Mensen kunnen met een persoonsgebonden budget (pgb) zelf de zorg regelen die zij door ziekte, handicap of ouderdom thuis nodig hebben. Ze krijgen een geldbedrag waarvoor zij zelf zorg, hulp of begeleiding kunnen kopen. Zie ook: https://www.rijksoverheid.nl/onderwerpen/zorg-en-ondersteuning-thuis/vraag-en-antwoord/pgb-aanvragen
+pgb In Belgi� is er een soortgelijk iets: Persoonlijke-assistentiebudget (PAB). Zie: http://www.vaph.be/vlafo/view/nl/20403-Wat+is+een+PAB.html
+picnic PICNIC is internetjargon voor "Problem In Chair, Not In Computer" als verklaring van computerprobleem.
+pimozide Orap (merknaam: Pimozide) behoort tot de groep klassieke of "typische" antipsychotica. Het middel wordt voorgeschreven bij psychose, manie, onrust, schizofrenie, depressie, dementie, Tourette en tics, maar omdat het een sterk middel is met verschillende bijwerkingen wordt het m.n. gegeven wanneer andere middelen niet blijken te werken. Zie ook: http://nl.wikipedia.org/wiki/Pimozide
+pimozide Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/pimozide?product=orap
+pimozide Pimozide behoort tot de groep klassieke of "typische" antipsychotica. Het middel wordt door artsen voorgeschreven bij psychose, manie, onrust, schizofrenie, depressie, dementie, Tourette en tics, maar omdat het een sterk middel is met verschillende bijwerkingen wordt het hoofdzakelijk gegeven wanneer andere middelen niet blijken te werken.
+pimozide Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/pimozide
+piq Het performale IQ is een meting (bij een IQ-test) van hoe je praktisch omgaat met je kennis. Hoe los je bijvoorbeeld een praktisch probleem op. Motorische vaardigheden spelen hierbij een rol, maar evengoed een aantal inzichten, zoals bijvoorbeeld het ruimtelijk inzicht. Zie ook: http://en.wikipedia.org/wiki/Wechsler_Adult_Intelligence_Scale (EN).
+pita PITA is internetjargon voor "Pain In The Ass" - pijn in de autist. ;)
+pizotifeen Sandomigran is een medicijn (werkzame stof pizotifeen) tegen migraine. Bij migraine heeft de persoon aanvallen van bonzende hoofdpijn, meestal aan ��n kant van het hoofd. Ook is er sprake van misselijkheid en overgevoeligheid voor licht en geluid. Zie ook: http://www.apotheek.nl/medicijnen/pizotifeen?product=sandomigran
+pm PM (Private Messaging) is priv� chatten (2 personen), er kan dan verder niemand meelezen. Je kunt in een PM komen door "/query nickname" (zonder aanhalingstekens) te typen of te dubbelklikken op een naam in de lijst van de aanwezigen.
+pm Let op: niet iedereen is bereid om priv� te chatten, dus vraag eerst toestemming door in de chat te vragen om een PM!
+pmt Psychomotorische Therapie. Zie ook: http://www.therapiehulp.nl/therapie/psychotherapie/lichaamsgerichte/psychomotorische-therapie/
+pnes Psychogenic Non-Epileptic Seizures of Psychogene Pseudo-Epileptische Aanvallen (PPEA). Zie ook: http://en.wikipedia.org/wiki/Psychogenic_non-epileptic_seizures (EN) of http://www.epilepsie.nl/informatie/nietepileptische_aanvallen/pseudo_aanvallen
+ppea Psychogene Pseudo-Epileptische Aanvallen of Psychogenic Non-Epileptic Seizures (PNES). Zie ook: http://en.wikipedia.org/wiki/Psychogenic_non-epileptic_seizures (EN) of http://www.epilepsie.nl/informatie/nietepileptische_aanvallen/pseudo_aanvallen
+propranolol Propranolol (merknaam Inderal) behoort tot de b�tablokkers. Het verlaagt de bloeddruk, vertraagt de hartslag en vermindert de zuurstofbehoefte van het hart. Artsen schrijven het o.a. voor bij hoge bloeddruk, hartritmestoornissen, migraine, een te snelle schildklierwerking, angstgevoelens en gespannenheid, essenti�le tremor (trillen) en hartinfarct.
+propranolol Zie ook: http://nl.wikipedia.org/wiki/Propranolol en http://www.apotheek.nl/medicijnen/propranolol?product=propranolol
+ptsd Post-Traumatic Stress Disorder (NL: PTSS). Deze aandoening ontstaat als gevolg van ernstige stressgevende situaties, waarbij sprake is van levensbedreiging, ernstig lichamelijk letsel of een bedreiging van de fysieke integriteit. Deze situaties zijn voor de persoon traumatisch. Zie: http://nl.wikipedia.org/wiki/Ptss
+ptss Post Traumatische Stress Stoornis (EN: PTSD). De aandoening ontstaat als gevolg van ernstige stressgevende situaties, waarbij sprake is van levensbedreiging, ernstig lichamelijk letsel of een bedreiging van de fysieke integriteit. Deze situaties zijn voor de persoon traumatisch. Zie: http://nl.wikipedia.org/wiki/Ptss
+re re is internetjargon voor "ik ben weer aanwezig"/"ik ben terug".
+recursie recursie: zie recursie
+remeron Remeron is een merk antidepressivum met de werkzame stof mirtazapine. Het regelt in de hersenen de hoeveelheid natuurlijk voorkomende stoffen die een rol spelen bij stemmingen en emoties. Artsen schrijven het voor bij depressie. Zie ook: http://www.apotheek.nl/medicijnen/mirtazapine?product=remeron
+riagg Een Regionale Instelling voor Ambulante Geestelijke Gezondheidszorg (Riagg) is een Nederlandse instelling voor geestelijke gezondheidszorg, bestemd voor mensen met psychosociale of psychiatrische problemen. Door fusies vallen de meeste van deze instellingen tegenwoordig onder noemer GGZ. Zie ook: http://nl.wikipedia.org/wiki/Riagg
+ribw Regionale Instellingen voor Beschermd Wonen. Een typische RIBW geeft (woon)ondersteuning bij het begeleid en beschermd wonen. Er is ook begeleiding bij het zelfstandig wonen. Dit heet BZW of ambulante begeleiding. Zie http://www.ribwalliantie.nl/ of http://nl.wikipedia.org/wiki/Ribw
+ribw Voor het Vlaamse "Beschut Wonen" zie: http://www.vlaanderen.be/nl/gezin-welzijn-en-gezondheid/gezondheidszorg/initiatieven-voor-beschut-wonen
+rilatine Rilatine/Ritalin/Concerta (merknamen) zijn medicijnen met de werkzame stof methylfenidaat. Methylfenidaat is een stimulerend middel. Artsen schrijven het o.a. voor bij narcolepsie en ADHD. Zie: http://nl.wikipedia.org/wiki/Methylfenidaat
+rilatine Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/methylfenidaat?product=ritalin
+risperdal Risperidon (merknaam: Risperdal) behoort tot de atypische antipsychotica. Artsen schrijven het voor bij psychose, manie, onrust, schizofrenie, depressie, dementie, tics en dwangstoornissen. Zie: http://nl.wikipedia.org/wiki/Risperdal
+risperdal Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/risperidon?product=risperdal
+risperidon Risperidon (merknaam: Risperdal) behoort tot de atypische antipsychotica. Artsen schrijven het voor bij psychose, manie, onrust, schizofrenie, depressie, dementie, tics en dwangstoornissen. Zie: http://nl.wikipedia.org/wiki/Risperdal
+risperidon Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/risperidon?product=risperdal
+ritalin Rilatine/Ritalin/Concerta (merknamen) zijn medicijnen met de werkzame stof methylfenidaat. Methylfenidaat is een stimulerend middel. Artsen schrijven het o.a. voor bij narcolepsie en ADHD. Zie: http://nl.wikipedia.org/wiki/Methylfenidaat
+ritalin Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/methylfenidaat?product=ritalin
+rls Restless-legssyndroom (RLS) is de Engelse benaming voor een ziektebeeld, die, letterlijk vertaald, rusteloze benen betekent. Het gaat om vervelende gevoelens in de benen, die vooral 's avonds optreden, net voor het slapen gaan. Dit leidt tot de drang de benen te bewegen. Zie ook: http://nl.wikipedia.org/wiki/Restless-legssyndroom en http://www.stichting-restless-legs.org
+rm Een rechterlijke machtiging (RM) wordt aangevraagd door de partner of naaste(n) van een persoon, of de persoon zelf. Dit gebeurt wanneer men denkt dat iemand een gevaar vormt voor zichzelf en/of voor anderen. Een RM kan resulteren in een gedwongen opname in bijvoorbeeld een psychiatrisch ziekenhuis. Zie ook: https://www.dwangindezorg.nl/procedures/gedwongen-opname/rm/rechterlijke-machtiging-rm
+rofl ROFL is internetjargon voor "Rolling On Floor Laughing" of "ik kom niet meer bij van het lachen".
+roflmao ROFLMAO is internetjargon voor "Rolling On Floor Laughing My Ass Off" of "ik kom totaal niet meer bij van het lachen".
+rtfm RTFM is internetjargon voor "Read The Fucking Manual" of "lees die verdomde handleiding nou eens".
+sadd Stichting voor het overwegend onoplettend type Attention Deficit Disorder. Zie ook: http://sadd.nl
+sandomigran Sandomigran is een medicijn (werkzame stof pizotifeen) tegen migraine. Bij migraine heeft de persoon aanvallen van bonzende hoofdpijn, meestal aan ��n kant van het hoofd. Ook is er sprake van misselijkheid en overgevoeligheid voor licht en geluid. Zie ook: http://www.apotheek.nl/medicijnen/pizotifeen?product=sandomigran
+sarotex Amitriptyline (merknamen: Tryptizol en Sarotex) is een antidepressivum en wordt voornamelijk voorgeschreven bij klinische depressies. Daarnaast kan het -in lage doseringen- worden voorgeschreven bij slapeloosheid, migraine en chronische pijn. Enkele bijwerkingen kunnen zijn: dufheid, nervositeit en duizeligheid. Zie ook: http://nl.wikipedia.org/wiki/Tryptizol
+savant Een idiot savant (geleerde dwaas) is iemand met een autistische stoornis en/of mentale retardatie, en toch zeer bijzondere geestelijke vermogens op een bepaald terrein heeft. Zie: http://nl.wikipedia.org/wiki/Savant
+sensoor Dit is een vrijwilligersorganisatie waar mensen naar kunnen bellen, e-mailen of mee chatten voor een anoniem en vetrouwelijk gesprek. Dat gesprek kan bedoeld zijn om je verhaal kwijt te kunnen, samen oplossingen voor een probleem te bedenken of alleen maar even contact te hebben. Zie ook: http://www.sensoor.nl/
+serlain Sertraline (merknamen Zoloft en Serlain) is een antidepressivum. Artsen schrijven het voor bij depressie en bij angststoornissen, zoals sociale fobie�n, dwangstoornissen, paniekstoornissen en posttraumatische stressstoornis. Zie ook http://nl.wikipedia.org/wiki/Sertraline
+serlain Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/sertraline?product=sertraline
+seroquel Quetiapine (merknaam Seroquel) is een atypisch antipsychoticum met een sterk sederende werking. Artsen schrijven het voor bij psychose, manie, schizofrenie, depressie en soms als slaapmiddel. Zie: http://nl.wikipedia.org/wiki/Seroquel
+seroquel Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/quetiapine?product=seroquel
+seroquel Seroquel is een atypisch antipsychoticum met een sterk sederende werking. Artsen schrijven het voor bij psychose, manie, schizofrenie, depressie en ook wel eens als een slaapmiddel. Gebruikers gebruiken de term SQ ook wel omdat ze te lui zijn om Seroquel te tikken. Zie verder: http://nl.wikipedia.org/wiki/Seroquel
+seroxat Seroxat is een merk antidepressivum met werkstof Paroxetine. Artsen schrijven het voor bij depressie en bij angststoornissen, zoals dwangstoornissen, paniekstoornissen en sociale fobie�n, en posttraumatische stressstoornis. Zie: http://nl.wikipedia.org/wiki/Seroxat
+seroxat Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/paroxetine?product=seroxat
+sertraline Sertraline (merknamen Zoloft en Serlain) is een antidepressivum. Artsen schrijven het voor bij depressie en bij angststoornissen, zoals sociale fobie�n, dwangstoornissen, paniekstoornissen en posttraumatische stressstoornis. Zie ook http://nl.wikipedia.org/wiki/Sertraline
+sertraline Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/sertraline?product=sertraline
+server Deze autsiderchat draait via het Starlink-irc netwerk. Het adres is: irc.starlink-irc.org en kanaal/channel: #autsider
+server Om sneller te verbinden met het netwerk kun je ident poort 113 openen in je firewall en/of portforwarden naar je pc.
+sipralexa Escitalopram (merknamen Lexapro en Sipralexa) is een antidepressivum uit de categorie van SSRI's. Het is chemisch vrijwel gelijk aan Citalopram. Artsen schrijven het voor bij depressie, angststoornissen, zoals een sociale fobie en paniekstoornissen. Zie ook http://nl.wikipedia.org/wiki/Escitalopram
+skype Skype is een Voice over IP-programma waarmee men over het Internet kan telefoneren. Zie: http://nl.wikipedia.org/wiki/Skype of http://www.skype.com/intl/nl/
+smiley Emoticons of Smilies zijn symbolen die emoties weergeven door middel van een plaatje of een combinatie van lees- en lettertekens. Zie ook: http://nl.wikipedia.org/wiki/Emoticon
+smilies Emoticons of Smilies zijn symbolen die emoties weergeven door middel van een plaatje of een combinatie van lees- en lettertekens. Zie ook: http://nl.wikipedia.org/wiki/Emoticon
+snri De selectieve serotonine-en-noradrenaline-heropnameremmers (Engels: Selective Serotonin and Noradrenalin Reuptake Inhibitor, afgekort SNRI) zijn een subklasse in de groep van antidepressiva. Ze zijn nauw verwant aan de SSRI's, het verschil is dat naast de heropname van serotonine ook de heropname van noradrenaline fors wordt geremd. Zie ook: http://nl.wikipedia.org/wiki/SNRI
+sova Sociale Vaardigheidstraining. Zie ook: http://www.methodieken.nl/methodieken_methoden.asp?methode_link=Sociale%20Vaardigheidstraining%20%28SoVa%29 en http://www.centrumautisme.nl/templates/Content.aspx?PageID=16386
+spam Spam is https://www.youtube.com/watch?v=anwy2MPT5RE (maar ook gebruikt voor ongevraagde massale commerci�le e-mail)
+spv Sociaal Psychiatrisch Verpleegkundige, een verpleegkundige die zich heeft gespecialiseerd in het werken met mensen die in psychische nood verkeren. Hierbij worden ook de mensen in de omgeving van de pati�nt betrokken. Zie ook: http://www.youchooz.nl/beroep.php?id=116&p=1
+sq Seroquel is een atypisch antipsychoticum met een sterk sederende werking. Artsen schrijven het voor bij psychose, manie, schizofrenie, depressie en ook wel eens als een slaapmiddel. Gebruikers gebruiken de term SQ ook wel omdat ze te lui zijn om Seroquel te tikken. Zie verder: http://nl.wikipedia.org/wiki/Seroquel
+ssri De selectieve serotonine-heropnameremmers (Engels: Selective serotonin reuptake inhibitor, acroniem SSRI) zijn een subklasse in de groep van antidepressiva. Zie: http://nl.wikipedia.org/wiki/Selectieve_serotonine-heropnameremmer
+stfu STFU is internetjargon voor "Shut The Fuck Up" of "hou je smoel".
+stilnoct Zolpidem is een slaapmiddel. Het middel is ook bekend onder de merknaam Stilnoct. Zie ook: http://nl.wikipedia.org/wiki/Zolpidem en http://www.apotheek.nl/medicijnen/zolpidem
+strattera Strattera (werkzame stof: Atomoxetine) is een zeer specifieke noradrenaline heropnameremmer die gebruikt wordt om de symptomen van ADHD te verminderen.
+strattera Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/atomoxetine?product=strattera
+su SU is internetjargon voor "Shut Up" of "hou je mond".
+sva Syndroom of stoornis van Asperger is een pervasieve ontwikkelingsstoornis. Het syndroom van Asperger wordt tot het autismespectrum gerekend. Zie ook: http://nl.wikipedia.org/wiki/Asperger
+tbh TBH is internetjargon voor "To Be Honest" of "om eerlijk te zijn".
+tca Tricyclic antidepressants (TCAs) is een groep anti-depressiva. Zie: http://en.wikipedia.org/wiki/Tricyclic_antidepressant (EN)
+temazepam Temazepam is een benzodiazepinederivaat dat gebruikt wordt bij angststoornissen en bij slapeloosheid. Het is met name geschikt voor kortdurend en niet dagelijks gebruik. Zie ook: http://nl.wikipedia.org/wiki/Temazepam
+temazepam Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/temazepam?product=temazepam
+thx THX is internetjargon voor "Thanks" of "bedankt".
+tia TIA is internetjargon voor "Thanks In Advance" of "bij voorbaat dank".
+tmi TMI is internetjargon voor "Too Much Information" of "te veel informatie" / "dat wilde ik liever niet weten".
+tom Theory of Mind is het menselijk vermogen om zich een beeld te vormen van het perspectief van een ander en indirect ook van zichzelf. Zie ook http://nl.wikipedia.org/wiki/Theory_of_mind
+topamax Topimaraat (merknaam Topamax) is een geneesmiddel en wordt voorgeschreven bij migraine-aanvallen, bepaalde vormen van epilepsie en boulimia nervosa. Zie ook: http://nl.wikipedia.org/wiki/Topiramaat
+topamax Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/topiramaat?product=topamax
+topimaraat Topimaraat (merknaam Topamax) is een geneesmiddel en wordt voorgeschreven bij migraine-aanvallen, bepaalde vormen van epilepsie en boulimia nervosa. Zie ook: http://nl.wikipedia.org/wiki/Topiramaat
+topimaraat Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/topiramaat?product=topamax
+tramadol Tramadol is een morfine-achtige pijnstiller die tot de opio�den gerekend wordt. Tramadol wordt gebruikt als pijnstiller (analgeticum) bij matige tot ernstige pijn en als hoestprikkel-onderdrukker (antitussivum). Zie ook: http://nl.wikipedia.org/wiki/Tramadol
+tramadol Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/tramadol?product=tramadol
+trazodon Trazodon (o.a. merknaam Trazolan) is een medicijn met sedatieve en antidepressieve werking. Het middel wordt voorgeschreven bij depressie en vooral bij depressies die gepaard gaan met slapeloosheid en angst. Zie ook: http://nl.wikipedia.org/wiki/Trazodon
+trazodon Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/trazodon?product=trazolan
+trazolan Trazodon (o.a. merknaam Trazolan) is een medicijn met sedatieve en antidepressieve werking. Het middel wordt voorgeschreven bij depressie en vooral bij depressies die gepaard gaan met slapeloosheid en angst. Zie ook: http://nl.wikipedia.org/wiki/Trazodon
+trazolan Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/trazodon?product=trazolan
+trol Een trol (Engels: troll) is een persoon die op forums, websites of chatkanalen berichten plaatst met het doel voorspelbare reacties van andere mensen uit te lokken of door die berichten onrust zaait c.q. onenigheid veroorzaakt. Zie ook: http://nl.wikipedia.org/wiki/Trol_%28internet%29
+tryptizol Amitriptyline (merknamen: Tryptizol en Sarotex) is een antidepressivum en wordt voornamelijk voorgeschreven bij klinische depressies. Daarnaast kan het -in lage doseringen- worden voorgeschreven bij slapeloosheid, migraine en chronische pijn. Enkele bijwerkingen kunnen zijn: dufheid, nervositeit en duizeligheid. Zie ook: http://nl.wikipedia.org/wiki/Tryptizol
+ttfn Internetjargon voor "Ta Ta For Now", oftewel "Tot ziens". Wordt vooral gebruikt bij het chatten.
+ttyl TTYL is internetjargon voor "Talk To You Later" of "spreek je later".
+ty TY is internetjargon voor "Thank You" of "dank je".
+tyvm TYVM is internetjargon voor "Thank You Very Much" of "heel erg bedankt".
+uwv Uitvoeringsinstituut WerknemersVerzekeringen is een Nederlandse overheidsinstelling die verantwoordelijk is voor het uitvoeren van de werknemersverzekeringen WW, WAO, WIA en de Ziektewet. Zie: http://nl.wikipedia.org/wiki/UWV en http://www.uwv.nl
+valium Valium (merknaam) is een kalmerend en slaperig makend medicijn, met de werkzame stof Diazepam. Zie http://nl.wikipedia.org/wiki/Diazepam
+vdab Vlaamse Dienst voor Arbeidsbemiddeling en Beroepsopleiding, belast met arbeidsbemiddeling, training & opleiding en loopbaanbegeleiding. Zie ook: http://www.vdab.be/
+venlafaxine Venlafaxine (merknaam Efexor) is een medicijn in de categorie antidepressiva, met venlafaxinehydrochloride als werkzaam bestandsdeel. Het verbetert de stemming en vermindert angsten. Artsen schrijven het voor bij depressie, angstgevoelens en gespannenheid, sociale fobie en paniekstoornis. Zie ook http://nl.wikipedia.org/wiki/Efexor
+viq Het verbale IQ is een meting (bij een IQ-test) van alles wat betrekking heeft op woordenschat, taalgevoel, redeneringsvermogen, enz., Rekensommen worden in de vorm van (verbale) redactiesommen aangeboden, maar rekenen in het algemeen telt niet mee in de waarde van het Verbale IQ. Zie ook: http://en.wikipedia.org/wiki/Wechsler_Adult_Intelligence_Scale (EN).
+voice Wanneer het kanaal door de operators in moderated (+m) modus gezet wordt kunnen uitsluitend mensen met voice (+v) iets zeggen. De rest kan alleen meelezen.
+vva Vlaamse Vereniging voor Autisme. Zie ook: http://www.autismevlaanderen.be/
+vvgg Vlaamse Vereniging voor Geestelijke Gezondheid. Zie: http://www.vvgg.be/home_245.aspx
+vvgg Nederlands versie (GGZ) is hier te vinden: http://www.ggznederland.nl/
+wais De Wechsler Adult Intelligence Scale (of WAIS) is de meest gebruikte individuele intelligentietest voor volwassenen. Zie ook: http://nl.wikipedia.org/wiki/Wechsler_Adult_Intelligence_Scale
+wajong Wet arbeidsongeschiktheidsvoorziening jonggehandicapten. Zie: http://nl.wikipedia.org/wiki/Wajong
+wao De Wet op de arbeidsongeschiktheidsverzekering (WAO) is een Nederlandse wet die is bedoeld voor werknemers die langdurig ziek of gehandicapt zijn en niet meer (volledig) in hun onderhoud kunnen voorzien. Zie: http://nl.wikipedia.org/wiki/Wet_op_de_arbeidsongeschiktheidsverzekering
+watis !watis geeft de definitie van een selecte groep termen die wel eens in de chat voorkomen.
+wia De Wet werk en inkomen naar arbeidsvermogen (WIA) is een Nederlandse wet die op 29 december 2005 in werking is getreden en is de opvolger van de WAO. Zie: http://nl.wikipedia.org/wiki/Wia en http://www.uwv.nl/wia/index.aspx
+wmo De Wet maatschappelijke ondersteuning (Wmo) is een Nederlandse wet en moet ervoor zorgen dat iedereen zo lang mogelijk zelfstandig kan blijven wonen en kan participeren in de samenleving. Zie ook: http://nl.wikipedia.org/wiki/Wmo en http://www.minvws.nl/dossiers/wmo/default.asp
+woordenlijst Dit is een woordenlijst met korte termen (geen spaties) en afkortingen die in de chat voorkomen. Voor sommigen bekende termen, voor anderen misschien niet. Het is een lijst om snel links naar Wikipedia of andere websites weer te geven. Middels het !definities commando, zie je een lijst bekende termen.
+wsw De Wet sociale werkvoorziening (WSW) is de Nederlandse wet die regelt dat arbeidsgehandicapten, die door lichamelijke, verstandelijke of psychische beperkingen uitsluitend in staat zijn onder aangepaste omstandigheden arbeid te verrichten, kunnen werken op een zo regulier mogelijke en op hun individuele mogelijkheden aangepaste arbeidsplek.
+wtf WTF is internetjargon voor "What The Fuck" of "wat zullen we nu beleven?".
+wth WTH is internetjargon voor "What The Hell" of "wat zullen we nu beleven?".
+xanax Alprazolam (merknaam: Xanax) is een kortwerkend geneesmiddel, behorend tot de benzodiazepinen. De voornaamste toepassing is bij de behandeling van angststoornissen en soms ter ondersteuning van de behandeling van depressie. Zie ook http://nl.wikipedia.org/wiki/Xanax
+yw YW is internetjargon voor "You are Welcome" of "graag gedaan".
+zalasta Olanzapine (merknamen Zyprexa of Zalasta) is een atypisch antipsychoticum. Artsen schrijven het voor bij psychose, manie, onrust, schizofrenie en tics. Zie ook: http://nl.wikipedia.org/wiki/Olanzapine
+zalasta Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/olanzapine
+zoloft Sertraline (merknamen Zoloft en Serlain) is een antidepressivum. Artsen schrijven het voor bij depressie en bij angststoornissen, zoals sociale fobie�n, dwangstoornissen, paniekstoornissen en posttraumatische stressstoornis. Zie ook http://nl.wikipedia.org/wiki/Sertraline
+zoloft Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/sertraline?product=sertraline
+zolpidem Zolpidem is een slaapmiddel. Het middel is ook bekend onder de merknaam Stilnoct. Zie ook: http://nl.wikipedia.org/wiki/Zolpidem en http://www.apotheek.nl/medicijnen/zolpidem
+zopiclon Zopiclon (merknaam Imovane) is een slaapmiddel. Zie: http://nl.wikipedia.org/wiki/Zopiclon
+zyprexa Olanzapine (merknamen Zyprexa of Zalasta) is een atypisch antipsychoticum. Artsen schrijven het voor bij psychose, manie, onrust, schizofrenie en tics. Zie ook: http://nl.wikipedia.org/wiki/Olanzapine
+zyprexa Meer informatie van apotheek.nl: http://www.apotheek.nl/medicijnen/olanzapine

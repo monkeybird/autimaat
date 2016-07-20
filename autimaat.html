@@ -22,7 +22,7 @@
    ingevoerd te worden tussen dubbele aanhalingstekens.
    Bijv.: <code>"Dit is 1 parameter"</code>.</p>
 
-   <p>Dit document is geschreven voor bot versie 0.20.<br />
+   <p>Dit document is geschreven voor bot versie 0.21.<br />
     Broncode voor deze bot is vrij beschikbaar via <a href="https://github.com/monkeybird/autimaat">deze link</a>.</p>
   </div>
 
@@ -97,11 +97,22 @@
 
   <div>
    <span class="cmd"><em>*</em> !ondefinieer</span>
+   <span class="arg">&lt;term&gt;</span><br />
+
+   <span class="cmd"><em>*</em> !ondefinieer</span>
    <span class="arg">&lt;term&gt;</span>
+   <span class="arg">&lt;index&gt;</span>
    <ul>
     <li><span class="arg">&lt;term&gt;</span>: De term die verwijdert dient te worden.</li>
+    <li><span class="arg">&lt;index&gt;</span>: De index van de sub-definitie die verwijdert dient te worden.
+	 Sommige definities hebben meerdere regels (sub-definities). Deze index laat de
+	 gebruiker alleen die specifieke sub-definitie verwijderen. Indien deze index
+	 niet opgegeven wordt, dan word de volledige definitie verwijderd. Een index begint
+	 bij 1 en dient niet hoger te zijn dan het aantal sub-definities voor de gegeven
+	 term.</li>
    </ul>
-   <p class="dsc">Verwijdert een bestaande <em>!watis</em> definitie.</p>
+   <p class="dsc">Verwijdert een bestaande <em>!watis</em> definitie of een
+    deel ervan.</p>
   </div>
 
   <!-- Snooze module -->

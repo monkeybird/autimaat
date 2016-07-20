@@ -8,6 +8,7 @@ import (
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/test"
+	"monkeybird/text"
 	"monkeybird/tr"
 	"os"
 	"testing"
@@ -45,7 +46,7 @@ func TestAddDefine(t *testing.T) {
 
 	w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s",
 		test.SenderName,
-		fmt.Sprintf(tr.AddDefineDisplayText, "a"),
+		fmt.Sprintf(tr.AddDefineDisplayText, text.Bold("a")),
 	))
 
 	w.Reset()
@@ -59,7 +60,7 @@ func TestAddDefine(t *testing.T) {
 
 	w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s",
 		test.SenderName,
-		fmt.Sprintf(tr.AddDefineAllreadyUsed, "a"),
+		fmt.Sprintf(tr.AddDefineAllreadyUsed, text.Bold("a")),
 	))
 }
 
@@ -75,7 +76,7 @@ func TestRemoveDefine(t *testing.T) {
 
 	w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s",
 		test.SenderName,
-		fmt.Sprintf(tr.RemoveDefineDisplayText, "a"),
+		fmt.Sprintf(tr.RemoveDefineDisplayText1, text.Bold("a")),
 	))
 
 	w.Reset()
@@ -88,7 +89,7 @@ func TestRemoveDefine(t *testing.T) {
 
 	w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s",
 		test.SenderName,
-		fmt.Sprintf(tr.RemoveDefineNotFound, "a"),
+		fmt.Sprintf(tr.RemoveDefineNotFound, text.Bold("a")),
 	))
 }
 
@@ -109,6 +110,6 @@ func testBadDefine(t *testing.T, v string) {
 
 	w.Verify(t, fmt.Sprintf("PRIVMSG %s :%s",
 		test.ChannelName,
-		fmt.Sprintf(tr.DefineNotFound, test.SenderName, v),
+		fmt.Sprintf(tr.DefineNotFound, test.SenderName, text.Bold(v)),
 	))
 }

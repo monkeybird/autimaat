@@ -338,7 +338,7 @@ const (
 
 	DefinitionsName    = "definities"
 	DefinitionsDesc    = "Geeft een lijst met bekende zoek termen."
-	DefinitionsDisplay = "Ik ken %s termen: %s"
+	DefinitionsDisplay = "Ik ken %s termen:"
 
 	AddDefineName           = "definieer"
 	AddDefineDesc           = "Voeg een nieuwe watis definitie toe."

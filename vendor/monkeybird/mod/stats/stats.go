@@ -4,14 +4,12 @@
 package stats
 
 import (
-	"compress/gzip"
-	"encoding/json"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
+	"monkeybird/mod"
 	"monkeybird/text"
 	"monkeybird/tr"
-	"os"
 	"sync"
 	"time"
 )
@@ -29,13 +27,13 @@ func (s *Stats) Update(w irc.ResponseWriter, r *irc.Request) {
 	}
 
 	s.m.Lock()
-	defer s.m.Unlock()
 
 	// Update the appropriate channel- and user data.
 	cs := s.Channels.Get(w, r.Target)
 	us := cs.Users.Get(r.SenderMask)
 	us.AddNickname(r.SenderName)
 	us.LastSeen = time.Now()
+	s.m.Unlock()
 }
 
 // FirstOn finds out when a specific user was first seen in
@@ -108,38 +106,12 @@ func (s *Stats) findUser(w irc.ResponseWriter, r *cmd.Request) (string, UserStat
 func (s *Stats) Load(file string) error {
 	s.m.Lock()
 	defer s.m.Unlock()
-
-	fd, err := os.Open(file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	gz, err := gzip.NewReader(fd)
-	if err != nil {
-		return err
-	}
-
-	defer gz.Close()
-
-	return json.NewDecoder(gz).Decode(s)
+	return mod.Load(file, s, true)
 }
 
 // Save saves stats data to a file.
 func (s *Stats) Save(file string) error {
 	s.m.RLock()
 	defer s.m.RUnlock()
-
-	fd, err := os.Create(file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	gz := gzip.NewWriter(fd)
-	defer gz.Close()
-
-	return json.NewEncoder(gz).Encode(s)
+	return mod.Save(file, s, true)
 }

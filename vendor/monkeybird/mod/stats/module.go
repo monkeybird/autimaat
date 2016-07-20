@@ -34,6 +34,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	pb.Bind("PRIVMSG", m.onPrivMsg)
 	pb.Bind("JOIN", m.doUpdate)
 	pb.Bind("PART", m.doUpdate)
+	pb.Bind("QUIT", m.doUpdate)
 
 	m.quit = make(chan struct{})
 	m.file = filepath.Join(prof.Root(), "stats.dat")
@@ -65,6 +66,7 @@ func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 		pb.Unbind("PRIVMSG", m.onPrivMsg)
 		pb.Unbind("JOIN", m.doUpdate)
 		pb.Unbind("PART", m.doUpdate)
+		pb.Unbind("QUIT", m.doUpdate)
 	})
 }
 

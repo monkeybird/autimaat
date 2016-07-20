@@ -6,8 +6,6 @@
 package snooze
 
 import (
-	"compress/gzip"
-	"encoding/json"
 	"math/rand"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
@@ -15,7 +13,6 @@ import (
 	"monkeybird/mod"
 	"monkeybird/text"
 	"monkeybird/tr"
-	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -64,7 +61,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.UnsnoozeName, tr.UnsnoozeDesc, false, m.cmdUnsnooze).
 		Add(tr.UnsnoozeIDName, tr.UnsnoozeIDDesc, true, cmd.RegAny)
 
-	m.load()
+	mod.Load(m.file, &m.table, true)
 	go m.poll()
 }
 
@@ -73,7 +70,7 @@ func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.quitOnce.Do(func() {
 		close(m.quit)
 
-		m.save()
+		mod.Save(m.file, m.table, true)
 		m.writer = nil
 		m.table = nil
 		m.commands.Clear()
@@ -100,7 +97,7 @@ func (m *module) cmdUnsnooze(w irc.ResponseWriter, r *cmd.Request) {
 	if ok && strings.EqualFold(a.SenderMask, r.SenderMask) {
 		delete(m.table, id)
 		proto.PrivMsg(w, r.Target, tr.SnoozeAlarmUnset, r.SenderName)
-		m.save()
+		mod.Save(m.file, m.table, true)
 	}
 
 	m.m.Unlock()
@@ -149,7 +146,7 @@ func (m *module) addSnooze(w irc.ResponseWriter, r *cmd.Request, id string) bool
 		When:       time.Now().Add(when),
 	}
 
-	m.save()
+	mod.Save(m.file, m.table, true)
 	m.m.Unlock()
 
 	proto.PrivMsg(w, r.Target, tr.SnoozeAlarmSet, r.SenderName, text.Bold(id))
@@ -235,42 +232,8 @@ func (m *module) checkExpiredAlarms() {
 	}
 
 	if deleted {
-		m.save()
+		mod.Save(m.file, m.table, true)
 	}
-}
-
-// load loads scheduled alarm data from a file.
-func (m *module) load() error {
-	fd, err := os.Open(m.file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	gz, err := gzip.NewReader(fd)
-	if err != nil {
-		return err
-	}
-
-	defer gz.Close()
-
-	return json.NewDecoder(gz).Decode(&m.table)
-}
-
-// save writes scheduled alarm data to a file.
-func (m *module) save() error {
-	fd, err := os.Create(m.file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	gz := gzip.NewWriter(fd)
-	defer gz.Close()
-
-	return json.NewEncoder(gz).Encode(m.table)
 }
 
 // parseTime treats the given value as either an absolute time, or

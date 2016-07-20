@@ -6,15 +6,12 @@
 package dictionary
 
 import (
-	"compress/gzip"
-	"encoding/json"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
 	"monkeybird/mod"
 	"monkeybird/text"
 	"monkeybird/tr"
-	"os"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -59,7 +56,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 		Add(tr.RemoveDefineTermName, tr.RemoveDefineTermDesc, true, cmd.RegAny)
 
 	m.file = filepath.Join(prof.Root(), "dictionary.dat")
-	m.load()
+	mod.Load(m.file, &m.table, true)
 }
 
 // Unload cleans up library resources and unbinds commands.
@@ -118,7 +115,7 @@ func (m *module) cmdAddDefine(w irc.ResponseWriter, r *cmd.Request) {
 	}
 
 	m.table[key] = r.Remainder(2)
-	m.save()
+	mod.Save(m.file, m.table, true)
 
 	proto.PrivMsg(w, r.SenderName, tr.AddDefineDisplayText, text.Bold(r.String(0)))
 }
@@ -135,7 +132,7 @@ func (m *module) cmdRemoveDefine(w irc.ResponseWriter, r *cmd.Request) {
 	}
 
 	delete(m.table, key)
-	m.save()
+	mod.Save(m.file, m.table, true)
 
 	proto.PrivMsg(w, r.SenderName, tr.RemoveDefineDisplayText, text.Bold(r.String(0)))
 }
@@ -153,38 +150,4 @@ func (m *module) cmdDefine(w irc.ResponseWriter, r *cmd.Request) {
 	}
 
 	proto.PrivMsg(w, r.Target, tr.DefineDisplayText, r.SenderName, v)
-}
-
-// load reads dictionary data from a file.
-func (m *module) load() error {
-	fd, err := os.Open(m.file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	gz, err := gzip.NewReader(fd)
-	if err != nil {
-		return err
-	}
-
-	defer gz.Close()
-
-	return json.NewDecoder(gz).Decode(&m.table)
-}
-
-// save writes dictionary data to a file.
-func (m *module) save() error {
-	fd, err := os.Create(m.file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	gz := gzip.NewWriter(fd)
-	defer gz.Close()
-
-	return json.NewEncoder(gz).Encode(m.table)
 }

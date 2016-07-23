@@ -148,6 +148,8 @@ const (
 	ForecastName = "weerfc"
 	ForecastDesc = "Toon een 3-daagse weersvoorspelling voor een specifieke lokatie. Verzorgd door: https://www.wunderground.com"
 
+	WeatherNope = "%s, kijk maar uit het raam."
+
 	WeatherLocationName         = "lokatie"
 	WeatherLocationDesc         = "Naam van de lokatie in kwestie. Dit is een dorp of stad, optioneel gevolgd door een land code en/of staat/provincie code. Bijv.: \"Eindhoven\", \"Amsterdam NL\", \"London CA ON\""
 	WeatherLocationsText        = "%s: er zijn meerdere lokaties met deze naam: %s"

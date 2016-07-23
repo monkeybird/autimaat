@@ -93,12 +93,17 @@ func (r *Request) FromChannel() bool {
 	return c == '#' || c == '&' || c == '!' || c == '+'
 }
 
-// Remainder returns the message payloud, but skips the first n words.
-func (r *Request) Remainder(n int) string {
+// Fields returns the message payload, but skips the first n words.
+// The result is returned as a slice of individual words.
+func (r *Request) Fields(n int) []string {
 	words := strings.Fields(r.Data)
 	if n < 0 || n >= len(words) {
-		return ""
+		return nil
 	}
+	return words[n:]
+}
 
-	return strings.TrimSpace(strings.Join(words[n:], " "))
+// Remainder returns the message payload, but skips the first n words.
+func (r *Request) Remainder(n int) string {
+	return strings.TrimSpace(strings.Join(r.Fields(n), " "))
 }

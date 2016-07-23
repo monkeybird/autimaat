@@ -4,7 +4,7 @@
 package weather
 
 import (
-	"math"
+	"fmt"
 	"monkeybird/irc"
 	"monkeybird/irc/cmd"
 	"monkeybird/irc/proto"
@@ -15,7 +15,7 @@ import (
 )
 
 // This is the url used to fetch a current weather report.
-const currentWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&type=accurate&APPID=%s"
+const currentWeatherURL = "http://api.wunderground.com/api/%s/conditions/lang:%s/q/%s.json"
 
 // cmdCurrentWeather fetches a current weather report for a specific location.
 func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
@@ -23,11 +23,12 @@ func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
 	defer m.lock.Unlock()
 
 	if len(m.apiKeyFunc()) == 0 {
-		proto.PrivMsg(w, r.Target, tr.OpenWeatherNotAvailable)
+		proto.PrivMsg(w, r.Target, tr.WeatherNotAvailable)
 		return
 	}
 
-	key := strings.ToLower(r.String(0))
+	loc := newLocation(r)
+	key := strings.ToLower(loc.String())
 
 	if resp, ok := m.currentWeatherCache[key]; ok {
 		// If the cached result is younger than the timeout, print its
@@ -42,10 +43,18 @@ func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
 	}
 
 	// Fetch new response.
-	var resp CurrentWeatherResponse
+	var resp currentWeatherResponse
 	resp.Timestamp = time.Now()
 
 	if !m.fetch(currentWeatherURL, key, &resp) {
+		return
+	}
+
+	// It is possible we received location suggestions, instead of weather
+	// data. Present these suggestions to the user and exit. Do not cache
+	// the response.
+	if len(resp.Response.Results) > 0 {
+		sendLocations(w, r, resp.Response.Results)
 		return
 	}
 
@@ -55,50 +64,55 @@ func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
 
 // sendCurrentWeather formats a response for the user who invoked the
 // weather request and sends it back to them.
-func sendCurrentWeather(w irc.ResponseWriter, r *cmd.Request, cwr *CurrentWeatherResponse) {
-	var weather string
-	if len(cwr.Weather) > 0 {
-		weather = weatherName(cwr.Weather[0].ID)
+func sendCurrentWeather(w irc.ResponseWriter, r *cmd.Request, cwr *currentWeatherResponse) {
+	co := &cwr.CurrentObservation
+
+	location := text.Bold(co.DisplayLocation.City)
+
+	if len(co.DisplayLocation.Country) > 0 {
+		if len(co.DisplayLocation.State) > 0 {
+			location += fmt.Sprintf(" (%s, %s)",
+				co.DisplayLocation.Country, co.DisplayLocation.State)
+		} else {
+			location += fmt.Sprintf(" (%s)", co.DisplayLocation.Country)
+		}
 	}
 
-	proto.PrivMsg(w, r.Target,
-		tr.OpenWeatherCurrentWeatherText,
-
+	proto.PrivMsg(w, r.Target, tr.WeatherCurrentWeatherText,
 		r.SenderName,
-		text.Bold(cwr.Name),
-		cwr.Sys.Country,
-		int(math.Abs(float64(cwr.Main.Temp))),
 
-		weather,
-		int(cwr.Main.Pressure),
-		int(cwr.Main.Humidity),
+		location,
 
-		cwr.Wind.Speed*3.600,
-		direction(cwr.Wind.Direction),
-		int(cwr.Clouds.Percentage),
+		int(co.TempC),
+		co.Weather,
+		co.PressureMB,
+		co.RelativeHumidity,
+		co.WindKPH,
+		co.WindDir,
 	)
 }
 
-// CurrentWeatherResponse defines an API response.
-type CurrentWeatherResponse struct {
+// currentWeatherResponse defines an API response.
+type currentWeatherResponse struct {
 	Timestamp time.Time
-	Name      string `json:"name"`
-	Weather   []struct {
-		ID int `json:"id"`
-	} `json:"weather"`
-	Main struct {
-		Temp     float32 `json:"temp"`
-		Pressure float32 `json:"pressure"`
-		Humidity float32 `json:"humidity"`
-	} `json:"main"`
-	Wind struct {
-		Speed     float32 `json:"speed"`
-		Direction float32 `json:"deg"`
-	} `json:"wind"`
-	Clouds struct {
-		Percentage float32 `json:"all"`
-	} `json:"clouds"`
-	Sys struct {
-		Country string `json:"country"`
-	} `json:"sys"`
+
+	// This is filled if an ambiguous location name is provided to
+	// the API. It will contain location suggestions for specific
+	// places.
+	Response struct {
+		Results []location `json:"results"`
+	} `json:"response"`
+
+	// This is filled with actual weather data for a specific location.
+	// It is only filled if the Response.Results field is empty.
+	CurrentObservation struct {
+		DisplayLocation  location `json:"display_location"`
+		Weather          string   `json:"weather"`
+		TempC            float32  `json:"temp_c"`
+		RelativeHumidity string   `json:"relative_humidity"`
+		WindDir          string   `json:"wind_dir"`
+		WindKPH          float32  `json:"wind_kph"`
+		PressureMB       string   `json:"pressure_mb"`
+		FeelslikeC       string   `json:"feelslike_c"`
+	} `json:"current_observation"`
 }

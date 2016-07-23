@@ -38,10 +38,10 @@ The old process then shuts itself down. This mechanism allows the bot to be bina
 patched, without downtime.
 
 
-### Openweathermap
+### Weather API
 
 The `weather` module provides bindings for some APIs at
-http://openweathermap.org/api
+https://www.wunderground.com/weather/api/
 
 This service requires the registration of a free account in order to get a
 valid API key. The API key you receive should be assigned to the

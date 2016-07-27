@@ -64,6 +64,8 @@ const (
 	HelpDesc        = "Toon algemene informatie voor alle ondersteunde commandos, of gedetaileerde informatie voor een specifiek commando."
 	HelpCommandName = "commando"
 	HelpCommandDesc = "Naam van het commando in kwestie."
+
+	SimpleHelpText = "%s, type !help voor een overzicht van alle commandos in een PM venster."
 )
 
 const (
@@ -198,15 +200,36 @@ const (
 	// Formulate the sentence for this to make sense.
 	GiveDesc = "Geef jezelf of iemand anders %s"
 
+	SmokeName    = "peuk"
 	BeerName     = "bier"
 	WineName     = "wijn"
 	CoffeeName   = "koffie"
 	TeaName      = "thee"
 	LemonadeName = "fris"
+	HugName      = "knuffel"
+	PetName      = "aai"
 )
 
 // The strings below should be written as if part of an action.
 // E.g.: "/me <something something...>"
+
+var HugAnswers = []string{
+	"geeft %s een stevige knuffel.",
+	"geeft %s een lieve knuffel.",
+	"knuffelt %s eens flink.",
+}
+
+var PetAnswers = []string{
+	"geeft %s een aai over de bol.",
+	"aait %s zachtjes over het hoofd.",
+}
+
+var SmokeAnswers = []string{
+	"geeft %s de asbak en aansteker.",
+	"steekt een cubaan op en overhandigt deze aan %s.",
+	"geeft %s een nieuw pakje cigaretten.",
+	"geeft %s een nieuw pakje shag.",
+}
 
 var BeerAnswers = []string{
 	"geeft %s een lekker koud biertje.",

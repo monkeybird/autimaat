@@ -36,17 +36,20 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.EightballName, tr.EightballDesc, false, m.cmd8Ball).
 		Add(tr.EightballQuestionName, tr.EightballQuestionDesc, true, cmd.RegAny)
 
-	m.bindAction(tr.BeerName, tr.BeerAnswers)
-	m.bindAction(tr.WineName, tr.WineAnswers)
-	m.bindAction(tr.CoffeeName, tr.CoffeeAnswers)
-	m.bindAction(tr.TeaName, tr.TeaAnswers)
-	m.bindAction(tr.LemonadeName, tr.LemonadeAnswers)
+	m.bindGiveAction(tr.SmokeName, tr.SmokeAnswers)
+	m.bindGiveAction(tr.BeerName, tr.BeerAnswers)
+	m.bindGiveAction(tr.WineName, tr.WineAnswers)
+	m.bindGiveAction(tr.CoffeeName, tr.CoffeeAnswers)
+	m.bindGiveAction(tr.TeaName, tr.TeaAnswers)
+	m.bindGiveAction(tr.LemonadeName, tr.LemonadeAnswers)
+	m.bindGiveAction(tr.HugName, tr.HugAnswers)
+	m.bindGiveAction(tr.PetName, tr.PetAnswers)
 }
 
-// bindAction provides a wrapper for the binding of action commands.
-// We bind quite a few of these, so the shortcut makes this process
-// less verbose.
-func (m *module) bindAction(name string, set []string) {
+// bindGiveAction provides a wrapper for the binding of a "X gives Y to Z"
+// action commands. We bind quite a few of these, so the shortcut makes this
+// process less verbose.
+func (m *module) bindGiveAction(name string, set []string) {
 	desc := fmt.Sprintf(tr.GiveDesc, name)
 	m.commands.Bind(name, desc, false, m.actionCommand(set)).
 		Add(tr.GiveUserName, tr.GiveUserDesc, false, cmd.RegAny)

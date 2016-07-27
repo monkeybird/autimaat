@@ -89,6 +89,10 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 		},
 	)
 
+	// This command is invoked with the bot's nickname and directs the
+	// user to the full !help command.
+	m.commands.Bind(prof.Nickname(), tr.SimpleHelpText, false, m.cmdSimpleHelp)
+
 	m.commands.Bind(tr.JoinName, tr.JoinDesc, true, m.cmdJoin).
 		Add(tr.JoinChannelName, tr.JoinChannelDesc, true, cmd.RegChannel).
 		Add(tr.JoinPasswordName, tr.JoinPasswordDesc, false, cmd.RegAny).
@@ -159,6 +163,12 @@ func (m *module) onAny(w irc.ResponseWriter, r *irc.Request) {
 
 		log.Printf("> %s", strings.Join(fields, ", "))
 	}
+}
+
+// cmdSimpleHelp presents the user with a short message, pointing them
+// to the full !help command.
+func (m *module) cmdSimpleHelp(w irc.ResponseWriter, r *cmd.Request) {
+	proto.PrivMsg(w, r.Target, tr.SimpleHelpText, r.SenderName)
 }
 
 // cmdLog changes and/or reports the current logging state.

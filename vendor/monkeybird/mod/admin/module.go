@@ -335,12 +335,14 @@ func InitLog(root string) error {
 
 	// Exit if we're already using this file.
 	if logFile != nil && logFile.Name() == file {
-		return nil
+		if logFile.Name() == file {
+			return nil
+		}
+
+		log.Println("[admin] opening new log file:", file)
 	}
 
-	log.Println("[admin] opening new log file:", file)
-
-	// Create the new logfile.
+	// Create/open the new logfile.
 	fd, err := os.OpenFile(file, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		return err

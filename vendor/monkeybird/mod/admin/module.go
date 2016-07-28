@@ -23,9 +23,16 @@ import (
 )
 
 const (
+	// LogFormat defines the date layout for log file names.
+	LogFormat = "20060102"
+
 	// PurgeTimeout defines the timeout after which the bot should
 	// check for stale log files.
 	PurgeTimeout = time.Hour * 24
+
+	// RefreshTimeout determines how often we should check if a new
+	// log file should be opened.
+	RefreshTimeout = time.Minute
 
 	// LogExpiration defines how old a log file should be, before it
 	// is considered stale.
@@ -53,7 +60,7 @@ type module struct {
 	getLogFunc   func() bool
 	setLogFunc   func(bool)
 
-	logDir       string
+	rootDir      string
 	logPurgeQuit chan struct{}
 	quitOnce     sync.Once
 }
@@ -71,7 +78,7 @@ func New(name string, major, minor int, rev string) mod.Module {
 
 // Load loads module resources and binds commands.
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
-	m.logDir = filepath.Join(prof.Root(), "logs")
+	m.rootDir = prof.Root()
 	m.logPurgeQuit = make(chan struct{})
 	m.authFunc = prof.WhitelistAdd
 	m.deauthFunc = prof.WhitelistRemove
@@ -115,7 +122,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.commands.Bind(tr.ReloadName, tr.ReloadDesc, true, m.cmdReload)
 	m.commands.Bind(tr.VersionName, tr.VersionDesc, false, m.cmdVersion)
 
-	go m.purgeLogs()
+	go m.pollLogState()
 }
 
 // Unload cleans up library resources and unbinds commands.
@@ -246,15 +253,17 @@ func (m *module) cmdVersion(w irc.ResponseWriter, r *cmd.Request) {
 	)
 }
 
-// purgeLogs periodically checks the log file directory for files
-// which are older than a predefined number of days. If found, the log
-// file in question is deleted. This ensures we do not keep stale logs
-// around unnecessarily.
-func (m *module) purgeLogs() {
+// pollLogState periodically checks for stale logs and makes sure we
+// open a new log file, once every day.
+func (m *module) pollLogState() {
 	for {
 		select {
 		case <-m.logPurgeQuit:
 			return
+
+		case <-time.After(RefreshTimeout):
+			m.refreshLog()
+
 		case <-time.After(PurgeTimeout):
 			m.doLogPurge()
 		}
@@ -267,7 +276,8 @@ func (m *module) purgeLogs() {
 func (m *module) doLogPurge() {
 	log.Println("[admin] purging stale log files...")
 
-	fd, err := os.Open(m.logDir)
+	logDir := filepath.Join(m.rootDir, "logs")
+	fd, err := os.Open(logDir)
 	if err != nil {
 		log.Println("[admin] purge log files:", err)
 		return
@@ -286,10 +296,64 @@ func (m *module) doLogPurge() {
 			continue
 		}
 
-		path := filepath.Join(m.logDir, file.Name())
+		path := filepath.Join(logDir, file.Name())
 		err = os.Remove(path)
 		if err != nil {
 			log.Printf("[admin] deleting log file %q: %v", file.Name(), err)
 		}
 	}
+}
+
+// refreshLog checks if we've started a new day. In which case,
+// a new log file should be opened.
+func (m *module) refreshLog() {
+	err := InitLog(m.rootDir)
+	if err != nil {
+		log.Println("[admin]", err)
+	}
+}
+
+// logFile has a handle to the currently used log output.
+var logFile *os.File
+
+// InitLog  initializes a new log file, if necessary. This happens once
+// every day.
+//
+// This call is exported because it is called on program start in main()
+func InitLog(root string) error {
+	// Ensure the log file directory exists.
+	dir := filepath.Join(root, "logs")
+	err := os.Mkdir(dir, 0700)
+	if err != nil && !os.IsExist(err) {
+		return err
+	}
+
+	// Determine the name of the new log file.
+	timeStamp := time.Now().Format(LogFormat)
+	file := fmt.Sprintf("%s.txt", timeStamp)
+	file = filepath.Join(dir, file)
+
+	// Exit if we're already using this file.
+	if logFile != nil && logFile.Name() == file {
+		return nil
+	}
+
+	log.Println("[admin] opening new log file:", file)
+
+	// Create the new logfile.
+	fd, err := os.OpenFile(file, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		return err
+	}
+
+	// Set the new log output.
+	log.SetOutput(fd)
+
+	// Close the old log file and assign the new one.
+	if logFile != nil {
+		logFile.Close()
+	}
+
+	logFile = fd
+	return nil
 }

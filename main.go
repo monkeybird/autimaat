@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"log"
 	"monkeybird/irc"
+	"monkeybird/mod/admin"
 	"os"
 	"path/filepath"
-	"time"
 )
 
 func main() {
@@ -37,27 +37,11 @@ func main() {
 // They are named after the current (local) date and stored in
 // the $PROFILE_ROOT/logs/ directory.
 func initLog(root string) {
-	// Ensure the log file directory exists.
-	logDir := filepath.Join(root, "logs")
-	err := os.Mkdir(logDir, 0700)
-
+	err := admin.InitLog(root)
 	if err != nil && !os.IsExist(err) {
-		fmt.Fprintln(os.Stderr, "failed to create log file directory:", err)
+		fmt.Fprintln(os.Stderr, "log initialization failed:", err)
 		os.Exit(1)
 	}
-
-	// Set the log target to a file.
-	timeStamp := time.Now().Format("20060102")
-	logFile := fmt.Sprintf("%s.txt", timeStamp)
-	logFile = filepath.Join(logDir, logFile)
-
-	fd, err := os.OpenFile(logFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "failed to open log file:", err)
-		os.Exit(1)
-	}
-
-	log.SetOutput(fd)
 
 	// Set the log prefix to include our process id.
 	// This makes analyzing log data a little easier.

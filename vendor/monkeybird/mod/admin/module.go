@@ -60,9 +60,9 @@ type module struct {
 	getLogFunc   func() bool
 	setLogFunc   func(bool)
 
-	rootDir      string
-	logPurgeQuit chan struct{}
-	quitOnce     sync.Once
+	rootDir     string
+	logPollQuit chan struct{}
+	quitOnce    sync.Once
 }
 
 // New returns a new admin module. The given application name and version
@@ -79,7 +79,7 @@ func New(name string, major, minor int, rev string) mod.Module {
 // Load loads module resources and binds commands.
 func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.rootDir = prof.Root()
-	m.logPurgeQuit = make(chan struct{})
+	m.logPollQuit = make(chan struct{})
 	m.authFunc = prof.WhitelistAdd
 	m.deauthFunc = prof.WhitelistRemove
 	m.authListFunc = prof.Whitelist
@@ -128,7 +128,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 // Unload cleans up library resources and unbinds commands.
 func (m *module) Unload(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.quitOnce.Do(func() {
-		close(m.logPurgeQuit)
+		close(m.logPollQuit)
 
 		m.commands.Clear()
 		pb.Unbind("PRIVMSG", m.onPrivMsg)
@@ -258,7 +258,7 @@ func (m *module) cmdVersion(w irc.ResponseWriter, r *cmd.Request) {
 func (m *module) pollLogState() {
 	for {
 		select {
-		case <-m.logPurgeQuit:
+		case <-m.logPollQuit:
 			return
 
 		case <-time.After(RefreshTimeout):

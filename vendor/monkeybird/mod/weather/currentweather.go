@@ -17,12 +17,12 @@ import (
 // This is the url used to fetch a current weather report.
 const currentWeatherURL = "https://api.wunderground.com/api/%s/conditions/lang:%s/q/%s.json"
 
-func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
+func (m *module) cmdCurrentWeather1(w irc.ResponseWriter, r *cmd.Request) {
 	proto.PrivMsg(w, r.Target, tr.WeatherNope, r.SenderName)
 }
 
 // cmdCurrentWeather fetches a current weather report for a specific location.
-func (m *module) cmdCurrentWeather1(w irc.ResponseWriter, r *cmd.Request) {
+func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
 	m.lock.Lock()
 	defer m.lock.Unlock()
 

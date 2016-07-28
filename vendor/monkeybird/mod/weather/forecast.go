@@ -18,11 +18,11 @@ import (
 const forecastURL = "https://api.wunderground.com/api/%s/forecast/lang:%s/q/%s.json"
 
 // cmdForecast fetches a 3-day weather forecast for a specific location.
-func (m *module) cmdForecast(w irc.ResponseWriter, r *cmd.Request) {
+func (m *module) cmdForecast1(w irc.ResponseWriter, r *cmd.Request) {
 	proto.PrivMsg(w, r.Target, tr.WeatherNope, r.SenderName)
 }
 
-func (m *module) cmdForecast1(w irc.ResponseWriter, r *cmd.Request) {
+func (m *module) cmdForecast(w irc.ResponseWriter, r *cmd.Request) {
 	m.lock.Lock()
 	defer m.lock.Unlock()
 

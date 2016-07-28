@@ -197,7 +197,10 @@ const (
 	GiveUserDesc = "Naam van de ontvanger."
 
 	// GiveDesc has the name of a command passed to it as a format parameter.
-	// Formulate the sentence for this to make sense.
+	// Formulate the sentence so this makes sense. E.g.:
+	//
+	//    "Give yourself or someone else <X>"
+	//
 	GiveDesc = "Geef jezelf of iemand anders %s"
 
 	SmokeName    = "peuk"

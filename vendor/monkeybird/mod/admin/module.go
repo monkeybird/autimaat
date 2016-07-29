@@ -98,7 +98,7 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 
 	// This command is invoked with the bot's nickname and directs the
 	// user to the full !help command.
-	m.commands.Bind(prof.Nickname(), tr.SimpleHelpText, false, m.cmdSimpleHelp)
+	m.commands.Bind(prof.Nickname(), tr.SimpleHelpDesc, false, m.cmdSimpleHelp)
 
 	m.commands.Bind(tr.JoinName, tr.JoinDesc, true, m.cmdJoin).
 		Add(tr.JoinChannelName, tr.JoinChannelDesc, true, cmd.RegChannel).

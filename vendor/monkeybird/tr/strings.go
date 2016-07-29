@@ -133,7 +133,7 @@ const (
 	SnoozeMessageName    = "bericht"
 	SnoozeMessageDesc    = "Het bericht dat weergegeven dient te worden als het alarm af gaat."
 	SnoozeInvalidTime    = "%s, %q is geen geldige tijd waarde."
-	SnoozeDefaultMessage = "%s, toooot! Snooze tijd!"
+	SnoozeDefaultMessage = "%s, het is %s: Snooze tijd!"
 	SnoozeMessagePrefix  = "%s, het is %s: "
 	SnoozeAlarmSet       = "%s, het alarm is ingesteld. Je kunt het verwijderen met: !unsnooze %s"
 	SnoozeAlarmUnset     = "%s, het alarm is verwijderd."
@@ -237,8 +237,8 @@ var SmokeAnswers = []string{
 
 var BeerAnswers = []string{
 	"geeft %s een lekker koud biertje.",
-	"geeft %s een lekkere blonde stoot.",
-	"opent een fust en schuift het naar %s. Proost!",
+	"schenkt %s een trapistje naar keuze.",
+	"sluit een nieuw fust aan en tapt een vers glas voor %s. Proost!",
 }
 
 var WineAnswers = []string{

@@ -66,7 +66,7 @@ const (
 	HelpCommandDesc = "Naam van het commando in kwestie."
 
 	SimpleHelpDesc = "Geeft een verwijzing naar !help"
-	SimpleHelpText = "%s, type !help voor een overzicht van alle commandos in een PM venster."
+	SimpleHelpText = "%s, voor een overzicht van alle commandos, type !help of kijk op http://jteeuwen.nl/autimaat.html"
 )
 
 const (

@@ -27,14 +27,6 @@ var (
 	// PRIVMSG contents.
 	regUrl = regexp.MustCompile(`\bhttps?\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]+(\:[0-9]+)?(/\S*)?\b`)
 
-	// regYoutube attempts to look for the video ID part of a youtube url.
-	regYoutube = regexp.MustCompile(`[?&]v=([a-zA-Z0-9_-]+)`)
-
-	// youtubeHosts defines a list of known, valid youtube hosts.
-	youtubeHosts = []string{
-		"youtube.com",
-	}
-
 	// These values are used to extract title contents from HTML.
 	bOpenTitle1 = []byte("<title>")
 	bOpenTitle2 = []byte("<title ")
@@ -177,23 +169,18 @@ func isYoutube(v string) (string, bool) {
 		return "", false
 	}
 
-	if !isYoutubeHost(u.Host) {
-		return "", false
+	if strings.EqualFold(u.Host, "youtube.com") {
+		id := strings.TrimSpace(u.Query().Get("v"))
+		return id, len(id) > 0
 	}
 
-	id := strings.TrimSpace(u.Query().Get("v"))
-	return id, len(id) > 0
-}
-
-// isYoutubeHost returns true if the given value represents a known youtube host.
-func isYoutubeHost(v string) bool {
-	v = strings.ToLower(v)
-
-	for _, vv := range youtubeHosts {
-		if strings.HasSuffix(v, vv) {
-			return true
+	if strings.EqualFold(u.Host, "youtu.be") {
+		id := u.RequestURI()
+		if strings.HasPrefix(id, "/") {
+			id = id[1:]
 		}
+		return id, len(id) > 0
 	}
 
-	return false
+	return "", false
 }

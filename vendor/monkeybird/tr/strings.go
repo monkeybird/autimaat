@@ -237,7 +237,7 @@ var SmokeAnswers = []string{
 
 var BeerAnswers = []string{
 	"geeft %s een lekker koud biertje.",
-	"schenkt %s een trapistje naar keuze.",
+	"schenkt %s een trappistje naar keuze.",
 	"sluit een nieuw fust aan en tapt een vers glas voor %s. Proost!",
 }
 

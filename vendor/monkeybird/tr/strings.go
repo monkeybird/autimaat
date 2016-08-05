@@ -249,13 +249,16 @@ var WineAnswers = []string{
 }
 
 var CoffeeAnswers = []string{
-	"schenkt %s een kopje verse koffie.",
+	"schenkt %s een kopje koffie.",
 	"geeft %s een stevige bak leut.",
+	"zet de ketel op en rent naar de voorraadkast voor een nieuw pak koffie; Even geduld nog, %s!",
 }
 
 var TeaAnswers = []string{
-	"schenkt %s een vers kopje thee.",
-	"biedt %s een glas hete thee aan.",
+	"zet een kopje thee voor %s.",
+	"loopt richting de keuken om voor %s de fluitketel op het vuur te zetten.",
+	"brengt %s de doos met alle theesmaakjes; kies maar iets uit.",
+	"geeft %s een kopje thee ;)",
 }
 
 var LemonadeAnswers = []string{

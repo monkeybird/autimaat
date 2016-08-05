@@ -71,12 +71,18 @@ func (m *module) cmdCurrentWeather(w irc.ResponseWriter, r *cmd.Request) {
 func sendCurrentWeather(w irc.ResponseWriter, r *cmd.Request, cwr *currentWeatherResponse) {
 	co := &cwr.CurrentObservation
 
+	if strings.TrimSpace(co.DisplayLocation.City) == "" {
+		proto.PrivMsg(w, r.Target, tr.WeatherCurrentWeatherNotAvailable,
+			r.SenderName)
+		return
+	}
+
 	location := text.Bold(co.DisplayLocation.City)
 
 	if len(co.DisplayLocation.Country) > 0 {
 		if len(co.DisplayLocation.State) > 0 {
 			location += fmt.Sprintf(" (%s, %s)",
-				co.DisplayLocation.Country, co.DisplayLocation.State)
+				co.DisplayLocation.State, co.DisplayLocation.Country)
 		} else {
 			location += fmt.Sprintf(" (%s)", co.DisplayLocation.Country)
 		}

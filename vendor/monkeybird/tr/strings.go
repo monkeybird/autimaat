@@ -153,13 +153,14 @@ const (
 
 	WeatherNope = "%s, kijk maar uit het raam."
 
-	WeatherLocationName         = "lokatie"
-	WeatherLocationDesc         = "Naam van de lokatie in kwestie. Dit is een dorp of stad, optioneel gevolgd door een land code en/of staat/provincie code. Bijv.: \"Eindhoven\", \"Amsterdam NL\", \"London CA ON\""
-	WeatherLocationsText        = "%s: er zijn meerdere lokaties met deze naam: %s"
-	WeatherNotAvailable         = "Het weerbericht is momenteel niet beschikbaar."
-	WeatherCurrentWeatherText   = "%s, in %s is het %d°C, %s, luchtdruk: %s hPa, luchtvochtigheid: %s, wind: %.1f km/u uit richting: %s."
-	WeatherForecastNotAvailable = "Er is momenteel geen weersvoorspelling voor %s."
-	WeatherForecastText         = "Weersvoorspelling voor %s:"
+	WeatherLocationName               = "lokatie"
+	WeatherLocationDesc               = "Naam van de lokatie in kwestie. Dit is een dorp of stad, optioneel gevolgd door een land code en/of staat/provincie code. Bijv.: \"Eindhoven\", \"Amsterdam NL\", \"London CA ON\""
+	WeatherLocationsText              = "%s: er zijn meerdere lokaties met deze naam: %s"
+	WeatherNotAvailable               = "Het weerbericht is momenteel niet beschikbaar."
+	WeatherCurrentWeatherText         = "%s, in %s is het %d°C, %s, luchtdruk: %s hPa, luchtvochtigheid: %s, wind: %.1f km/u uit richting: %s."
+	WeatherCurrentWeatherNotAvailable = "%s, er is momenteel geen weer beschikbaar voor deze lokatie."
+	WeatherForecastNotAvailable       = "Er is momenteel geen weersvoorspelling voor %s."
+	WeatherForecastText               = "Weersvoorspelling voor %s:"
 )
 
 const (

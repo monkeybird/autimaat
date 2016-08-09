@@ -234,7 +234,7 @@ var PetAnswers = []string{
 var SmokeAnswers = []string{
 	"geeft %s de asbak en aansteker.",
 	"steekt een cubaan op en overhandigt deze aan %s.",
-	"geeft %s een nieuw pakje cigaretten.",
+	"geeft %s een nieuw pakje sigaretten.",
 	"geeft %s een nieuw pakje shag.",
 }
 

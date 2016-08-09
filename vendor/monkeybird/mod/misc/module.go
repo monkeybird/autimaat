@@ -39,6 +39,8 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	m.bindGiveAction(tr.SmokeName, tr.SmokeAnswers)
 	m.bindGiveAction(tr.BeerName, tr.BeerAnswers)
 	m.bindGiveAction(tr.WineName, tr.WineAnswers)
+	m.bindGiveAction(tr.PortName, tr.PortAnswers)
+	m.bindGiveAction(tr.WhiskeyName, tr.WhiskeyAnswers)
 	m.bindGiveAction(tr.CoffeeName, tr.CoffeeAnswers)
 	m.bindGiveAction(tr.TeaName, tr.TeaAnswers)
 	m.bindGiveAction(tr.LemonadeName, tr.LemonadeAnswers)

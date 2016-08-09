@@ -208,6 +208,8 @@ const (
 	SmokeName    = "peuk"
 	BeerName     = "bier"
 	WineName     = "wijn"
+	PortName     = "port"
+	WhiskeyName  = "whiskey"
 	CoffeeName   = "koffie"
 	TeaName      = "thee"
 	LemonadeName = "fris"
@@ -245,7 +247,17 @@ var BeerAnswers = []string{
 var WineAnswers = []string{
 	"geeft %s een glaasje rode wijn.",
 	"geeft %s een glaasje witte wijn.",
-	"geeft %s een glaasje Port.",
+	"geeft %s de wijnkaart.",
+}
+
+var PortAnswers = []string{
+	"geeft %s een glaasje ruby Port.",
+	"schenkt %s een glaasje Port naar keuze.",
+}
+
+var WhiskeyAnswers = []string{
+	"duikt de drankkast in om %s de oudste fles whiskey te halen die hij kan vinden.",
+	"blaast het stof van de Whiskeyfles en schenkt %s een glas.",
 }
 
 var CoffeeAnswers = []string{

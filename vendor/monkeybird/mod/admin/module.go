@@ -256,6 +256,9 @@ func (m *module) cmdVersion(w irc.ResponseWriter, r *cmd.Request) {
 // pollLogState periodically checks for stale logs and makes sure we
 // open a new log file, once every day.
 func (m *module) pollLogState() {
+	// Do initial log purge.
+	m.doLogPurge()
+
 	for {
 		select {
 		case <-m.logPollQuit:

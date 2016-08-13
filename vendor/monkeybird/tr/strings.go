@@ -44,6 +44,13 @@ const (
 )
 
 const (
+	NickName     = "nick"
+	NickDesc     = "Instrueer de bot zijn nick veranderen. Deze wijziging geld alleen voor de huidige sessie."
+	NickNickName = "naam"
+	NickNickDesc = "De naam die de bo aan moet nemen."
+	NickPassName = "wachtwoord"
+	NickPassDesc = "Het nickserv wachtwoord voor de gekozen naam."
+
 	JoinName         = "join"
 	JoinDesc         = "Instrueer de bot om het opgegeven kanaal te betreden."
 	JoinChannelName  = "kanaal"

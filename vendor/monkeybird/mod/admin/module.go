@@ -100,6 +100,10 @@ func (m *module) Load(pb irc.ProtocolBinder, prof irc.Profile) {
 	// user to the full !help command.
 	m.commands.Bind(prof.Nickname(), tr.SimpleHelpDesc, false, m.cmdSimpleHelp)
 
+	m.commands.Bind(tr.NickName, tr.NickDesc, true, m.cmdNick).
+		Add(tr.NickNickName, tr.NickNickDesc, true, cmd.RegAny).
+		Add(tr.NickPassName, tr.NickPassDesc, false, cmd.RegAny)
+
 	m.commands.Bind(tr.JoinName, tr.JoinDesc, true, m.cmdJoin).
 		Add(tr.JoinChannelName, tr.JoinChannelDesc, true, cmd.RegChannel).
 		Add(tr.JoinPasswordName, tr.JoinPasswordDesc, false, cmd.RegAny).
@@ -188,6 +192,15 @@ func (m *module) cmdLog(w irc.ResponseWriter, r *cmd.Request) {
 		proto.PrivMsg(w, r.SenderName, tr.LogEnabled)
 	} else {
 		proto.PrivMsg(w, r.SenderName, tr.LogDisabled)
+	}
+}
+
+// cmdNick allows the bot to change its name.
+func (m *module) cmdNick(w irc.ResponseWriter, r *cmd.Request) {
+	if r.Len() > 1 {
+		proto.Nick(w, r.String(0), r.String(1))
+	} else {
+		proto.Nick(w, r.String(0))
 	}
 }
 

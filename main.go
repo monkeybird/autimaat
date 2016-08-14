@@ -28,7 +28,7 @@ func main() {
 	err := bot.Run()
 
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 }
 

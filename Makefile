@@ -9,8 +9,7 @@
 ##   AUTIMAAT_PORT    : Remote SSH port number.
 ##
 ##
-## The remote host should have a shell script present at
-## $AUTIMAAT_DIR/autimaat_restart.sh
+## The remote host should have a shell script present at: $AUTIMAAT_DIR/restart.sh
 ## It should contain the following code:
 ##
 ##     #!/usr/bin/env sh
@@ -40,5 +39,5 @@ release:
 	go build -ldflags $(LDFLAGS_RELEASE)
 	ssh $(AUTIMAAT_HOST) -p $(AUTIMAAT_PORT) rm $(AUTIMAAT_DIR)/autimaat
 	scp -P $(AUTIMAAT_PORT) autimaat $(AUTIMAAT_HOST):$(AUTIMAAT_DIR)
-	ssh $(AUTIMAAT_HOST) -p $(AUTIMAAT_PORT) $(AUTIMAAT_DIR)/autimaat_restart.sh
+	ssh $(AUTIMAAT_HOST) -p $(AUTIMAAT_PORT) $(AUTIMAAT_DIR)/restart.sh
 	go clean

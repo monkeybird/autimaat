@@ -189,10 +189,7 @@ func (b *Bot) open() error {
 	// the service file for this program.
 	//
 	// TODO: find a less flaky way to do this.
-	go func() {
-		<-time.After(3 * time.Second)
-		proc.Fork()
-	}()
+	go time.AfterFunc(3*time.Second, proc.Fork)
 
 	return nil
 }

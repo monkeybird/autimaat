@@ -7,48 +7,33 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"monkeybird/irc"
-	"monkeybird/mod/admin"
 	"os"
 	"path/filepath"
+
+	"github.com/monkeybird/autimaat/app"
+	"github.com/monkeybird/autimaat/irc"
+	"github.com/monkeybird/autimaat/logger"
 )
 
 func main() {
 	// Parse command line arguments and load the bot profile.
 	profile := parseArgs()
 
-	// Initialize the log.
-	initLog(profile.Root())
+	// Initialize the log and ensure it is properly stopped when we are done.
+	logger.Init("logs")
+	defer logger.Shutdown()
 
 	// Write PID file. It may be needed by a process supervisor.
 	writePid()
 
-	// Create the bot and open the connection.
-	bot := New(profile)
-	err := bot.Run()
-
+	// Create and run the bot.
+	err := Run(profile)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("[bot]", err)
 	}
 }
 
-// initLog initializes the log file and any other propertiues
-// it might need. Log files are created anew, once a day.
-// They are named after the current (local) date and stored in
-// the $PROFILE_ROOT/logs/ directory.
-func initLog(root string) {
-	err := admin.InitLog(root)
-	if err != nil && !os.IsExist(err) {
-		fmt.Fprintln(os.Stderr, "log initialization failed:", err)
-		os.Exit(1)
-	}
-
-	// Set the log prefix to include our process id.
-	// This makes analyzing log data a little easier.
-	log.SetPrefix(fmt.Sprintf("[%d] ", os.Getpid()))
-}
-
-// writePid writes a file with process' pid. This is used by supervisors
+// writePid writes a file with process' pid. This is used by supervisors.
 // like systemd to track the process state.
 func writePid() {
 	fd, err := os.Create("app.pid")
@@ -73,7 +58,7 @@ func parseArgs() irc.Profile {
 	flag.Parse()
 
 	if *version {
-		fmt.Println(Version())
+		fmt.Println(app.Version())
 		os.Exit(0)
 	}
 
@@ -97,7 +82,7 @@ func parseArgs() irc.Profile {
 	}
 
 	// Create a new bot profile instance.
-	profile := irc.NewProfile(root)
+	profile := NewProfile(root)
 
 	// If applicable, save a new, default profile and exit.
 	if *newconf {

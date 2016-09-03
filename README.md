@@ -70,7 +70,7 @@ The bot version is made up of 3 numbers:
 * Revision: This is the build number. It is a current unix timestamp, which
   is updated whenever the bot is recompiled. This happenes whenever any kind
   of change occurs in any of the code. Including bug fixes. This number is
-  updated through a go build flag. E.g.: `go install -ldflags "-X main.AppVersionRevision=12345"`
+  updated through a go build flag. E.g.: `go install -ldflags "-X app.VersionRevision=12345"`
 
 
 

@@ -26,16 +26,15 @@ In order to have the bot automatically re-launch after shutdown, an external
 supervisor like systemd is required. The bot will create a PID file at
 `/path/to/profile/app.pid`, in case the supervisor requires it.
 
-When dealing with systemd, the bot may have to be forked at least once,
-after it has been launched. Otherwise, systemd will keep killing it and
-re-launching it in a never ending loop. Forking the bot is done through
-the following command:
+The bot will fork itself once, after it has been launched. This is done
+to play nice with things like systemd. Manually forking the bot Can be done
+through the command:
 
 	$ kill -s USR1 `pidof autimaat`
 
-This tells the bot to fork itself, while passing along any existing connections.
-The old process then shuts itself down. This mechanism allows the bot to be binary-
-patched, without downtime.
+This tells the bot to fork itself, while passing along any existing
+connections. The old process then shuts itself down. This mechanism allows
+the bot to be binary-patched, without downtime.
 
 
 ### Weather API

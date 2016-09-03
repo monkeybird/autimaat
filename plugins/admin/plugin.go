@@ -5,6 +5,7 @@
 package admin
 
 import (
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -26,13 +27,19 @@ type plugin struct {
 	cmd *cmd.Set
 
 	// This will store the bot's profile, but only as a subset of
-	// the full interface. We only need access to these parts.
+	// the full interface. We only need access to some parts.
 	profile interface {
 		WhitelistAdd(string)
 		WhitelistRemove(string)
 		Whitelist() []string
 		Logging() bool
 		SetLogging(bool)
+
+		NickservPassword() string
+		Nickname() string
+		SetNickname(string)
+
+		Channels() []irc.Channel
 	}
 }
 
@@ -89,7 +96,40 @@ func (p *plugin) Unload(prof irc.Profile) error {
 // Dispatch sends the given, incoming IRC message to the plugin for
 // processing as it sees fit.
 func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
-	p.cmd.Dispatch(w, r)
+	switch r.Type {
+	case "375", "422": // received START_MOTD or NO_MOTD
+		p.onFinalizeLogin(w, r)
+
+	case "433":
+		p.onNickInUse(w, r)
+
+	case "PRIVMSG":
+		p.cmd.Dispatch(w, r)
+	}
+}
+
+// onFinalizeLogin is called to complete the login sequence.
+// It joins channels defined in the profile and is triggered when we
+// receive either the STARTMOTD or NOMOTD messages.
+func (p *plugin) onFinalizeLogin(w irc.ResponseWriter, r *irc.Request) {
+	proto.Join(w, p.profile.Channels()...)
+}
+
+// onNickInUse signals that our nick is in use. If we can regain it, do so.
+// Otherwise, change ours.
+func (p *plugin) onNickInUse(w irc.ResponseWriter, r *irc.Request) {
+	pr := p.profile
+
+	if len(pr.NickservPassword()) > 0 {
+		log.Println("[bot] Nick in use: trying to recover")
+		proto.Recover(w, pr.Nickname(), pr.NickservPassword())
+		return
+	}
+
+	pr.SetNickname(pr.Nickname() + "_")
+
+	log.Println("[admin] Nick in use: changing nick to:", pr.Nickname())
+	proto.Nick(w, pr.Nickname())
 }
 
 // cmdHelp presents the user with a short message, pointing them to

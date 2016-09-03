@@ -96,18 +96,12 @@ func (b *Bot) payloadHandler(payload []byte) {
 
 	// Run the appropriate handler for housekeeping.
 	switch r.Type {
-	case "375", "422": // received START_MOTD or NO_MOTD
-		b.joinChannels(&r)
-
-	case "433":
-		b.onNickInUse(&r)
-
 	case "ERROR":
-		b.onError(&r)
+		log.Println("[bot] Network error:", r.Data)
 		return
 
 	case "PING":
-		b.onPing(&r)
+		proto.Pong(b.client, r.Data)
 		return
 	}
 
@@ -121,41 +115,6 @@ func (b *Bot) payloadHandler(payload []byte) {
 	if b.profile.Logging() {
 		log.Println("[>]", r.String())
 	}
-}
-
-// onNickInUse signals that our nick is in use. If we can regain it, do so.
-// Otherwise, change ours.
-func (b *Bot) onNickInUse(r *irc.Request) {
-	p := b.profile
-
-	if len(p.NickservPassword()) > 0 {
-		log.Println("[bot] Nick in use: trying to recover")
-		proto.Recover(b.client, p.Nickname(), p.NickservPassword())
-		return
-	}
-
-	p.SetNickname(p.Nickname() + "_")
-
-	log.Println("[bot] Nick in use: changing nick to:", p.Nickname())
-	proto.Nick(b.client, p.Nickname())
-}
-
-// onPing response to PING requests in order to keep the connection alive.
-func (b *Bot) onPing(r *irc.Request) {
-	proto.Pong(b.client, r.Data)
-}
-
-// onError response to network error messages. It closes the connection
-// after logging the error.
-func (b *Bot) onError(r *irc.Request) {
-	log.Println("[bot] Network error:", r.Data)
-}
-
-// joinChannels is called to complete the login sequence.
-// It joins channels defined in the profile and is triggered when we
-// receive either the STARTMOTD or NOMOTD messages.
-func (b *Bot) joinChannels(r *irc.Request) {
-	proto.Join(b.client, b.profile.Channels()...)
 }
 
 // open either establishes a new connection or inherits an existing one

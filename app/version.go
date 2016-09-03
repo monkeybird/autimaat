@@ -24,6 +24,8 @@ const (
 //
 //     go install -ldflags "-X github.com/monkeybird/autimaat/app.VersionRevision=`date -u +%s`"
 //
+// Note that the entire import path must be specified for this to work.
+//
 var VersionRevision string
 
 func init() {

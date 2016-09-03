@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"time"
 
 	"github.com/monkeybird/autimaat/app"
 	"github.com/monkeybird/autimaat/irc"
@@ -181,5 +182,17 @@ func (b *Bot) open() error {
 	proto.Pass(b.client, p.ConnectionPassword())
 	proto.User(b.client, p.Nickname(), "8", p.Nickname())
 	proto.Nick(b.client, p.Nickname(), p.NickservPassword())
+
+	// We should fork ourselves at least once at this point.
+	// This is done to provide behaviour like old fashioned
+	// unix daemons. Systemd will be expecting this, as per
+	// the service file for this program.
+	//
+	// TODO: find a less flaky way to do this.
+	go func() {
+		<-time.After(3 * time.Second)
+		proc.Fork()
+	}()
+
 	return nil
 }

@@ -29,7 +29,7 @@ func main() {
 	// Create and run the bot.
 	err := Run(profile)
 	if err != nil {
-		log.Println("[bot]", err)
+		log.Fatal("[bot]", err)
 	}
 }
 

@@ -19,18 +19,16 @@ type User struct {
 }
 
 // AddNickname adds the given nickname to the user's name list,
-// provided it is not already known. It returns true if the nickname
-// is new.
-func (u *User) AddNickname(v string) bool {
+// provided it is not already known.
+func (u *User) AddNickname(v string) {
 	v = strings.ToLower(v)
 	idx := stringIndex(u.Nicknames, v)
 	if idx > -1 {
-		return false
+		return
 	}
 
 	u.Nicknames = append(u.Nicknames, v)
 	sort.Strings(u.Nicknames)
-	return true
 }
 
 // UserList defines a set of user descriptors, sortable by hostmask.
@@ -41,15 +39,14 @@ func (cl UserList) Less(i, j int) bool { return cl[i].Hostmask < cl[j].Hostmask 
 func (cl UserList) Swap(i, j int)      { cl[i], cl[j] = cl[j], cl[i] }
 
 // Get returns a user entry for the given hostmask. If it doesn't exist yet,
-// a new entry is created and added to the list implicitely. It returns true
-// if the user is new.
+// a new entry is created and added to the list implicitely.
 //
 // This implicitely updates the LastSeen timestamp for the user.
-func (cl *UserList) Get(mask string) (*User, bool) {
+func (cl *UserList) Get(mask string) *User {
 	idx := userIndex(*cl, mask)
 	if idx > -1 {
 		(*cl)[idx].LastSeen = time.Now()
-		return (*cl)[idx], false
+		return (*cl)[idx]
 	}
 
 	usr := &User{
@@ -60,7 +57,7 @@ func (cl *UserList) Get(mask string) (*User, bool) {
 
 	*cl = append(*cl, usr)
 	sort.Sort(*cl)
-	return usr, true
+	return usr
 }
 
 // Find finds the command for the given hostmask or nickname.

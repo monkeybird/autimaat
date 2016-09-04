@@ -15,6 +15,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/irc/cmd"
@@ -23,13 +24,18 @@ import (
 	"github.com/monkeybird/autimaat/util"
 )
 
+// SaveInterval determines the time interval after which we save stats data to disk.
+const SaveInterval = time.Minute * 10
+
 func init() { plugins.Register(&plugin{}) }
 
 type plugin struct {
-	m     sync.RWMutex
-	cmd   *cmd.Set
-	file  string
-	users UserList
+	m        sync.RWMutex
+	cmd      *cmd.Set
+	file     string
+	users    UserList
+	quitOnce sync.Once
+	quit     chan struct{}
 }
 
 // Load initializes the module and loads any internal resources
@@ -38,17 +44,23 @@ func (p *plugin) Load(prof irc.Profile) error {
 	p.m.Lock()
 	defer p.m.Unlock()
 
+	p.quit = make(chan struct{})
 	p.file = filepath.Join(prof.Root(), "stats.dat")
 	p.cmd = cmd.New(prof.CommandPrefix(), nil)
 
 	p.cmd.Bind(TextWhoisName, false, p.cmdWhois).
 		Add(TextWhoisNick, true, cmd.RegAny)
 
+	go p.periodicSave()
 	return util.ReadFile(p.file, &p.users, true)
 }
 
 // Unload cleans the module up and unloads any internal resources.
 func (p *plugin) Unload(prof irc.Profile) error {
+	p.quitOnce.Do(func() {
+		close(p.quit)
+		p.saveFile()
+	})
 	return nil
 }
 
@@ -59,31 +71,33 @@ func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
 		p.cmd.Dispatch(w, r)
 	}
 
-	switch r.Type {
-	case "JOIN", "PART", "QUIT", "NICK":
-		p.update(r)
+	p.m.Lock()
+	usr := p.users.Get(r.SenderMask)
+	usr.AddNickname(r.SenderName)
+	p.m.Unlock()
+}
+
+// periodicSave periodically saves the stats data to disk.
+func (p *plugin) periodicSave() {
+	for {
+		select {
+		case <-p.quit:
+			return
+
+		case <-time.After(SaveInterval):
+			p.saveFile()
+		}
 	}
 }
 
-// update is called whenever a user joins a channel the bot is in, or the
-// user changed their nickname. It is used to update the user database.
-func (p *plugin) update(r *irc.Request) {
-	p.m.Lock()
-	defer p.m.Unlock()
-
-	// Find the right user list and update the user information,
-	// where applicable.
-	usr, newUser := p.users.Get(r.SenderMask)
-	newNickname := usr.AddNickname(r.SenderName)
-
-	// If no new data has been added, just exit.
-	if !newUser && !newNickname {
-		return
-	}
-
+// saveFile saes the user data to disk.
+func (p *plugin) saveFile() {
+	p.m.RLock()
 	err := util.WriteFile(p.file, p.users, true)
+	p.m.RUnlock()
+
 	if err != nil {
-		log.Println("[whois]", err)
+		log.Println("[stats] save:", err)
 	}
 }
 
@@ -94,8 +108,6 @@ func (p *plugin) cmdWhois(w irc.ResponseWriter, r *irc.Request, params cmd.Param
 	defer p.m.RUnlock()
 
 	usr := p.users.Find(params.String(0))
-	log.Println(">>>", r.Target)
-
 	if usr == nil {
 		proto.PrivMsg(w, r.Target, TextWhoisUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))

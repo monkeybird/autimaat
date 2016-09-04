@@ -126,6 +126,7 @@ func (p *profile) SetNickname(v string) {
 	p.m.Lock()
 	p.data.Nickname = v
 	p.m.Unlock()
+	p.Save()
 }
 
 func (p *profile) NickservPassword() string {
@@ -138,6 +139,7 @@ func (p *profile) SetNickservPassword(v string) {
 	p.m.Lock()
 	p.data.NickservPassword = v
 	p.m.Unlock()
+	p.Save()
 }
 
 func (p *profile) OperPassword() string {

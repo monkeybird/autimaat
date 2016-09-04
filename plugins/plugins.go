@@ -7,12 +7,7 @@
 package plugins
 
 import (
-	"compress/gzip"
-	"encoding/json"
-	"io"
-	"io/ioutil"
 	"log"
-	"os"
 
 	"github.com/monkeybird/autimaat/irc"
 )
@@ -68,61 +63,4 @@ func Dispatch(w irc.ResponseWriter, r *irc.Request) {
 	for _, p := range plugins {
 		go p.Dispatch(w, r)
 	}
-}
-
-// ReadFile loads the, optionally compressed, contents of the given
-// file and unmarshals it into the specified value.
-//
-// This is a utility function which can be used by plugins to load
-// custom configuration info or data from disk.
-func ReadFile(file string, v interface{}, compressed bool) error {
-	fd, err := os.Open(file)
-	if err != nil {
-		return err
-	}
-
-	defer fd.Close()
-
-	var r io.Reader
-	if compressed {
-		gz, err := gzip.NewReader(fd)
-		if err != nil {
-			return err
-		}
-
-		defer gz.Close()
-		r = gz
-	} else {
-		r = fd
-	}
-
-	return json.NewDecoder(r).Decode(v)
-}
-
-// WriteFile writes the marshaled version of v to the given file.
-// It is optionally gzip compressed.
-//
-// This is a utility function which can be used by plugins to save
-// custom configuration info or data to disk.
-func WriteFile(file string, v interface{}, compressed bool) error {
-	if compressed {
-		fd, err := os.OpenFile(file, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0600)
-		if err != nil {
-			return err
-		}
-
-		defer fd.Close()
-
-		gz := gzip.NewWriter(fd)
-		defer gz.Close()
-
-		return json.NewEncoder(gz).Encode(v)
-	}
-
-	data, err := json.MarshalIndent(v, "", "  ")
-	if err != nil {
-		return err
-	}
-
-	return ioutil.WriteFile(file, data, 0600)
 }

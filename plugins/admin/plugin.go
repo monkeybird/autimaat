@@ -16,6 +16,7 @@ import (
 	"github.com/monkeybird/autimaat/irc/proto"
 	"github.com/monkeybird/autimaat/plugins"
 	"github.com/monkeybird/autimaat/proc"
+	"github.com/monkeybird/autimaat/util"
 )
 
 // lastRestart defines the timestamp at which the bot was last restarted.
@@ -217,10 +218,10 @@ func (p *plugin) cmdVersion(w irc.ResponseWriter, r *irc.Request, params cmd.Par
 		w, r.Target,
 		TextVersionDisplay,
 		r.SenderName,
-		irc.Bold(app.Name),
-		irc.Bold("%d.%d", app.VersionMajor, app.VersionMinor),
+		util.Bold(app.Name),
+		util.Bold("%d.%d", app.VersionMajor, app.VersionMinor),
 		stamp.Format(TextDateFormat),
 		stamp.Format(TextTimeFormat),
-		irc.Bold("%.3f", utime),
+		util.Bold("%.3f", utime),
 	)
 }

@@ -2,8 +2,6 @@
 // Its contents can be found in the enclosed LICENSE file.
 
 // Package plugins defines and maintains supported bot plugins.
-// Additionally, it provides some rudimentary utility functions
-// for plugins to use.
 package plugins
 
 import (

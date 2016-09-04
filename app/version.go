@@ -15,7 +15,7 @@ import (
 const (
 	Name         = "autimaat"
 	VersionMajor = 1
-	VersionMinor = 7
+	VersionMinor = 8
 )
 
 // VersionRevision defines the application build number.

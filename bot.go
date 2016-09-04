@@ -111,9 +111,6 @@ func (b *Bot) payloadHandler(payload []byte) {
 	plugins.Dispatch(b.client, &r)
 
 	// Log request if applicable.
-	//
-	// Don't log PING requests. They only use up disk space and cause
-	// noise in the log.
 	if b.profile.Logging() {
 		log.Println("[>]", r.String())
 	}

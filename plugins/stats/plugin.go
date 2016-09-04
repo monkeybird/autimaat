@@ -49,7 +49,13 @@ func (p *plugin) Load(prof irc.Profile) error {
 	p.cmd = cmd.New(prof.CommandPrefix(), nil)
 
 	p.cmd.Bind(TextWhoisName, false, p.cmdWhois).
-		Add(TextWhoisNick, true, cmd.RegAny)
+		Add(TextNick, true, cmd.RegAny)
+
+	p.cmd.Bind(TextFirstOn, false, p.cmdFirstOn).
+		Add(TextNick, true, cmd.RegAny)
+
+	p.cmd.Bind(TextLastOn, false, p.cmdLastOn).
+		Add(TextNick, true, cmd.RegAny)
 
 	go p.periodicSave()
 	return util.ReadFile(p.file, &p.users, true)
@@ -118,7 +124,49 @@ func (p *plugin) cmdWhois(w irc.ResponseWriter, r *irc.Request, params cmd.Param
 		TextWhoisDisplay,
 		r.SenderName,
 		util.Bold(params.String(0)),
-		usr.FirstSeen.Format(TextWhoisDateFormat),
+		usr.FirstSeen.Format(TextDateFormat),
 		strings.Join(usr.Nicknames, ", "),
+	)
+}
+
+// cmdFirstOn tells the caller when a specific user was first seen online.
+func (p *plugin) cmdFirstOn(w irc.ResponseWriter, r *irc.Request, params cmd.ParamList) {
+	p.m.RLock()
+	defer p.m.RUnlock()
+
+	usr := p.users.Find(params.String(0))
+	if usr == nil {
+		proto.PrivMsg(w, r.Target, TextUnknownUser, r.SenderName,
+			util.Bold(params.String(0)))
+		return
+	}
+
+	proto.PrivMsg(w, r.Target,
+		TextFirstOnDisplay,
+		r.SenderName,
+		util.Bold(params.String(0)),
+		usr.FirstSeen.Format(TextDateFormat),
+		usr.FirstSeen.Format(TextTimeFormat),
+	)
+}
+
+// cmdLastOn tells the caller when a specific user was last seen online.
+func (p *plugin) cmdLastOn(w irc.ResponseWriter, r *irc.Request, params cmd.ParamList) {
+	p.m.RLock()
+	defer p.m.RUnlock()
+
+	usr := p.users.Find(params.String(0))
+	if usr == nil {
+		proto.PrivMsg(w, r.Target, TextUnknownUser, r.SenderName,
+			util.Bold(params.String(0)))
+		return
+	}
+
+	proto.PrivMsg(w, r.Target,
+		TextLastOnDisplay,
+		r.SenderName,
+		util.Bold(params.String(0)),
+		usr.LastSeen.Format(TextDateFormat),
+		usr.LastSeen.Format(TextTimeFormat),
 	)
 }

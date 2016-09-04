@@ -52,11 +52,6 @@ func (p *plugin) Load(prof irc.Profile) error {
 
 // Unload cleans the module up and unloads any internal resources.
 func (p *plugin) Unload(prof irc.Profile) error {
-	p.m.Lock()
-	p.terms = nil
-	p.definitions = nil
-	p.cmd = nil
-	p.m.Unlock()
 	return nil
 }
 

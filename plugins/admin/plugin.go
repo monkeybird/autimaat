@@ -90,7 +90,6 @@ func (p *plugin) Load(prof irc.Profile) error {
 // Unload cleans the module up and unloads any internal resources.
 func (p *plugin) Unload(prof irc.Profile) error {
 	p.profile = nil
-	p.cmd = nil
 	return nil
 }
 

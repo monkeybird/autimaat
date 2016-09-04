@@ -4,12 +4,11 @@
 package main
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"strings"
 	"sync"
 
 	"github.com/monkeybird/autimaat/irc"
+	"github.com/monkeybird/autimaat/util"
 )
 
 // profile defines bot configuration data.
@@ -235,24 +234,14 @@ func (p *profile) SetLogging(v bool) {
 
 func (p *profile) Save() error {
 	p.m.RLock()
-	defer p.m.RUnlock()
-
-	data, err := json.MarshalIndent(p.data, "", "  ")
-	if err != nil {
-		return err
-	}
-
-	return ioutil.WriteFile("profile.cfg", data, 0600)
+	err := util.WriteFile("profile.cfg", p.data, false)
+	p.m.RUnlock()
+	return err
 }
 
 func (p *profile) Load() error {
 	p.m.Lock()
-	defer p.m.Unlock()
-
-	data, err := ioutil.ReadFile("profile.cfg")
-	if err != nil {
-		return err
-	}
-
-	return json.Unmarshal(data, &p.data)
+	err := util.ReadFile("profile.cfg", &p.data, false)
+	p.m.Unlock()
+	return err
 }

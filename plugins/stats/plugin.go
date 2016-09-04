@@ -94,6 +94,7 @@ func (p *plugin) cmdWhois(w irc.ResponseWriter, r *irc.Request, params cmd.Param
 	defer p.m.RUnlock()
 
 	usr := p.users.Find(params.String(0))
+	log.Println(">>>", r.Target)
 
 	if usr == nil {
 		proto.PrivMsg(w, r.Target, TextWhoisUnknownUser, r.SenderName,

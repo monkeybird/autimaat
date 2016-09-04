@@ -44,6 +44,11 @@ type Profile interface {
 	// bot has a registered nickname and nickserv exists on the server.
 	NickservPassword() string
 
+	// SetNickservPassword sets the bot's nickserv password. This is be
+	// used to register the bot when it logs in. It is only relevant if the
+	// bot has a registered nickname and nickserv exists on the server.
+	SetNickservPassword(string)
+
 	// OperPassword defines the bot's OPER password. If present, this will
 	// register the bot as a server operator.
 	OperPassword() string

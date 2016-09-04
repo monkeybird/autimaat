@@ -36,9 +36,10 @@ type plugin struct {
 		Logging() bool
 		SetLogging(bool)
 
-		NickservPassword() string
 		Nickname() string
 		SetNickname(string)
+		NickservPassword() string
+		SetNickservPassword(string)
 
 		Channels() []irc.Channel
 	}
@@ -140,8 +141,11 @@ func (p *plugin) cmdHelp(w irc.ResponseWriter, r *irc.Request, params cmd.ParamL
 
 // cmdNick allows the bot to change its name.
 func (p *plugin) cmdNick(w irc.ResponseWriter, r *irc.Request, params cmd.ParamList) {
+	p.profile.SetNickname(params.String(0))
+
 	if params.Len() > 1 {
 		proto.Nick(w, params.String(0), params.String(1))
+		p.profile.SetNickservPassword(params.String(1))
 	} else {
 		proto.Nick(w, params.String(0))
 	}

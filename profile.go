@@ -134,6 +134,12 @@ func (p *profile) NickservPassword() string {
 	return p.data.NickservPassword
 }
 
+func (p *profile) SetNickservPassword(v string) {
+	p.m.Lock()
+	p.data.NickservPassword = v
+	p.m.Unlock()
+}
+
 func (p *profile) OperPassword() string {
 	p.m.RLock()
 	defer p.m.RUnlock()

@@ -1,9 +1,7 @@
 // This file is subject to a 1-clause BSD license.
 // Its contents can be found in the enclosed LICENSE file.
 
-// Package app defines some utility code for the compiled binary.
-// This information sits in its own package, because it is used
-// in multiple sub-packages.
+// Package app defines some utility code which may be shared between packages.
 package app
 
 import (

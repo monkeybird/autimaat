@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/monkeybird/autimaat/app"
+	"github.com/monkeybird/autimaat/app/logger"
 	"github.com/monkeybird/autimaat/app/proc"
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/irc/proto"
@@ -40,8 +41,8 @@ func Run(p irc.Profile) error {
 	defer log.Println("[bot] Shutting down")
 
 	// Initialize the log and ensure it is properly stopped when we are done.
-	app.InitLog("logs")
-	defer app.ShutdownLog()
+	logger.Init("logs")
+	defer logger.Shutdown()
 
 	// Write PID file. It may be needed by a process supervisor.
 	writePid()

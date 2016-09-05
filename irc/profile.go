@@ -97,10 +97,4 @@ type Profile interface {
 
 	// Logging determines if logging of incoming data should be enabled or not.
 	SetLogging(bool)
-
-	// WeatherApiKey returns the API key for openweathermap.org.
-	WeatherApiKey() string
-
-	// YoutubeApiKey returns the API key for youtube.
-	YoutubeApiKey() string
 }

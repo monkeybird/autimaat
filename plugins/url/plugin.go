@@ -10,24 +10,23 @@ package url
 import (
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/plugins"
+	"github.com/monkeybird/autimaat/util"
 )
 
 func init() { plugins.Register(&plugin{}) }
 
 type plugin struct {
-	apiKey string
+	YoutubeApiKey string
 }
 
 // Load initializes the module and loads any internal resources
 // which may be required.
 func (p *plugin) Load(prof irc.Profile) error {
-	p.apiKey = prof.YoutubeApiKey()
-	return nil
+	return util.ReadFile("url.cfg", p, false)
 }
 
 // Unload cleans the module up and unloads any internal resources.
 func (p *plugin) Unload(prof irc.Profile) error {
-	p.apiKey = ""
 	return nil
 }
 
@@ -46,6 +45,6 @@ func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
 
 	// Fetch title data for each of them.
 	for _, url := range list {
-		go fetchTitle(w, r, url, p.apiKey)
+		go fetchTitle(w, r, url, p.YoutubeApiKey)
 	}
 }

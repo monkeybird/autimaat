@@ -37,8 +37,6 @@ type profileData struct {
 	OperPassword       string
 	ConnectionPassword string
 	CommandPrefix      string
-	WeatherApiKey      string
-	YoutubeApiKey      string
 	Logging            bool
 }
 
@@ -59,18 +57,6 @@ func NewProfile(root string) irc.Profile {
 			CommandPrefix: "!",
 		},
 	}
-}
-
-func (p *profile) WeatherApiKey() string {
-	p.m.RLock()
-	defer p.m.RUnlock()
-	return p.data.WeatherApiKey
-}
-
-func (p *profile) YoutubeApiKey() string {
-	p.m.RLock()
-	defer p.m.RUnlock()
-	return p.data.YoutubeApiKey
 }
 
 func (p *profile) Root() string {

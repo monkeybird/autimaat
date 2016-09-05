@@ -82,7 +82,7 @@ func parseArgs() irc.Profile {
 	}
 
 	// Create a new bot profile instance.
-	profile := NewProfile(root)
+	profile := irc.NewProfile(root)
 
 	// If applicable, save a new, default profile and exit.
 	if *newconf {

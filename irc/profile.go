@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/monkeybird/autimaat/util"
+	"github.com/monkeybird/autimaat/app/util"
 )
 
 // Profile defines bot configuration data.

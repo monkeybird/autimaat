@@ -12,10 +12,10 @@ import (
 	"time"
 
 	"github.com/monkeybird/autimaat/app"
+	"github.com/monkeybird/autimaat/app/proc"
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/irc/proto"
 	"github.com/monkeybird/autimaat/plugins"
-	"github.com/monkeybird/autimaat/proc"
 
 	_ "github.com/monkeybird/autimaat/plugins/action"
 	_ "github.com/monkeybird/autimaat/plugins/admin"

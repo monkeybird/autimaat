@@ -8,9 +8,9 @@
 package url
 
 import (
+	"github.com/monkeybird/autimaat/app/util"
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/plugins"
-	"github.com/monkeybird/autimaat/util"
 )
 
 func init() { plugins.Register(&plugin{}) }

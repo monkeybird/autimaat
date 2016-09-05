@@ -12,7 +12,6 @@ import (
 
 	"github.com/monkeybird/autimaat/app"
 	"github.com/monkeybird/autimaat/irc"
-	"github.com/monkeybird/autimaat/logger"
 )
 
 func main() {
@@ -20,8 +19,8 @@ func main() {
 	profile := parseArgs()
 
 	// Initialize the log and ensure it is properly stopped when we are done.
-	logger.Init("logs")
-	defer logger.Shutdown()
+	app.InitLog("logs")
+	defer app.ShutdownLog()
 
 	// Write PID file. It may be needed by a process supervisor.
 	writePid()

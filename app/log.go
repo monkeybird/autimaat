@@ -1,11 +1,7 @@
 // This file is subject to a 1-clause BSD license.
 // Its contents can be found in the enclosed LICENSE file.
 
-// Package logger provides some utilities which open and maintain external
-// log files on disk. These are automatically cycled and deleted when
-// applicable. Log entries can be written using the standard Go log
-// package.
-package logger
+package app
 
 import (
 	"fmt"
@@ -20,13 +16,13 @@ var (
 	// LogFormat defines the date layout for log file names.
 	LogFormat = "20060102"
 
-	// PurgeTimeout defines the timeout after which the bot should
+	// LogPurgeTimeout defines the timeout after which the bot should
 	// check for stale log files.
-	PurgeTimeout = time.Hour * 24
+	LogPurgeTimeout = time.Hour * 24
 
-	// RefreshTimeout determines how often we should check if a new
+	// LogRefreshTimeout determines how often we should check if a new
 	// log file should be opened.
-	RefreshTimeout = time.Minute
+	LogRefreshTimeout = time.Minute
 
 	// LogExpiration defines how old a log file should be, before it
 	// is considered stale.
@@ -41,32 +37,32 @@ var (
 	logPollQuit = make(chan struct{})
 )
 
-// Init initializes a new log file, if necessary. It then launches a
+// InitLog initializes a new log file, if necessary. It then launches a
 // background service which periodically checks if a new log file should
 // be created. This happens according to a predefined timeout. Additionally,
 // it will periodically purge stale log files from disk.
-func Init(dir string) {
+func InitLog(dir string) {
 	startOnce.Do(func() {
 		err := openLog(dir)
 		if err != nil {
-			log.Println("[log] Init:", err)
+			log.Println("[app] Init log:", err)
 			return
 		}
 
-		go poll(dir)
+		go logPoll(dir)
 	})
 }
 
-// Shutdown shuts down the background log operations.
-func Shutdown() {
+// ShutdownLog shuts down the background log operations.
+func ShutdownLog() {
 	stopOnce.Do(func() {
 		close(logPollQuit)
 	})
 }
 
-// poll periodically purges stale log files and ensures logs are cycled
+// logPoll periodically purges stale log files and ensures logs are cycled
 // after the appropriate timeout.
-func poll(dir string) {
+func logPoll(dir string) {
 	// Do an initial purge of stale logs. This ensures that we
 	// do not accumulate stale files if the PurgeTimeout below
 	// is never triggered. Which might happen if the program is
@@ -79,16 +75,16 @@ loopy:
 		case <-logPollQuit:
 			break loopy
 
-		case <-time.After(RefreshTimeout):
+		case <-time.After(LogRefreshTimeout):
 			err = openLog(dir)
 
-		case <-time.After(PurgeTimeout):
+		case <-time.After(LogPurgeTimeout):
 			err = purgeLogs(dir)
 		}
 	}
 
 	if err != nil {
-		log.Println("[log]", err)
+		log.Println("[app]", err)
 	}
 
 	// Clean up the existing log file.

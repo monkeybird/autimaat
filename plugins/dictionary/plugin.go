@@ -58,9 +58,7 @@ func (p *plugin) Unload(prof irc.Profile) error {
 // Dispatch sends the given, incoming IRC message to the plugin for
 // processing as it sees fit.
 func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
-	if r.IsPrivMsg() {
-		p.cmd.Dispatch(w, r)
-	}
+	p.cmd.Dispatch(w, r)
 }
 
 // cmdDefine yields the definition of a given term, if found.

@@ -44,7 +44,7 @@ func New(prefix string, authenticate AuthFunc) *Set {
 // Returns false if no command call was issued.
 func (s *Set) Dispatch(w irc.ResponseWriter, r *irc.Request) bool {
 	// We are only interested in requests with the correct prefix.
-	if !strings.HasPrefix(r.Data, s.prefix) {
+	if !r.IsPrivMsg() || !strings.HasPrefix(r.Data, s.prefix) {
 		return false
 	}
 

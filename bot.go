@@ -17,6 +17,7 @@ import (
 	"github.com/monkeybird/autimaat/plugins"
 	"github.com/monkeybird/autimaat/proc"
 
+	_ "github.com/monkeybird/autimaat/plugins/action"
 	_ "github.com/monkeybird/autimaat/plugins/admin"
 	_ "github.com/monkeybird/autimaat/plugins/dictionary"
 	_ "github.com/monkeybird/autimaat/plugins/stats"

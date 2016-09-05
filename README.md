@@ -37,24 +37,36 @@ connections. The old process then shuts itself down. This mechanism allows
 the bot to be binary-patched, without downtime.
 
 
-### Weather API
+### Weather plugin
 
-The `weather` module provides bindings for some APIs at
-https://www.wunderground.com/weather/api/
+The `weather` module provides bindings for weather related APIs.
+These services require registration of accounts in order to get needed
+API keys.
 
-This service requires the registration of a free account in order to get a
-valid API key. The API key you receive should be assigned to the
-`WeatherApiKey` field in the bot profile.
+* https://www.wunderground.com/weather/api/
+
+These keys should put in a separate `weather.cfg` file, with the
+following contents:
+
+	{
+	  "WundergroundApiKey": "xxxxx"
+	}
 
 
-### Youtube API
+### url plugin
 
-The `url` module uses the `YouTube Data API v3` to fetch playback durations
+The `url` plugin uses the `YouTube Data API v3` to fetch playback durations
 for videos being linked in a channel. This API requires the registration of
 a Google Developer API key at: [https://console.developers.google.com/apis](https://console.developers.google.com/apis)
 
 The API key you receive should be assigned to the `YoutubeApiKey` field in
 the bot profile.
+
+The key should put in a separate `url.cfg` file, with the following contents:
+
+	{
+	  "YoutubeApiKey": "xxxxx"
+	}
 
 
 ## Versioning

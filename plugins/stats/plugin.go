@@ -145,6 +145,7 @@ func (p *plugin) cmdFirstOn(w irc.ResponseWriter, r *irc.Request, params cmd.Par
 		util.Bold(params.String(0)),
 		usr.FirstSeen.Format(TextDateFormat),
 		usr.FirstSeen.Format(TextTimeFormat),
+		FormatDuration(time.Since(usr.FirstSeen)),
 	)
 }
 
@@ -166,5 +167,6 @@ func (p *plugin) cmdLastOn(w irc.ResponseWriter, r *irc.Request, params cmd.Para
 		util.Bold(params.String(0)),
 		usr.LastSeen.Format(TextDateFormat),
 		usr.LastSeen.Format(TextTimeFormat),
+		FormatDuration(time.Since(usr.LastSeen)),
 	)
 }

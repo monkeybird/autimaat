@@ -5,7 +5,7 @@ package admin
 
 const (
 	// ref: https://godoc.org/time#Time.Format
-	TextDateFormat = "02 January, 2006"
+	TextDateFormat = "2 January, 2006"
 	TextTimeFormat = "15:04 MST"
 
 	TextHelpName    = "help"

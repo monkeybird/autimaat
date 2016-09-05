@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"time"
 
 	"github.com/monkeybird/autimaat/app"
@@ -37,6 +38,13 @@ func Run(p irc.Profile) error {
 	log.Printf("[bot] Running %s version %d.%d.%s",
 		app.Name, app.VersionMajor, app.VersionMinor, app.VersionRevision)
 	defer log.Println("[bot] Shutting down")
+
+	// Initialize the log and ensure it is properly stopped when we are done.
+	app.InitLog("logs")
+	defer app.ShutdownLog()
+
+	// Write PID file. It may be needed by a process supervisor.
+	writePid()
 
 	var bot Bot
 	bot.profile = p
@@ -192,4 +200,17 @@ func (b *Bot) open() error {
 	go time.AfterFunc(3*time.Second, proc.Fork)
 
 	return nil
+}
+
+// writePid writes a file with process' pid. This is used by supervisors.
+// like systemd to track the process state.
+func writePid() {
+	fd, err := os.Create("app.pid")
+	if err != nil {
+		log.Println("[bot] Create PID file:", err)
+		return
+	}
+
+	fmt.Fprintf(fd, "%d", os.Getpid())
+	fd.Close()
 }

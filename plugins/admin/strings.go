@@ -37,7 +37,7 @@ const (
 	TextDeauthorizeDisplay  = "Gebruiker %q is verwijderd van de beheerderslijst."
 
 	TextVersionName    = "versie"
-	TextVersionDisplay = "%s, ik ben %s, versie %s. Mijn laatste revisie was op %s, om %s. De laatste herstart was %s uur geleden."
+	TextVersionDisplay = "%s, ik ben %s, versie %s. Mijn laatste revisie was op %s, om %s. De laatste herstart was %s uur geleden. Mijn broncode is te vinden op: https://github.com/monkeybird/autimaat"
 
 	TextLogName      = "log"
 	TextLogValueName = "status"

@@ -36,13 +36,13 @@ type Bot struct {
 // incoming messages and OS signals. This call will not return for as long
 // as the connection is active.
 func Run(p irc.Profile) error {
-	log.Printf("[bot] Running %s version %d.%d.%s",
-		app.Name, app.VersionMajor, app.VersionMinor, app.VersionRevision)
-	defer log.Println("[bot] Shutting down")
-
 	// Initialize the log and ensure it is properly stopped when we are done.
 	logger.Init("logs")
 	defer logger.Shutdown()
+
+	log.Printf("[bot] Running %s version %d.%d.%s",
+		app.Name, app.VersionMajor, app.VersionMinor, app.VersionRevision)
+	defer log.Println("[bot] Shutting down")
 
 	// Write PID file. It may be needed by a process supervisor.
 	writePid()

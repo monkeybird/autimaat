@@ -19,6 +19,18 @@ func (p ParamList) Uint(n int) uint64   { return p[n].Uint() }
 func (p ParamList) Float(n int) float64 { return p[n].Float() }
 func (p ParamList) Bool(n int) bool     { return p[n].Bool() }
 
+// Join returns all parameter values, concatenated into a single string.
+// Each entry is separated by a blank space.
+func (p ParamList) Join() string {
+	out := make([]string, len(p))
+
+	for i := range p {
+		out[i] = p[i].Value
+	}
+
+	return strings.Join(out, " ")
+}
+
 // Param defines a parameter for a command.
 type Param struct {
 	Name        string         // Parameter name -- used in help listing.

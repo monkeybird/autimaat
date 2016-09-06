@@ -18,11 +18,27 @@ func main() {
 	// Parse command line arguments and load the bot profile.
 	profile := parseArgs()
 
+	// Write PID file. It may be needed by a process supervisor.
+	writePid()
+
 	// Create and run the bot.
 	err := Run(profile)
 	if err != nil {
 		log.Fatal("[bot]", err)
 	}
+}
+
+// writePid writes a file with process' pid. This is used by supervisors.
+// like systemd to track the process state.
+func writePid() {
+	fd, err := os.Create("app.pid")
+	if err != nil {
+		log.Println("[bot] Create PID file:", err)
+		return
+	}
+
+	fmt.Fprintf(fd, "%d", os.Getpid())
+	fd.Close()
 }
 
 // parseArgs parses and validates command line arguments.

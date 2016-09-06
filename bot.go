@@ -85,7 +85,6 @@ func (b *Bot) run() error {
 	// or to initiate the forking process.
 	fd, _ := b.client.File()
 	proc.Wait(b.profile.ForkArgs(), fd)
-
 	return b.client.Close()
 }
 

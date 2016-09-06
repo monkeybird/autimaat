@@ -46,6 +46,16 @@ func Wait(argv []string, clients ...*os.File) {
 		syscall.SIGUSR1,
 	)
 
+	// If the bot is run for the first time in a new session,
+	// it should be forked at least once to play nice with systemd.
+	if connectionCount == 0 {
+		log.Println("[proc] forking process...")
+		err := doFork(argv, clients...)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+
 	log.Println("[proc] Waiting for signals...")
 	for sig := range signals {
 		log.Println("[proc] received signal:", sig)

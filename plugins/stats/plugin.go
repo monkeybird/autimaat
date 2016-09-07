@@ -111,20 +111,22 @@ func (p *plugin) cmdWhois(w irc.ResponseWriter, r *irc.Request, params cmd.Param
 	p.m.RLock()
 	defer p.m.RUnlock()
 
-	usr := p.users.Find(params.String(0))
-	if usr == nil {
+	set := p.users.Find(params.String(0), 3)
+	if set == nil {
 		proto.PrivMsg(w, r.Target, TextWhoisUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
 	}
 
-	proto.PrivMsg(w, r.Target,
-		TextWhoisDisplay,
-		r.SenderName,
-		util.Bold(params.String(0)),
-		usr.FirstSeen.Format(TextDateFormat),
-		strings.Join(usr.Nicknames, ", "),
-	)
+	for _, usr := range set {
+		proto.PrivMsg(w, r.SenderName,
+			TextWhoisDisplay,
+			r.SenderName,
+			util.Bold(usr.Hostmask),
+			usr.FirstSeen.Format(TextDateFormat),
+			strings.Join(usr.Nicknames, ", "),
+		)
+	}
 }
 
 // cmdFirstOn tells the caller when a specific user was first seen online.
@@ -132,21 +134,24 @@ func (p *plugin) cmdFirstOn(w irc.ResponseWriter, r *irc.Request, params cmd.Par
 	p.m.RLock()
 	defer p.m.RUnlock()
 
-	usr := p.users.Find(params.String(0))
-	if usr == nil {
+	set := p.users.Find(params.String(0), 3)
+	if set == nil {
 		proto.PrivMsg(w, r.Target, TextUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
 	}
 
-	proto.PrivMsg(w, r.Target,
-		TextFirstOnDisplay,
-		r.SenderName,
-		util.Bold(params.String(0)),
-		usr.FirstSeen.Format(TextDateFormat),
-		usr.FirstSeen.Format(TextTimeFormat),
-		FormatDuration(time.Since(usr.FirstSeen)),
-	)
+	for _, usr := range set {
+		proto.PrivMsg(w, r.SenderName,
+			TextFirstOnDisplay,
+			r.SenderName,
+			util.Bold(usr.Nicknames[0]),
+			usr.Hostmask,
+			usr.FirstSeen.Format(TextDateFormat),
+			usr.FirstSeen.Format(TextTimeFormat),
+			FormatDuration(time.Since(usr.FirstSeen)),
+		)
+	}
 }
 
 // cmdLastOn tells the caller when a specific user was last seen online.
@@ -154,19 +159,22 @@ func (p *plugin) cmdLastOn(w irc.ResponseWriter, r *irc.Request, params cmd.Para
 	p.m.RLock()
 	defer p.m.RUnlock()
 
-	usr := p.users.Find(params.String(0))
-	if usr == nil {
+	set := p.users.Find(params.String(0), 3)
+	if set == nil {
 		proto.PrivMsg(w, r.Target, TextUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
 	}
 
-	proto.PrivMsg(w, r.Target,
-		TextLastOnDisplay,
-		r.SenderName,
-		util.Bold(params.String(0)),
-		usr.LastSeen.Format(TextDateFormat),
-		usr.LastSeen.Format(TextTimeFormat),
-		FormatDuration(time.Since(usr.LastSeen)),
-	)
+	for _, usr := range set {
+		proto.PrivMsg(w, r.SenderName,
+			TextLastOnDisplay,
+			r.SenderName,
+			util.Bold(usr.Nicknames[0]),
+			usr.Hostmask,
+			usr.LastSeen.Format(TextDateFormat),
+			usr.LastSeen.Format(TextTimeFormat),
+			FormatDuration(time.Since(usr.LastSeen)),
+		)
+	}
 }

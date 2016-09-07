@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"log"
-	"runtime"
 	"sort"
 	"strings"
 
@@ -96,11 +95,6 @@ func (s *Set) Dispatch(w irc.ResponseWriter, r *irc.Request) bool {
 		defer func() {
 			x := recover()
 			if x != nil {
-				// Go runtime errors should not be intercepted.
-				if re, ok := x.(runtime.Error); ok {
-					panic(re)
-				}
-
 				log.Printf("Command error: %v", x)
 				log.Printf("> %#v", r)
 			}

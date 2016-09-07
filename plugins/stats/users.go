@@ -60,27 +60,53 @@ func (cl *UserList) Get(mask string) *User {
 	return usr
 }
 
-// Find finds the command for the given hostmask or nickname.
-// Returns nil if it was not found.
-func (cl UserList) Find(name string) *User {
+// Find finds the user which exactly matches the given hostmask,
+// or all users which have a fuzzy match with the given nickname.
+// It returns at most limit users.
+func (cl UserList) Find(name string, limit int) []*User {
 	name = strings.ToLower(name)
 
 	// Known hostmask?
 	idx := userIndex(cl, name)
 	if idx > -1 {
-		return cl[idx]
+		return []*User{cl[idx]}
 	}
 
 	// Known nickname then perhaps? This will return the first
 	// instance of the nickname we find.
+	out := make([]*User, 0, 4)
+
+	// First find exact name matches.
 	for _, usr := range cl {
-		idx := stringIndex(usr.Nicknames, name)
-		if idx > -1 {
-			return usr
+		if userIndex(out, usr.Hostmask) > -1 {
+			continue
+		}
+
+		if stringExactMatch(usr.Nicknames, name) {
+			out = append(out, usr)
+
+			if len(out) >= limit {
+				break
+			}
 		}
 	}
 
-	return nil
+	// Then find any partial matches.
+	for _, usr := range cl {
+		if userIndex(out, usr.Hostmask) > -1 {
+			continue
+		}
+
+		if stringPartialMatch(usr.Nicknames, name) {
+			out = append(out, usr)
+
+			if len(out) >= limit {
+				break
+			}
+		}
+	}
+
+	return out
 }
 
 // userIndex returns the index of user hostmask v in set.
@@ -127,4 +153,26 @@ func stringIndex(set []string, v string) int {
 	}
 
 	return -1
+}
+
+// stringPartialMatch returns true if any of the values in set are
+// at least partially identical to v.
+func stringPartialMatch(set []string, v string) bool {
+	for _, s := range set {
+		if strings.Index(s, v) > -1 {
+			return true
+		}
+	}
+	return false
+}
+
+// stringExactMatch returns true if any of the values in set are identical
+// to v.
+func stringExactMatch(set []string, v string) bool {
+	for _, s := range set {
+		if s == v {
+			return true
+		}
+	}
+	return false
 }

@@ -20,10 +20,10 @@ const (
 	TextWhoisUnknownUser = "%s, ik herken %s niet."
 
 	TextLastOn        = "laston"
-	TextLastOnDisplay = "%s, ik heb %s het laatst gezien op %s, om %s (± %s geleden)."
+	TextLastOnDisplay = "%s, ik heb %s (%s) het laatst gezien op %s, om %s (± %s geleden)."
 
 	TextFirstOn        = "firston"
-	TextFirstOnDisplay = "%s, ik heb %s voor het eerst gezien op %s, om %s (± %s geleden)."
+	TextFirstOnDisplay = "%s, ik heb %s (%s) voor het eerst gezien op %s, om %s (± %s geleden)."
 )
 
 // FormatDuration returns a custom, string representation of the

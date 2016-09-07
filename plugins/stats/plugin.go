@@ -119,7 +119,7 @@ func (p *plugin) cmdWhois(w irc.ResponseWriter, r *irc.Request, params cmd.Param
 	query := filterMibbit(params.String(0))
 	set := p.users.Find(query, 3)
 
-	if set == nil {
+	if len(set) == 0 {
 		proto.PrivMsg(w, r.SenderName, TextWhoisUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
@@ -144,7 +144,7 @@ func (p *plugin) cmdFirstOn(w irc.ResponseWriter, r *irc.Request, params cmd.Par
 	query := filterMibbit(params.String(0))
 	set := p.users.Find(query, 3)
 
-	if set == nil {
+	if len(set) == 0 {
 		proto.PrivMsg(w, r.SenderName, TextUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
@@ -171,7 +171,7 @@ func (p *plugin) cmdLastOn(w irc.ResponseWriter, r *irc.Request, params cmd.Para
 	query := filterMibbit(params.String(0))
 	set := p.users.Find(query, 3)
 
-	if set == nil {
+	if len(set) == 0 {
 		proto.PrivMsg(w, r.SenderName, TextUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return

@@ -85,6 +85,14 @@ The bot version is made up of 3 numbers:
 
 
 
+## String translations
+
+The output of the bot to IRC channels/users is done in a specific language (duh).
+Translations for all used strings can be found in the various `strings.go` files,
+included in all plugins, as well as the `cmd` package. Basically, you should
+`find . -name strings.go` to get them all. Then edit them as needed.
+
+
 ## license
 
 Unless otherwise noted, the contents of this project are subject to a

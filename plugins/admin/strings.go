@@ -9,7 +9,7 @@ const (
 	TextTimeFormat = "15:04 MST"
 
 	TextHelpName    = "help"
-	TextHelpDisplay = "%s, voor een overzicht van de commandos die ik herken, kijk op http://jteeuwen.nl/autimaat.html"
+	TextHelpDisplay = "%s, voor een overzicht van de commandos die ik herken, kijk op: https://github.com/monkeybird/autimaat/wiki"
 
 	TextNickName     = "nick"
 	TextNickNickName = "naam"

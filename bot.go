@@ -22,6 +22,7 @@ import (
 	_ "github.com/monkeybird/autimaat/plugins/dictionary"
 	_ "github.com/monkeybird/autimaat/plugins/stats"
 	_ "github.com/monkeybird/autimaat/plugins/url"
+	_ "github.com/monkeybird/autimaat/plugins/weather"
 )
 
 // Bot defines state for a single IRC bot.

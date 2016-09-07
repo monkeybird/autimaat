@@ -10,20 +10,17 @@ import (
 
 const (
 	// ref: https://godoc.org/time#Time.Format
-	TextDateFormat  = "2 January, 2006"
-	TextTimeFormat  = "15:04 MST"
-	TextNick        = "gebruiker"
-	TextUnknownUser = "%s, %s heb ik niet gezien."
-
+	TextDateFormat       = "2 January, 2006"
+	TextTimeFormat       = "15:04 MST"
+	TextNick             = "gebruiker"
+	TextUnknownUser      = "%s, %s heb ik niet gezien."
 	TextWhoisName        = "wieis"
 	TextWhoisDisplay     = "%s, ik ken %s sinds %s als: %s"
 	TextWhoisUnknownUser = "%s, ik herken %s niet."
-
-	TextLastOn        = "laston"
-	TextLastOnDisplay = "%s, ik heb %s (%s) het laatst gezien op %s, om %s (± %s geleden)."
-
-	TextFirstOn        = "firston"
-	TextFirstOnDisplay = "%s, ik heb %s (%s) voor het eerst gezien op %s, om %s (± %s geleden)."
+	TextLastOn           = "laston"
+	TextLastOnDisplay    = "%s, ik heb %s (%s) het laatst gezien op %s, om %s (± %s geleden)."
+	TextFirstOn          = "firston"
+	TextFirstOnDisplay   = "%s, ik heb %s (%s) voor het eerst gezien op %s, om %s (± %s geleden)."
 )
 
 // FormatDuration returns a custom, string representation of the

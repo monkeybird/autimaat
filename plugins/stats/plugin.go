@@ -11,8 +11,11 @@
 package stats
 
 import (
+	"fmt"
 	"log"
 	"path/filepath"
+	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -75,8 +78,10 @@ func (p *plugin) Unload(prof irc.Profile) error {
 func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
 	p.cmd.Dispatch(w, r)
 
+	mask := filterMibbit(r.SenderMask)
+
 	p.m.Lock()
-	usr := p.users.Get(r.SenderMask)
+	usr := p.users.Get(mask)
 	usr.AddNickname(r.SenderName)
 	p.m.Unlock()
 }
@@ -111,9 +116,11 @@ func (p *plugin) cmdWhois(w irc.ResponseWriter, r *irc.Request, params cmd.Param
 	p.m.RLock()
 	defer p.m.RUnlock()
 
-	set := p.users.Find(params.String(0), 3)
+	query := filterMibbit(params.String(0))
+	set := p.users.Find(query, 3)
+
 	if set == nil {
-		proto.PrivMsg(w, r.Target, TextWhoisUnknownUser, r.SenderName,
+		proto.PrivMsg(w, r.SenderName, TextWhoisUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
 	}
@@ -134,9 +141,11 @@ func (p *plugin) cmdFirstOn(w irc.ResponseWriter, r *irc.Request, params cmd.Par
 	p.m.RLock()
 	defer p.m.RUnlock()
 
-	set := p.users.Find(params.String(0), 3)
+	query := filterMibbit(params.String(0))
+	set := p.users.Find(query, 3)
+
 	if set == nil {
-		proto.PrivMsg(w, r.Target, TextUnknownUser, r.SenderName,
+		proto.PrivMsg(w, r.SenderName, TextUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
 	}
@@ -159,9 +168,11 @@ func (p *plugin) cmdLastOn(w irc.ResponseWriter, r *irc.Request, params cmd.Para
 	p.m.RLock()
 	defer p.m.RUnlock()
 
-	set := p.users.Find(params.String(0), 3)
+	query := filterMibbit(params.String(0))
+	set := p.users.Find(query, 3)
+
 	if set == nil {
-		proto.PrivMsg(w, r.Target, TextUnknownUser, r.SenderName,
+		proto.PrivMsg(w, r.SenderName, TextUnknownUser, r.SenderName,
 			util.Bold(params.String(0)))
 		return
 	}
@@ -177,4 +188,37 @@ func (p *plugin) cmdLastOn(w irc.ResponseWriter, r *irc.Request, params cmd.Para
 			FormatDuration(time.Since(usr.LastSeen)),
 		)
 	}
+}
+
+// regMibbit seeks to identify Mibbit hostmasks.
+var regMibbit = regexp.MustCompile(`\.mibbit\.com$`)
+
+// filterMibbit checks if the given value is a hostmask originating
+// from mibbit.com. If so, it extracts te user's actual IP from it and
+// returns that as the new hostmask to be used.
+func filterMibbit(v string) string {
+	if !regMibbit.MatchString(v) {
+		return v
+	}
+
+	idx := strings.Index(v, "@")
+	if idx == -1 {
+		return v
+	}
+
+	addr := strings.TrimSpace(v[:idx])
+	if len(addr) != 8 {
+		return v
+	}
+
+	a, ea := strconv.ParseUint(addr[:2], 16, 8)
+	b, eb := strconv.ParseUint(addr[2:4], 16, 8)
+	c, ec := strconv.ParseUint(addr[4:6], 16, 8)
+	d, ed := strconv.ParseUint(addr[6:], 16, 8)
+
+	if ea != nil || eb != nil || ec != nil || ed != nil {
+		return v
+	}
+
+	return fmt.Sprintf("%d.%d.%d.%d", a, b, c, d)
 }

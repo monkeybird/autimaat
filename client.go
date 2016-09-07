@@ -10,7 +10,6 @@ import (
 	"io"
 	"net"
 	"os"
-	"sync"
 	"time"
 )
 
@@ -23,10 +22,9 @@ const ConnectionTimeout = time.Minute * 10
 
 // Client defines an IRC client for a single network connection.
 type Client struct {
-	handler  PayloadHandler
-	conn     net.Conn
-	reader   *bufio.Reader
-	quitOnce sync.Once
+	handler PayloadHandler
+	conn    net.Conn
+	reader  *bufio.Reader
 }
 
 // NewClient creates a new client for the given handler.

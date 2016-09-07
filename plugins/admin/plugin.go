@@ -6,6 +6,7 @@ package admin
 
 import (
 	"log"
+	"math"
 	"strconv"
 	"strings"
 	"time"
@@ -215,7 +216,14 @@ func (p *plugin) cmdReload(w irc.ResponseWriter, r *irc.Request, params cmd.Para
 func (p *plugin) cmdVersion(w irc.ResponseWriter, r *irc.Request, params cmd.ParamList) {
 	rev, _ := strconv.ParseInt(app.VersionRevision, 10, 64)
 	stamp := time.Unix(rev, 0)
-	utime := time.Since(lastRestart).Hours()
+	utime := math.Abs(time.Since(lastRestart).Hours())
+
+	var upSince string
+	if utime < 1 {
+		upSince = util.Bold("<1")
+	} else {
+		upSince = util.Bold("%.0f", utime)
+	}
 
 	proto.PrivMsg(
 		w, r.Target,
@@ -225,6 +233,6 @@ func (p *plugin) cmdVersion(w irc.ResponseWriter, r *irc.Request, params cmd.Par
 		util.Bold("%d.%d", app.VersionMajor, app.VersionMinor),
 		stamp.Format(TextDateFormat),
 		stamp.Format(TextTimeFormat),
-		util.Bold("%.3f", utime),
+		upSince,
 	)
 }

@@ -74,7 +74,7 @@ func sendForecast(w irc.ResponseWriter, r *irc.Request, fr *forecastResponse, lo
 	}
 
 	if len(fr.Forecast.TextForecast.ForecastDay) == 0 {
-		proto.PrivMsg(w, r.SenderName, TextNoResult, location)
+		proto.PrivMsg(w, r.SenderName, TextNoResult, r.SenderName)
 		return
 	}
 

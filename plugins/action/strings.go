@@ -16,12 +16,19 @@ const (
 	TextLemonadeName = "fris"
 	TextHugName      = "knuffel"
 	TextPetName      = "aai"
+	TextHat          = "muts"
 )
 
 // The strings below should be written as if part of an action.
 // E.g.: "/me <something something...>"
 
 var (
+	TextHatAnswers = []string{
+		"breidt een roze muts met gele stippen en een pluizige pompom en overhandigd deze aan %s.",
+		"pakt een zelf gehaakte muts in met kadopapier en geeft het geheel, met een strikje aan %s.",
+		"haalt voor %s een oude wintermuts uit de kast.",
+	}
+
 	TextHugAnswers = []string{
 		"geeft %s een stevige knuffel.",
 		"geeft %s een lieve knuffel.",

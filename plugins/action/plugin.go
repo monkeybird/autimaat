@@ -67,6 +67,7 @@ func (p *plugin) Load(prof irc.Profile) error {
 	bind(TextLemonadeName, TextLemonadeAnswers)
 	bind(TextHugName, TextHugAnswers)
 	bind(TextPetName, TextPetAnswers)
+	bind(TextHat, TextHatAnswers)
 	return nil
 }
 

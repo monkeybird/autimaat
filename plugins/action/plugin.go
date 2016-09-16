@@ -48,26 +48,12 @@ func (p *plugin) Load(prof irc.Profile) error {
 		}
 	}
 
-	// bind provides a wrapper for the binding of a "X gives Y to Z" action
-	// commands. We bind quite a few of these, so the shortcut makes this
-	// process less verbose.
-	bind := func(name string, set []string) {
-		p.cmd.Bind(name, false, action(set)).
-			Add(TextGiveUserName, false, cmd.RegAny)
+	// Bind all known actions.
+	for _, a := range TextActions {
+		p.cmd.Bind(a.Name, false, action(a.Answers)).
+			Add(TextUserName, false, cmd.RegAny)
 	}
 
-	// Bind a bunch of action commands.
-	bind(TextSmokeName, TextSmokeAnswers)
-	bind(TextBeerName, TextBeerAnswers)
-	bind(TextWineName, TextWineAnswers)
-	bind(TextPortName, TextPortAnswers)
-	bind(TextWhiskeyName, TextWhiskeyAnswers)
-	bind(TextCoffeeName, TextCoffeeAnswers)
-	bind(TextTeaName, TextTeaAnswers)
-	bind(TextLemonadeName, TextLemonadeAnswers)
-	bind(TextHugName, TextHugAnswers)
-	bind(TextPetName, TextPetAnswers)
-	bind(TextHat, TextHatAnswers)
 	return nil
 }
 

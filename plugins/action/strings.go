@@ -94,6 +94,14 @@ var TextActions = []action{
 		},
 	},
 	{
+		"knuff",
+		[]string{
+			"geeft %s een stevige knuffel.",
+			"geeft %s een lieve knuffel.",
+			"knuffelt %s eens flink.",
+		},
+	},
+	{
 		"aai",
 		[]string{
 			"geeft %s een aai over de bol.",

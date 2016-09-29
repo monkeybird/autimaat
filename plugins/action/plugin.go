@@ -50,8 +50,12 @@ func (p *plugin) Load(prof irc.Profile) error {
 
 	// Bind all known actions.
 	for _, a := range TextActions {
-		p.cmd.Bind(a.Name, false, action(a.Answers)).
-			Add(TextUserName, false, cmd.RegAny)
+		handler := action(a.Answers)
+
+		for _, name := range a.Names {
+			p.cmd.Bind(name, false, handler).
+				Add(TextUserName, false, cmd.RegAny)
+		}
 	}
 
 	return nil

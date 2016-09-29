@@ -11,14 +11,14 @@ const TextUserName = "wie"
 // The answers should be written as if part of an action.
 // E.g.: "/me <something something...>"
 type action struct {
-	Name    string   // Name by which the action is invoked.
+	Names   []string // Name by which the action is invoked.
 	Answers []string // Possible set of replies for this action.
 }
 
 // TextActions defines all known actions.
 var TextActions = []action{
 	{
-		"peuk",
+		[]string{"peuk"},
 		[]string{
 			"geeft %s de asbak en aansteker.",
 			"steekt een cubaan op en overhandigt deze aan %s.",
@@ -27,7 +27,7 @@ var TextActions = []action{
 		},
 	},
 	{
-		"bier",
+		[]string{"bier"},
 		[]string{
 			"geeft %s een lekker koud biertje.",
 			"schenkt %s een trappistje naar keuze.",
@@ -35,7 +35,7 @@ var TextActions = []action{
 		},
 	},
 	{
-		"wijn",
+		[]string{"wijn"},
 		[]string{
 			"geeft %s een glaasje rode wijn.",
 			"geeft %s een glaasje witte wijn.",
@@ -43,21 +43,21 @@ var TextActions = []action{
 		},
 	},
 	{
-		"port",
+		[]string{"port"},
 		[]string{
 			"geeft %s een glaasje ruby Port.",
 			"schenkt %s een glaasje Port naar keuze.",
 		},
 	},
 	{
-		"whiskey",
+		[]string{"whiskey"},
 		[]string{
 			"duikt de drankkast in om %s de oudste fles whiskey te halen die hij kan vinden.",
 			"blaast het stof van de Whiskeyfles en schenkt %s een glas.",
 		},
 	},
 	{
-		"koffie",
+		[]string{"koffie"},
 		[]string{
 			"schenkt %s een kopje koffie.",
 			"geeft %s een stevige bak leut.",
@@ -65,7 +65,7 @@ var TextActions = []action{
 		},
 	},
 	{
-		"thee",
+		[]string{"thee"},
 		[]string{
 			"zet een kopje thee voor %s.",
 			"loopt richting de keuken om voor %s de fluitketel op het vuur te zetten.",
@@ -74,7 +74,7 @@ var TextActions = []action{
 		},
 	},
 	{
-		"fris",
+		[]string{"fris"},
 		[]string{
 			"schenkt %s een groot glas koude limonade.",
 			"geeft %s de fles cola aan.",
@@ -86,7 +86,7 @@ var TextActions = []action{
 		},
 	},
 	{
-		"knuffel",
+		[]string{"knuffel", "knuff", "knuf"},
 		[]string{
 			"geeft %s een stevige knuffel.",
 			"geeft %s een lieve knuffel.",
@@ -94,22 +94,14 @@ var TextActions = []action{
 		},
 	},
 	{
-		"knuff",
-		[]string{
-			"geeft %s een stevige knuffel.",
-			"geeft %s een lieve knuffel.",
-			"knuffelt %s eens flink.",
-		},
-	},
-	{
-		"aai",
+		[]string{"aai"},
 		[]string{
 			"geeft %s een aai over de bol.",
 			"aait %s zachtjes over het hoofd.",
 		},
 	},
 	{
-		"muts",
+		[]string{"muts"},
 		[]string{
 			"breidt een roze muts met gele stippen en een pluizige pompom en overhandigd deze aan %s.",
 			"pakt een zelf gehaakte muts in met kadopapier en geeft het geheel, met een strikje aan %s.",

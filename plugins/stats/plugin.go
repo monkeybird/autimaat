@@ -51,14 +51,14 @@ func (p *plugin) Load(prof irc.Profile) error {
 	p.file = filepath.Join(prof.Root(), "stats.dat")
 	p.cmd = cmd.New(prof.CommandPrefix(), nil)
 
-	p.cmd.Bind(TextWhoisName, false, p.cmdWhois).
-		Add(TextNick, true, cmd.RegAny)
+	//p.cmd.Bind(TextWhoisName, false, p.cmdWhois).
+	//	Add(TextNick, true, cmd.RegAny)
 
-	p.cmd.Bind(TextFirstOn, false, p.cmdFirstOn).
-		Add(TextNick, true, cmd.RegAny)
+	//p.cmd.Bind(TextFirstOn, false, p.cmdFirstOn).
+	//	Add(TextNick, true, cmd.RegAny)
 
-	p.cmd.Bind(TextLastOn, false, p.cmdLastOn).
-		Add(TextNick, true, cmd.RegAny)
+	//p.cmd.Bind(TextLastOn, false, p.cmdLastOn).
+	//	Add(TextNick, true, cmd.RegAny)
 
 	go p.periodicSave()
 	return util.ReadFile(p.file, &p.users, true)

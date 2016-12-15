@@ -47,12 +47,6 @@ type plugin struct {
 // Load initializes the module and loads any internal resources
 // which may be required.
 func (p *plugin) Load(prof irc.Profile) error {
-	file := filepath.Join(prof.Root(), "weather.cfg")
-	err := util.ReadFile(file, &p.config, false)
-	if err != nil {
-		return err
-	}
-
 	p.currentWeatherCache = make(map[string]*currentWeatherResponse)
 	p.forecastCache = make(map[string]*forecastResponse)
 
@@ -62,7 +56,8 @@ func (p *plugin) Load(prof irc.Profile) error {
 	p.cmd.Bind(TextForecastName, false, p.cmdForecast).
 		Add(TextLocation, true, cmd.RegAny)
 
-	return nil
+	file := filepath.Join(prof.Root(), "weather.cfg")
+	return util.ReadFile(file, &p.config, false)
 }
 
 // Unload cleans the module up and unloads any internal resources.
@@ -74,7 +69,9 @@ func (p *plugin) Unload(prof irc.Profile) error {
 // Dispatch sends the given, incoming IRC message to the plugin for
 // processing as it sees fit.
 func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
-	p.cmd.Dispatch(w, r)
+	if len(p.config.WundergroundApiKey) > 0 {
+		p.cmd.Dispatch(w, r)
+	}
 }
 
 // sendLocations sends location suggestions to the request's sender.

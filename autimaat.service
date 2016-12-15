@@ -1,0 +1,14 @@
+[Unit]
+Description=IRC bot for #autsider
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=forking
+PIDFile=/home/autimaat/data/app.pid
+ExecStart=/home/autimaat/bin/autimaat /home/autimaat/data/
+Restart=on-failure
+User=autimaat
+
+[Install]
+WantedBy=multi-user.target

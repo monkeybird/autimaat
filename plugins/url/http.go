@@ -107,7 +107,7 @@ func fetchTitle(w irc.ResponseWriter, r *irc.Request, url, apiKey string) {
 	title := html.UnescapeString(string(body))
 
 	// If we are dealing with a youtube link, try to fetch the
-	// avideo duration and append it to our response.
+	// video duration and append it to our response.
 	if id := isYoutube(url); len(id) > 0 {
 		info, err := youtube.GetVideoInfo(apiKey, id)
 		if err == nil {

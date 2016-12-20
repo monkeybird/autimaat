@@ -136,14 +136,9 @@ func (p *plugin) loadFile() error {
 				continue
 			}
 
-			idx := indexOf(p.definitions, line)
-			if idx > -1 {
-				indices = append(indices, idx)
-				continue
-			}
-
-			indices = append(indices, len(p.definitions))
 			p.definitions = append(p.definitions, line)
+			idx := indexOf(p.definitions, line)
+			indices = append(indices, idx)
 			continue
 		}
 
@@ -157,6 +152,13 @@ func (p *plugin) loadFile() error {
 		// We have a new set of terms to be defined.
 		terms = split(line, ",")
 		indices = nil
+	}
+
+	// Store indices for last terms in the file, if applicable.
+	if len(terms) > 0 && len(indices) > 0 {
+		for _, t := range terms {
+			p.terms[t] = indices
+		}
 	}
 
 	return scn.Err()

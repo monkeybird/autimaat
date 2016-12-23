@@ -136,9 +136,15 @@ func (p *plugin) loadFile() error {
 				continue
 			}
 
-			p.definitions = append(p.definitions, line)
 			idx := indexOf(p.definitions, line)
-			indices = append(indices, idx)
+			if idx >= -1 {
+				// no need to append duplicate definition
+				indices = append(indices, idx)
+				continue
+			}
+
+			p.definitions = append(p.definitions, line)
+			indices = append(indices, len(p.definitions)-1)
 			continue
 		}
 

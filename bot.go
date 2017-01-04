@@ -18,7 +18,6 @@ import (
 
 	"github.com/monkeybird/autimaat/app"
 	"github.com/monkeybird/autimaat/app/logger"
-	"github.com/monkeybird/autimaat/app/proc"
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/irc/proto"
 	"github.com/monkeybird/autimaat/plugins"
@@ -89,8 +88,9 @@ func (b *Bot) run() error {
 			log.Println(err)
 		}
 
-		// Break out of the wait() call below.
-		proc.Kill()
+		// Break out of the wait() call below by sending SIGINT to the
+		// current process.
+		syscall.Kill(os.Getpid(), syscall.SIGINT)
 	}()
 
 	// Wait for external signals. Either to cleanly shut the bot down,
@@ -183,8 +183,9 @@ func (b *Bot) open() error {
 			return err
 		}
 
-		// We're done inheriting. Kill the parent process.
-		proc.KillParent()
+		// We're done inheriting. Have the parent process break out of
+		// its wait() call by sending SIGINT to it.
+		syscall.Kill(os.Getppid(), syscall.SIGINT)
 		return nil
 	}
 
@@ -219,8 +220,9 @@ func wait(b *Bot) {
 
 	// If the bot is run for the first time in a new session,
 	// it should be forked at least once to play nice with systemd.
+	// Forking is triggered by sending SIGUSR1 to the current process.
 	if connectionCount == 0 {
-		proc.Fork()
+		syscall.Kill(os.Getpid(), syscall.SIGUSR1)
 	}
 
 	log.Println("[proc] Waiting for signals...")

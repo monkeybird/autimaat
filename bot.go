@@ -6,12 +6,14 @@ package main
 import (
 	"crypto/tls"
 	"crypto/x509"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
 	"os/signal"
+	"strconv"
 	"syscall"
 
 	"github.com/monkeybird/autimaat/app"
@@ -29,6 +31,15 @@ import (
 	_ "github.com/monkeybird/autimaat/plugins/url"
 	_ "github.com/monkeybird/autimaat/plugins/weather"
 )
+
+// connectionCount defines the number of connections passed into a forked
+// process. Currently there is only 1 connection per bot implemented
+// (N=1).
+var connectionCount uint
+
+func init() {
+	flag.UintVar(&connectionCount, "fork", 0, "Number of inherited file descriptors")
+}
 
 // Bot defines state for a single IRC bot.
 type Bot struct {
@@ -161,7 +172,7 @@ func (b *Bot) open() error {
 		}
 	}
 
-	files := proc.InheritedFiles()
+	files := inheritedFiles()
 
 	// Are we a fork? Then we should inherit an existing connection.
 	if len(files) > 0 {
@@ -208,7 +219,7 @@ func wait(b *Bot) {
 
 	// If the bot is run for the first time in a new session,
 	// it should be forked at least once to play nice with systemd.
-	if len(os.Args) == 2 { //TODO use flag package
+	if connectionCount == 0 {
 		proc.Fork()
 	}
 
@@ -251,4 +262,24 @@ func doFork(b *Bot) error {
 
 	// Fork the process.
 	return cmd.Start()
+}
+
+// inheritedFiles returns a list of N file descriptors inherited from a
+// previous session through the Fork call.
+//
+// This function assumes that flag.Parse() has been called at least once
+// already. The `-fork` flag has been registered during initialization of
+// this package.
+func inheritedFiles() []*os.File {
+	if connectionCount == 0 {
+		return nil
+	}
+
+	out := make([]*os.File, connectionCount)
+
+	for i := range out {
+		out[i] = os.NewFile(3+uintptr(i), "conn"+strconv.Itoa(i))
+	}
+
+	return out
 }

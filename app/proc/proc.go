@@ -14,19 +14,9 @@ Before calling this, ensure that `flag.Parse()` has been called at least once.
 package proc
 
 import (
-	"flag"
 	"os"
-	"strconv"
 	"syscall"
 )
-
-// connectionCount defines the number of connections passed into a forked
-// process.
-var connectionCount uint
-
-func init() {
-	flag.UintVar(&connectionCount, "fork", 0, "Number of inherited file descriptors")
-}
 
 // Kill sends SIGINT to the current process. This can be used to cleanly
 // break out of a signal polling loop from anywhere in the program.
@@ -40,23 +30,3 @@ func KillParent() { syscall.Kill(os.Getppid(), syscall.SIGINT) }
 // Fork sends SIGUSR1 to the current process. This kickstarts the
 // forking process.
 func Fork() { syscall.Kill(os.Getpid(), syscall.SIGUSR1) }
-
-// InheritedFiles returns a list of N file descriptors inherited from a
-// previous session through the Fork call.
-//
-// This function assumes that flag.Parse() has been called at least once
-// already. The `-fork` flag has been registered during initialization of
-// this package.
-func InheritedFiles() []*os.File {
-	if connectionCount == 0 {
-		return nil
-	}
-
-	out := make([]*os.File, connectionCount)
-
-	for i := range out {
-		out[i] = os.NewFile(3+uintptr(i), "conn"+strconv.Itoa(i))
-	}
-
-	return out
-}

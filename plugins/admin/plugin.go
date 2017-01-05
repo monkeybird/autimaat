@@ -7,12 +7,13 @@ package admin
 import (
 	"log"
 	"math"
+	"os"
 	"strconv"
 	"strings"
+	"syscall"
 	"time"
 
 	"github.com/monkeybird/autimaat/app"
-	"github.com/monkeybird/autimaat/app/proc"
 	"github.com/monkeybird/autimaat/app/util"
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/irc/cmd"
@@ -207,9 +208,10 @@ func (p *plugin) cmdLog(w irc.ResponseWriter, r *irc.Request, params cmd.ParamLi
 	}
 }
 
-// cmdReload forces the bot to fork itself.
+// cmdReload forces the bot to fork itself. This is achieved by
+// sending SIGUSR1 to the current process.
 func (p *plugin) cmdReload(w irc.ResponseWriter, r *irc.Request, params cmd.ParamList) {
-	proc.Fork()
+	syscall.Kill(os.Getpid(), syscall.SIGUSR1)
 }
 
 // cmdVersion prints version information.

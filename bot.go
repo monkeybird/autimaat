@@ -6,13 +6,18 @@ package main
 import (
 	"crypto/tls"
 	"crypto/x509"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
+	"os/exec"
+	"os/signal"
+	"strconv"
+	"syscall"
 
 	"github.com/monkeybird/autimaat/app"
 	"github.com/monkeybird/autimaat/app/logger"
-	"github.com/monkeybird/autimaat/app/proc"
 	"github.com/monkeybird/autimaat/irc"
 	"github.com/monkeybird/autimaat/irc/proto"
 	"github.com/monkeybird/autimaat/plugins"
@@ -25,6 +30,15 @@ import (
 	_ "github.com/monkeybird/autimaat/plugins/url"
 	_ "github.com/monkeybird/autimaat/plugins/weather"
 )
+
+// connectionCount defines the number of connections passed into a forked
+// process. Currently there is only 1 connection per bot implemented
+// (N=1).
+var connectionCount uint
+
+func init() {
+	flag.UintVar(&connectionCount, "fork", 0, "Number of inherited file descriptors")
+}
 
 // Bot defines state for a single IRC bot.
 type Bot struct {
@@ -74,14 +88,14 @@ func (b *Bot) run() error {
 			log.Println(err)
 		}
 
-		// Break out of the Wait() call below.
-		proc.Kill()
+		// Break out of the wait() call below by sending SIGINT to the
+		// current process.
+		syscall.Kill(os.Getpid(), syscall.SIGINT)
 	}()
 
 	// Wait for external signals. Either to cleanly shut the bot down,
 	// or to initiate the forking process.
-	fd, _ := b.client.File()
-	proc.Wait(b.profile.ForkArgs(), fd)
+	wait(b)
 	return b.client.Close()
 }
 
@@ -158,7 +172,7 @@ func (b *Bot) open() error {
 		}
 	}
 
-	files := proc.InheritedFiles()
+	files := inheritedFiles()
 
 	// Are we a fork? Then we should inherit an existing connection.
 	if len(files) > 0 {
@@ -169,8 +183,9 @@ func (b *Bot) open() error {
 			return err
 		}
 
-		// We're done inheriting. Kill the parent process.
-		proc.KillParent()
+		// We're done inheriting. Have the parent process break out of
+		// its wait() call by sending SIGINT to it.
+		syscall.Kill(os.Getppid(), syscall.SIGINT)
 		return nil
 	}
 
@@ -187,4 +202,86 @@ func (b *Bot) open() error {
 	proto.User(b.client, p.Nickname(), "8", p.Nickname())
 	proto.Nick(b.client, p.Nickname(), p.NickservPassword())
 	return nil
+}
+
+// wait polls for OS signals to either kill or fork this process.
+// The signals it waits for are: SIGKILL, SIGINT, SIGTERM and SIGUSR1.
+// The latter one being responsible for forking this process. The others
+// are there so we may cleanly exit this process.
+func wait(b *Bot) {
+	signals := make(chan os.Signal, 1)
+	signal.Notify(
+		signals,
+		syscall.SIGKILL,
+		syscall.SIGINT,
+		syscall.SIGTERM,
+		syscall.SIGUSR1,
+	)
+
+	// If the bot is run for the first time in a new session,
+	// it should be forked at least once to play nice with systemd.
+	// Forking is triggered by sending SIGUSR1 to the current process.
+	if connectionCount == 0 {
+		syscall.Kill(os.Getpid(), syscall.SIGUSR1)
+	}
+
+	log.Println("[proc] Waiting for signals...")
+	for sig := range signals {
+		log.Println("[proc] received signal:", sig)
+		if sig != syscall.SIGUSR1 {
+			return
+		}
+
+		log.Println("[proc] forking process...")
+		err := doFork(b)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+}
+
+// doFork forks the current process into a child process and passes the
+// given client connections along to be inherited.
+//
+// The forked process is called with the `-fork N` command line parameter.
+// Where N is the number of file descriptors being passed along. This is
+// used by the InheritedFiles() call to rebuild the files. Currently
+// there is only one connection per bot implemented (N=1).
+func doFork(b *Bot) error {
+
+	// Build the command line arguments for our child process.
+	// This includes any custom arguments defined in the profile.
+	argv := b.profile.ForkArgs()
+	args := append([]string{"-fork", "1"}, argv...)
+
+	// Initialize the command runner.
+	cmd := exec.Command(os.Args[0], args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	fd, _ := b.client.File()
+	cmd.ExtraFiles = []*os.File{fd}
+
+	// Fork the process.
+	return cmd.Start()
+}
+
+// inheritedFiles returns a list of N file descriptors inherited from a
+// previous session through the Fork call.
+//
+// This function assumes that flag.Parse() has been called at least once
+// already. The `-fork` flag has been registered during initialization of
+// this package.
+func inheritedFiles() []*os.File {
+	if connectionCount == 0 {
+		return nil
+	}
+
+	out := make([]*os.File, connectionCount)
+
+	for i := range out {
+		out[i] = os.NewFile(3+uintptr(i), "conn"+strconv.Itoa(i))
+	}
+
+	return out
 }

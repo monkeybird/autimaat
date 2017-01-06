@@ -224,14 +224,14 @@ func wait(b *Bot) {
 		syscall.Kill(os.Getpid(), syscall.SIGUSR1)
 	}
 
-	log.Println("[proc] Waiting for signals...")
+	log.Println("[bot] Waiting for signals...")
 	for sig := range signals {
-		log.Println("[proc] received signal:", sig)
+		log.Println("[bot] received signal:", sig)
 		if sig != syscall.SIGUSR1 {
 			return
 		}
 
-		log.Println("[proc] forking process...")
+		log.Println("[bot] forking process...")
 		err := doFork(b)
 		if err != nil {
 			log.Println(err)

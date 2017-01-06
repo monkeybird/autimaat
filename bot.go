@@ -205,14 +205,13 @@ func (b *Bot) open() error {
 }
 
 // wait polls for OS signals to either kill or fork this process.
-// The signals it waits for are: SIGKILL, SIGINT, SIGTERM and SIGUSR1.
+// The signals it waits for are: SIGINT, SIGTERM and SIGUSR1.
 // The latter one being responsible for forking this process. The others
 // are there so we may cleanly exit this process.
 func wait(b *Bot) {
 	signals := make(chan os.Signal, 1)
 	signal.Notify(
 		signals,
-		syscall.SIGKILL,
 		syscall.SIGINT,
 		syscall.SIGTERM,
 		syscall.SIGUSR1,

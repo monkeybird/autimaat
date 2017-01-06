@@ -100,8 +100,6 @@ func (c *Client) Run() error {
 
 		go c.handler(line)
 	}
-
-	return nil
 }
 
 // Write writes the given message to the underlying stream.
@@ -121,18 +119,15 @@ func (c *Client) Write(p []byte) (int, error) {
 // Read reads the next message from the connection.
 // This call blocks until enough data is available or an error occurs.
 func (c *Client) read() ([]byte, error) {
-	conn := c.conn
-	rdr := c.reader
-
-	if conn == nil {
+	if c.conn == nil {
 		return nil, io.EOF
 	}
 
-	data, err := rdr.ReadBytes('\n')
+	data, err := c.reader.ReadBytes('\n')
 	if err != nil {
 		return nil, err
 	}
 
-	conn.SetDeadline(time.Now().Add(ConnectionTimeout))
+	c.conn.SetDeadline(time.Now().Add(ConnectionTimeout))
 	return bytes.TrimSpace(data), nil
 }

@@ -1,7 +1,8 @@
 // This file is subject to a 1-clause BSD license.
 // Its contents can be found in the enclosed LICENSE file.
 
-// Package admin defines administrative bot commands.
+// Package admin defines administrative bot commands.  This package is
+// also used for the initial IRC login and channel joins.
 package admin
 
 import (

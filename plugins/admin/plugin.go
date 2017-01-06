@@ -74,6 +74,9 @@ func (p *plugin) Load(prof irc.Profile) error {
 	p.cmd.Bind(TextPartName, true, p.cmdPart).
 		Add(TextPartChannelName, true, cmd.RegChannel)
 
+	p.cmd.Bind(TextNoopName, true, p.cmdNoop).
+		Add(TextNoopChannelName, false, cmd.RegChannel)
+
 	p.cmd.Bind(TextAuthListName, true, p.cmdAuthList)
 
 	p.cmd.Bind(TextAuthorizeName, true, p.cmdAuthorize).
@@ -175,6 +178,23 @@ func (p *plugin) cmdPart(w irc.ResponseWriter, r *irc.Request, params cmd.ParamL
 	proto.Part(w, irc.Channel{
 		Name: params.String(0),
 	})
+}
+
+// cmdNoop makes the bot de-op itself.
+func (p *plugin) cmdNoop(w irc.ResponseWriter, r *irc.Request, params cmd.ParamList) {
+	var channel_name string
+	if params.Len() > 0 {
+		channel_name = params.String(0)
+	} else {
+		if r.FromChannel() {
+			channel_name = r.Target
+		} else {
+			// ugly?
+			proto.PrivMsg(w, r.SenderName, cmd.TextMissingParameters, r.Data[1:])
+			return
+		}
+	}
+	proto.Mode(w, channel_name, "-o", p.profile.Nickname())
 }
 
 // cmdAuthList lists all whitelisted users.

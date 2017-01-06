@@ -23,6 +23,9 @@ const (
 	TextPartName        = "part"
 	TextPartChannelName = "kanaal"
 
+	TextNoopName        = "n00p"
+	TextNoopChannelName = "kanaal"
+
 	TextReloadName = "herstart"
 
 	TextAuthListName    = "bazen"

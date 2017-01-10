@@ -90,7 +90,6 @@ func (c *Client) File() (*os.File, error) {
 // Run starts the message processing loop and does not return for as long
 // as there is an open connection.
 func (c *Client) Run() error {
-	defer c.Close()
 
 	for {
 		line, err := c.read()

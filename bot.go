@@ -85,7 +85,7 @@ func (b *Bot) run() error {
 
 		err := b.client.Run()
 		if err != nil {
-			log.Println(err)
+			log.Println("[bot]", err)
 		}
 
 		// Break out of the wait() call below by sending SIGINT to the
@@ -234,7 +234,7 @@ func wait(b *Bot) {
 		log.Println("[bot] forking process...")
 		err := doFork(b)
 		if err != nil {
-			log.Println(err)
+			log.Println("[bot]", err)
 		}
 	}
 }

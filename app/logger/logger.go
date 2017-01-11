@@ -59,7 +59,15 @@ func Init(dir string) {
 // Shutdown shuts down the background log operations.
 func Shutdown() {
 	stopOnce.Do(func() {
+		// Exit poll goroutine.
 		close(logPollQuit)
+
+		// Clean up the existing log file.
+		if logFile != nil {
+			log.SetOutput(os.Stderr)
+			logFile.Close()
+			logFile = nil
+		}
 	})
 }
 
@@ -71,11 +79,10 @@ func poll(dir string) {
 	purgeCheck := time.Tick(PurgeTimeout)
 	var err error
 
-loopy:
 	for err == nil {
 		select {
 		case <-logPollQuit:
-			break loopy
+			return
 		case <-refresh:
 			err = openLog(dir)
 		case <-purgeCheck:
@@ -87,12 +94,6 @@ loopy:
 		log.Println("[app]", err)
 	}
 
-	// Clean up the existing log file.
-	if logFile != nil {
-		log.SetOutput(os.Stderr)
-		logFile.Close()
-		logFile = nil
-	}
 }
 
 // openLog opens a new, or existing log file.

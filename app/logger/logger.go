@@ -19,9 +19,9 @@ var (
 	// Format defines the date layout for log file names.
 	Format = "20060102"
 
-	// PurgeTimeout defines the timeout after which the bot should
+	// PurgeCheck defines the timeout after which the bot should
 	// check for stale log files.
-	PurgeTimeout = time.Hour * 24
+	PurgeCheck = time.Hour * 24
 
 	// RefreshTimeout determines how often we should check if a new
 	// log file should be opened.
@@ -59,6 +59,7 @@ func Init(dir string) {
 // Shutdown shuts down the background log operations.
 func Shutdown() {
 	stopOnce.Do(func() {
+
 		// Exit poll goroutine.
 		close(logPollQuit)
 
@@ -76,7 +77,7 @@ func Shutdown() {
 func poll(dir string) {
 
 	refresh := time.Tick(RefreshTimeout)
-	purgeCheck := time.Tick(PurgeTimeout)
+	purgeCheck := time.Tick(PurgeCheck)
 	var err error
 
 	for err == nil {

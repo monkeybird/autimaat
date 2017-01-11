@@ -66,22 +66,19 @@ func Shutdown() {
 // poll periodically purges stale log files and ensures logs are cycled
 // after the appropriate timeout.
 func poll(dir string) {
-	// Do an initial purge of stale logs. This ensures that we
-	// do not accumulate stale files if the PurgeTimeout below
-	// is never triggered. Which might happen if the program is
-	// shut down before the timeout occurs.
-	err := purgeLogs(dir)
+
+	refresh := time.Tick(RefreshTimeout)
+	purgeCheck := time.Tick(PurgeTimeout)
+	var err error
 
 loopy:
 	for err == nil {
 		select {
 		case <-logPollQuit:
 			break loopy
-
-		case <-time.After(RefreshTimeout):
+		case <-refresh:
 			err = openLog(dir)
-
-		case <-time.After(PurgeTimeout):
+		case <-purgeCheck:
 			err = purgeLogs(dir)
 		}
 	}

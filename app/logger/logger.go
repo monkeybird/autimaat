@@ -113,11 +113,7 @@ func openLog(dir string) error {
 
 	// Exit if we're already using this file.
 	if logFile != nil && logFile.Name() == file {
-		if logFile.Name() == file {
-			return nil
-		}
-
-		log.Println("[log] Opening new log file:", file)
+		return nil
 	}
 
 	// Create/open the new logfile.

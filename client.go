@@ -18,7 +18,7 @@ import (
 type PayloadHandler func([]byte)
 
 // ConnectionTimeout defines the deadline for a connection.
-const ConnectionTimeout = time.Minute * 10
+const ConnectionTimeout = time.Minute * 3
 
 // Client defines an IRC client for a single network connection.
 type Client struct {

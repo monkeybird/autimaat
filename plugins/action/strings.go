@@ -71,7 +71,7 @@ var TextActions = []action{
 			"zet een kopje thee voor %s.",
 			"loopt richting de keuken om voor %s de fluitketel op het vuur te zetten.",
 			"brengt %s de doos met alle theesmaakjes; kies maar iets uit.",
-			"geeft %s een kopje thee ;)",
+			"geeft %s een kopje thee.",
 		},
 	},
 	{

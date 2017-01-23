@@ -115,6 +115,12 @@ func fetchTitle(w irc.ResponseWriter, r *irc.Request, url, apiKey string) {
 		}
 	}
 
+	// If the title matches one of the titles that we want to ignore,
+	// do not show it.
+	if Ignore[title] {
+		return
+	}
+
 	// Show the title to the channel from whence the URL came.
 	proto.PrivMsg(w, r.Target, TextDisplay, r.SenderName, title)
 }

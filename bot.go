@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net"
 	"os"
 	"os/exec"
 	"os/signal"
@@ -35,6 +36,10 @@ import (
 // process. Currently there is only 1 connection per bot implemented
 // (N=1).
 var connectionCount uint
+
+// shuttingDown is true if and only if the bot is in the process of
+// gracefully closing down
+var shuttingDown bool = false
 
 func init() {
 	flag.UintVar(&connectionCount, "fork", 0, "Number of inherited file descriptors")
@@ -84,18 +89,32 @@ func (b *Bot) run() error {
 		log.Println("[bot] Entering data loop...")
 
 		err := b.client.Run()
-		if err != nil {
-			log.Println("[bot]", err)
+
+		// err will always be non-nil here
+		if e, ok := err.(*net.OpError); ok {
+			if e.Err.Error() == "use of closed network connection" {
+				// This can be the error value if the bot is in the
+				// process of shutting down gracefully, the connection
+				// is closed, and a pending read or write was
+				// unblocked by that.  Just let the shutting down of
+				// the bot continue and ignore the error.
+				if shuttingDown {
+					log.Printf("[bot] ignoring  '%+v'\n", e.Err)
+					return
+				}
+			}
 		}
 
-		// Break out of the wait() call below by sending SIGINT to the
-		// current process.
-		syscall.Kill(os.Getpid(), syscall.SIGINT)
+		// Any other error is fatal, so a supervisor like systemd can
+		// try to restart the bot.
+		log.Fatal("[bot] exit 1: ", err)
+
 	}()
 
 	// Wait for external signals. Either to cleanly shut the bot down,
 	// or to initiate the forking process.
 	wait(b)
+	shuttingDown = true
 	return b.client.Close()
 }
 

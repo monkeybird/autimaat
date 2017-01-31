@@ -104,9 +104,30 @@ var TextActions = []action{
 	{
 		[]string{"muts"},
 		[]string{
-			"breidt een roze muts met gele stippen en een pluizige pompom en overhandigd deze aan %s.",
+			"breit een roze muts met gele stippen en een pluizige pompom en overhandigt deze aan %s.",
 			"pakt een zelf gehaakte muts in met kadopapier en geeft het geheel, met een strikje aan %s.",
 			"haalt voor %s een oude wintermuts uit de kast.",
 		},
 	},
+	{
+		[]string{"wafel"},
+		[]string{
+			"bakt een verse Luikse wafel voor %s.",
+		        "stuurt Bosch naar Luik om verse wafels te halen voor %s.",
+		},
+	},
+	{
+		[]string{"pindakaas"},
+		[]string{
+			"smeert een lepel bruine smurrie over de smoel van %s.",
+		},
+	},
+		{
+		[]string{"kat"},
+		[]string{
+			"gooit een purrende haarbal naar %s.",
+			"kijkt peetvader Bosch aan of er nog een aaisubject over is voor %s.",
+		},
+	},
+	
 }

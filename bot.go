@@ -27,7 +27,6 @@ import (
 	_ "github.com/monkeybird/autimaat/plugins/admin"
 	_ "github.com/monkeybird/autimaat/plugins/alarm"
 	_ "github.com/monkeybird/autimaat/plugins/dictionary"
-	_ "github.com/monkeybird/autimaat/plugins/stats"
 	_ "github.com/monkeybird/autimaat/plugins/url"
 	_ "github.com/monkeybird/autimaat/plugins/weather"
 )

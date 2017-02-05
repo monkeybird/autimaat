@@ -113,7 +113,6 @@ var TextActions = []action{
 		[]string{"wafel"},
 		[]string{
 			"bakt een verse Luikse wafel voor %s.",
-		        "stuurt Bosch naar Luik om verse wafels te halen voor %s.",
 		},
 	},
 	{
@@ -122,12 +121,10 @@ var TextActions = []action{
 			"smeert een lepel bruine smurrie over de smoel van %s.",
 		},
 	},
-		{
+	{
 		[]string{"kat"},
 		[]string{
 			"gooit een purrende haarbal naar %s.",
-			"kijkt peetvader Bosch aan of er nog een aaisubject over is voor %s.",
 		},
 	},
-	
 }

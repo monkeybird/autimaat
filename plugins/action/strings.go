@@ -62,7 +62,7 @@ var TextActions = []action{
 			"schenkt %s een kopje koffie.",
 			"geeft %s een stevige bak leut.",
 			"brengt %s een grote mok koffie verkeerd.",
-			"zet de ketel op en rent naar de voorraadkast voor een nieuw pak koffie; Even geduld nog, %s!",
+			"zet de ketel op en rent naar de voorraadkast voor een nieuw pak koffie; Even geduld nog, %s.",
 		},
 	},
 	{

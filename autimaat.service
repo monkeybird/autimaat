@@ -2,6 +2,8 @@
 Description=IRC bot for #autsider
 Wants=network-online.target
 After=network.target network-online.target
+StartLimitInterval=300s
+StartLimitBurst=3
 
 [Service]
 Type=forking

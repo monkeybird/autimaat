@@ -83,6 +83,9 @@ func (b *Bot) run() error {
 		return err
 	}
 
+	// Make connection available to plugins
+	irc.Connection = b.client
+
 	// Spin up the connection's read loop.
 	go func() {
 		log.Println("[bot] Entering data loop...")

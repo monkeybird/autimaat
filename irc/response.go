@@ -10,3 +10,6 @@ import "io"
 type ResponseWriter interface {
 	io.WriteCloser
 }
+
+// Connection is the stream to write to.
+var Connection ResponseWriter

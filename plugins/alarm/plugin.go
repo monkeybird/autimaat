@@ -18,7 +18,6 @@
 package alarm
 
 import (
-	"io"
 	"math/rand"
 	"path/filepath"
 	"strconv"
@@ -42,7 +41,6 @@ type alarm struct {
 	Target     string
 	Message    string
 	When       time.Time
-	Writer     io.Writer
 }
 
 type plugin struct {
@@ -138,7 +136,6 @@ func (p *plugin) addReminder(w irc.ResponseWriter, r *irc.Request, params cmd.Pa
 		SenderName: r.SenderName,
 		Message:    msg,
 		When:       time.Now().Add(when),
-		Writer:     w,
 	}
 
 	util.WriteFile(p.file, p.table, true)
@@ -208,23 +205,22 @@ func (p *plugin) checkExpiredAlarms() {
 	p.m.Lock()
 	defer p.m.Unlock()
 
-	var deleted bool
 	now := time.Now()
+
+	c := irc.Connection
+	if c == nil {
+		return
+	}
 
 	for id, alarm := range p.table {
 		if now.Before(alarm.When) {
 			continue
 		}
 
-		proto.PrivMsg(alarm.Writer, alarm.Target, alarm.Message,
+		proto.PrivMsg(c, alarm.Target, alarm.Message,
 			alarm.SenderName, time.Now().Format(TextTimeFormat))
 
-		alarm.Writer = nil
 		delete(p.table, id)
-		deleted = true
-	}
-
-	if deleted {
 		util.WriteFile(p.file, p.table, true)
 	}
 }

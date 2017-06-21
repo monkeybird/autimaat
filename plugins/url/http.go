@@ -125,7 +125,11 @@ func fetchBody(client *http.Client, url string) ([]byte, error) {
 	n, err := io.ReadFull(resp.Body, buf[:])
 	resp.Body.Close()
 
-	if err != nil || n <= 0 { // Exit only if no data was read at all.
+	if err != nil && err != io.ErrUnexpectedEOF {
+		return nil, err
+	}
+
+	if (err == nil || err == io.ErrUnexpectedEOF) && n <= 0 {
 		return nil, ErrNoTitle
 	}
 

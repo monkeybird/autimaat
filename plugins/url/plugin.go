@@ -10,6 +10,7 @@ package url
 import (
 	"github.com/monkeybird/autimaat/app/util"
 	"github.com/monkeybird/autimaat/irc"
+	"github.com/monkeybird/autimaat/irc/proto"
 	"github.com/monkeybird/autimaat/plugins"
 )
 
@@ -48,6 +49,13 @@ func (p *plugin) Dispatch(w irc.ResponseWriter, r *irc.Request) {
 
 	// Fetch title data for each of them.
 	for _, url := range list {
-		go fetchTitle(w, r, url, p.data.YoutubeApiKey)
+		go func(url string) {
+			title, err := fetchTitle(url, p.data.YoutubeApiKey)
+			if err != nil || len(title) == 0 {
+				return
+			}
+
+			proto.PrivMsg(w, r.Target, TextDisplay, r.SenderName, title)
+		}(url)
 	}
 }

@@ -17,4 +17,5 @@ var Ignore = map[string]bool{
 	"Cookies op Trouw.nl":                          true,
 	"Cookies op gelderlander.nl | gelderlander.nl": true,
 	"Too Many Requests":                            true,
+	"FOK.nl cookie-informatie":                     true,
 }

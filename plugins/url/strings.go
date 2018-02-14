@@ -12,6 +12,7 @@ const (
 // be ignored.
 var Ignore = map[string]bool{
 	"Imgur: The most awesome images on the Internet": true,
+	"Imgur: The magic of the Internet":             true,
 	"Tweakers":                                     true,
 	"Cookies op AD.nl | AD.nl":                     true,
 	"Cookies op Trouw.nl":                          true,

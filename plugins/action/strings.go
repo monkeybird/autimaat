@@ -116,9 +116,13 @@ var TextActions = []action{
 		},
 	},
 	{
-		[]string{"pindakaas"},
+		[]string{"joint"},
 		[]string{
-			"smeert een lepel bruine smurrie over de smoel van %s.",
+			"geeft %s een pretsigaret.",
+			"geeft %s een zakje met wiet wat vloeitjes en een tipje.",
+			"geeft %s een zakje met polm wat vloeitjes en een tipje.",
+			"geeft %s een voorgedraaide joint.",
+			"geeft %s wat stekjes en veel geduld.",
 		},
 	},
 	{

@@ -1,3 +1,5 @@
+## NOTE: This code has moved [elsewhere](https://notabug.org/mouz/bot) and is maintained there.
+
 ## autimaat
 
 This program is an IRC bot, specifically written for a private IRC channel.
